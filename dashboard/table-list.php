@@ -56,7 +56,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 											<th>Table Name</th>
 											<th>Capacity</th>
 											<th>Status</th>
-											<th class="hidden-phone">Action</th>
+											<th>Action</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -64,7 +64,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 										$count = 1;
 										include 'dbCon.php';
 										$con = connect();
-									$table_id = $_SESSION['id'];
+										$table_id = $_SESSION['id'];
 										$sql = "SELECT * FROM tbl_table";
 										$result = $con->query($sql);
 										foreach ($result as $r) {
@@ -75,10 +75,12 @@ if (!isset($_SESSION['isLoggedIn'])) {
 											<td><?php echo $r['table_name']; ?></td>
 											<td><?php echo $r['capacity']; ?></td>
 											<td><?php echo $r['status']; ?></td>
-											<td> <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-  Edit
-</button>
+
+<td>
+ <!-- Button trigger modal -->
+<button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#exampleModalLong">Edit</button>
+
+
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -89,16 +91,18 @@ if (!isset($_SESSION['isLoggedIn'])) {
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
+	  </div>
+	  
+<form action ="manage-update.php" method="POST">
+
       <div class="modal-body">
-		
   <div class="form-group">
     <label for="table_id">Table_id</label>
     <input type="text" class="form-control" id="table_id" placeholder="Table ID" disabled = "true">
   </div>
   <div class="form-group">
-    <label for="tablename">Table Name</label>
-    <input type="text" class="form-control" id="tablename" placeholder="Table Name">
+    <label for="table_name">Table Name</label>
+    <input type="text" class="form-control" id="table_name" placeholder="Table Name">
   </div>
   <div class="form-group">
     <label for="capacity">Capacity</label>
@@ -107,22 +111,24 @@ if (!isset($_SESSION['isLoggedIn'])) {
   <div class="form-group">
 	<label for="status">Status</label>
 	<select>
-  <option value="0">0</option>
-  <option value="1">1</option>
+  <option value="0" id="status">0</option>
+  <option value="1" id="status">1</option>
 	</select>
-    <!-- <input type="text" class="form-control" id="status" placeholder="Status"> -->
+	<!-- <input type="text" class="form-control" id="status" placeholder="Status"> -->
   </div>
 
-  
-</form>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+        <button type="submit" name="updatedata" class="btn btn-primary">Save changes</button>
+	  </div>
+	  
     </div>
   </div>
-</div></td>
+</div>
+</form>
+</td>
 										</tr>
 										<?php $count++; } ?>
 									</tbody>
@@ -171,5 +177,34 @@ if (!isset($_SESSION['isLoggedIn'])) {
 		<script src="assets/javascripts/tables/examples.datatables.default.js"></script>
 		<script src="assets/javascripts/tables/examples.datatables.row.with.details.js"></script>
 		<script src="assets/javascripts/tables/examples.datatables.tabletools.js"></script>
+
+		<script src="js/bootstrap.min.js"></script>
+		
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+		<script>
+		$(document).ready(function(){
+			$('.editbtn').on('click', function(){
+				$('#exampleModalLong').modal('show');
+			
+			$tr = $(this).closest('tr');
+
+			var data = $tr.children("td").map(function(){
+				return $(this).text();
+			}).get();
+			
+			console.log(data);
+
+
+			$('#table_id').val(data[0]);
+			$('#table_name').val(data[1]);
+			$('#capacity').val(data[2]);
+			$('#status').val(data[3]);  
+			});
+		});
+	</script>
+		
 	</body>
 </html>

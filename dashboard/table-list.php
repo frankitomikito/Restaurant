@@ -111,8 +111,8 @@ if (!isset($_SESSION['isLoggedIn'])) {
   <div class="form-group">
 	<label for="status">Status</label>
 	<select>
-  <option value="0" id="status">0</option>
-  <option value="1" id="status">1</option>
+  <option value="0" id="status">Unavailable</option>
+  <option value="1" id="status">Available</option>
 	</select>
 	<!-- <input type="text" class="form-control" id="status" placeholder="Status"> -->
   </div>

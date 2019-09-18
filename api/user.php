@@ -1,8 +1,7 @@
 <?php 
-
-	require_once('../Models/User.php');
-	require_once('../http/RequestRoute.php');
-	require_once('../http/Response.php');
+	require_once($_SERVER["DOCUMENT_ROOT"].'/Models/User.php');
+	require_once($_SERVER["DOCUMENT_ROOT"].'/http/RequestRoute.php');
+	require_once($_SERVER["DOCUMENT_ROOT"].'/http/Response.php');
 
 	RequestRoute::GET(function() {
 		$user = new User;

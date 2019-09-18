@@ -4,6 +4,6 @@
 	<title></title>
 </head>
 <body>
-	No NO NO
+	404 Not Found
 </body>
 </html>

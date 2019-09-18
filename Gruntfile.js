@@ -8,8 +8,8 @@ module.exports = function(grunt) {
         compress: true
       },
       build: {
-        src: ['node_modules/angular/angular.js'],
-        dest: 'build/admin/bundle.min.js'
+         src: 'js/employee/module.js',
+         dest: 'build/employee/bundle.min.js'
       }
     },
     cssmin : {
@@ -38,6 +38,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   // Default task(s).
-  grunt.registerTask('default', ['uglify', 'cssmin']);
-
+  // grunt.registerTask('default', ['uglify', 'cssmin']);
+   grunt.registerTask('default', ['uglify']);
 };

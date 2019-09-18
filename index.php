@@ -11,8 +11,11 @@ switch ($request) {
     case '/apis/user':
     	require 'api/user.php';
         break;
-        case '/login':
+    case '/login':
         require 'views/login.php';
+        break;
+    case '/admin/employee':
+        require 'views/admin/employee.php';
         break;
     default:
         require 'views/404.php';

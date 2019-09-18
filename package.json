@@ -1,0 +1,31 @@
+{
+  "name": "restaurant",
+  "version": "1.0.0",
+  "description": "thesis project",
+  "main": "index.js",
+  "scripts": {
+    "serve": "php -S localhost:8000",
+    "build:admin": "npm run sass:admin && grunt",
+    "sass:admin": "node-sass --output-style compressed sass/admin/index.scss build/admin/bundle.css compressed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frankitomikito/Restaurant.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/frankitomikito/Restaurant/issues"
+  },
+  "homepage": "https://github.com/frankitomikito/Restaurant#readme",
+  "dependencies": {
+    "angular": "^1.7.8",
+    "angular-route": "^1.7.8"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.4",
+    "grunt-contrib-cssmin": "^3.0.0",
+    "grunt-contrib-uglify": "^4.0.1",
+    "node-sass": "^4.12.0"
+  }
+}

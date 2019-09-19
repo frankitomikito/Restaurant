@@ -41,6 +41,8 @@
 
 		<link href="https://pro-next.fontawesome.com/releases/v5.7.2/css/all.css" data-prerender="keep" rel="stylesheet">
 
+		<link rel="stylesheet" type="text/css" href="../build/admin/bundle.css">
+
 		<!-- Head Libs -->
 		<script src="../dashboard/assets/vendor/modernizr/modernizr.js"></script>
 

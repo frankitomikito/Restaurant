@@ -1,3 +1,8 @@
-.test {
-	font-weight: 200;
-}
+@import 'abstract/variable.scss';
+
+@import 'utilities/animate.scss';
+
+@import 'base/base.scss';
+
+@import 'components/button.scss';
+@import 'components/modal.scss';

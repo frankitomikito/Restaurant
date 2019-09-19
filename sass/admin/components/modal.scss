@@ -1,0 +1,58 @@
+.mymodal {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	z-index: 1021;
+	height: 100vh;
+	width: 100vw;
+	background-color: rgba($dark-color, .2);
+	justify-content: center;
+	align-items: center;
+
+	&.showw {
+		animation-name: showmodal;
+		animation-duration: .5s;
+		animation-fill-mode: backwards;
+	}
+
+	&.close {
+		animation-name: closemodal;
+		animation-duration: .5s;
+		animation-delay: .2s;
+		animation-fill-mode: backwards;
+	}
+
+	.mymodal-container {
+		width: 50%;
+		max-height: 90%;
+		background-color: $light-color;
+		border-radius: 1.5rem;
+		animation-name: showmodalcont;
+		animation-duration: .7s;
+		animation-delay: .2s;
+		animation-fill-mode: backwards;
+
+		&.close {
+			animation-name: closemodalcont;
+			animation-duration: .7s;
+			animation-fill-mode: backwards;
+		}
+
+		.mymodal-header {
+			margin: 2rem 2rem;
+			display: block;
+			h1 {
+				font-size: 2.3rem;
+			}
+		}
+		.mymodal-body {
+			margin: 2rem 2rem;
+			display: block;
+		}
+		.mymodal-footer {
+			margin: 2rem 2rem;
+			display: block;
+			text-align: right;
+		}
+	}
+}

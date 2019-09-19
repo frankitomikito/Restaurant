@@ -7,7 +7,7 @@
     "serve": "php -S localhost:8000",
     "build:admin": "npm run sass:admin && grunt",
     "uglify": "grunt uglify",
-    "sass:admin": "node-sass --output-style compressed sass/admin/index.scss build/admin/bundle.css compressed"
+    "sass:admin": "node-sass --output-style compressed sass/admin/index.scss build/admin/bundle.css"
   },
   "repository": {
     "type": "git",

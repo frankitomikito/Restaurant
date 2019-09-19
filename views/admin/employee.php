@@ -5,7 +5,7 @@
 				<div class="logo-container">
 					<a href="index.php" class="logo">
 						Tak-Ang Restaurant
-					</a>
+						</a>
 					<div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
 						<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
 					</div>
@@ -167,6 +167,7 @@
 						<section class="panel">
 							<header class="panel-heading">
 								<div class="panel-actions">
+									<a id="buttonAdd" class="fa fa-plus datatable-addbtn"></a>
 									<a href="#" class="fa fa-caret-down"></a>
 								</div>
 						
@@ -193,8 +194,23 @@
 				</section>
 			</div>
 	</section>
+
+	<div id="myModal" class="mymodal close" style="display: none !important;">
+		<div id="myModalContainer" class="mymodal-container">
+			<div class="mymodal-header">
+				<h1>Add Employee</h1>
+			</div>
+			<div class="mymodal-body"></div>
+			<div class="mymodal-footer">
+				<button id="buttonCancel" class="myBtn">Cancel</button>
+				<button class="myBtn">Save</button>
+			</div>
+		</div>
+	</div>
+
 	<?php include 'script-res.php' ?>
 	<script type="module" src="../js/employee/classes/Users.js"></script>
+	<script type="module" src="../js/employee/classes/Modal.js"></script>
 	<script type="module" src="../js/employee/employee.js"></script>
 
 </body>

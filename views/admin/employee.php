@@ -194,7 +194,8 @@
 			</div>
 	</section>
 	<?php include 'script-res.php' ?>
-	<script type="text/javascript" src="../js/employee/employee.js"></script>
+	<script type="module" src="../js/employee/classes/Users.js"></script>
+	<script type="module" src="../js/employee/employee.js"></script>
 
 </body>
 </html>

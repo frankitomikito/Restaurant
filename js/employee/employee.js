@@ -1,21 +1,4 @@
-		class Users {
-			static getPositionString(value) {
-				switch(value) {
-					case '3':
-						return 'Chef';
-					case '4':
-						return 'Waiter';
-				}
-			}
-			static getStatusString(value) {
-				switch(value) {
-					case '1':
-						return 'Active';
-					case '0':
-						return 'InActive';
-				}
-			} 
-		}
+import Users from './classes/Users.js';
 
 		async function setDataTableValue() {
 			let response = await fetch('http://localhost:8000/apis/user?returnType=datatable');

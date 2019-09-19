@@ -29,4 +29,22 @@ class Database implements IDatabaseAction {
 	{
 		$this->conn->close();
 	}
+
+	public function convertResultToJson($result) {
+		$array = Array();
+		while($row = $result->fetch_object()) {
+			$array[] = $row;
+		}
+		return $array;
+	}
+
+	public function convertResultToDatatableValue($result) {
+		$array = Array();
+		while($row = $result->fetch_all()) {
+			for ($i=0; $i < sizeof($row); $i++) { 
+				$array[] = $row[$i];
+			}
+		}
+		return $array;
+	}
 }

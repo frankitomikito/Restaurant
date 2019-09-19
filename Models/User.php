@@ -2,6 +2,7 @@
 
 require_once('Database.php');
 require_once('Interfaces/IActions.php');
+require_once('http/RequestRoute.php');
 
 class User extends Database implements IActions {
 
@@ -12,8 +13,16 @@ class User extends Database implements IActions {
 
 	public function getAll()
 	{
-		$result = $this->rawQuery('select user_id, email, gender, address, position, image_path, status from tbl_user where user_id != 0');
-		return $this->convertResultToJson($result);
+		$returnType = RequestRoute::PARAMGET('returnType');
+		$result = $this->rawQuery('select user_id, fullname, email, gender, address, position, status, image_path from tbl_user where user_id != 1 and user_id != 4 and status != 0');
+		switch ($returnType) {
+			case 'datatable':
+				return $this->convertResultToDatatableValue($result);
+				break;
+			default:
+				return $this->convertResultToJson($result);
+				break;
+		}
 	}
 
 	public function create($args)
@@ -35,13 +44,4 @@ class User extends Database implements IActions {
 	{
 		throw new \Exception('Method search() is not implemented.');
 	}
-
-	private function convertResultToJson($result) {
-		$array = Array();
-		while($row = $result->fetch_object()) {
-			$array[] = $row;
-		}
-		return $array;
-	}
 }
-

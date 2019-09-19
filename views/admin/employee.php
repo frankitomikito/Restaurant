@@ -66,7 +66,7 @@
 							<nav id="menu" class="nav-main" role="navigation">
 								<ul class="nav nav-main">
 									<li>
-										<a href="index.php">
+										<a href="/dashboard/">
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Dashboard</span>
 										</a>
@@ -168,31 +168,87 @@
 							<header class="panel-heading">
 								<div class="panel-actions">
 									<a href="#" class="fa fa-caret-down"></a>
-									<a href="#" class="fa fa-times"></a>
 								</div>
 						
-								<h2 class="panel-title">All Tables</h2>
+								<h2 class="panel-title">List of employees</h2>
 							</header>
 							<div class="panel-body">
-								<table class="table table-bordered table-striped mb-none" id="datatable-tabletools" data-swf-path="assets/vendor/jquery-datatables/extras/TableTools/swf/copy_csv_xls_pdf.swf">
+								<table class="table table-bordered table-striped mb-none" id="datatable-tabletoolss" data-swf-path="assets/vendor/jquery-datatables/extras/TableTools/swf/copy_csv_xls_pdf.swf">
 									<thead>
 										<tr>
-											<th>No</th>
-											<th>Table Name</th>
-											<th>Capacity</th>
+											<th>User Id</th>
+											<th>Fullname</th>
+											<th>Email</th>
+											<th>Gender</th>
+											<th>Address</th>
+											<th>Position</th>
 											<th>Status</th>
-											<th>Action</th>
 										</tr>
 									</thead>
-</tbody>
-</table>
-</div>
-</section>
+									</tbody>
+									</table>
+						</div>
+					</section>
 					<!-- end: page -->
 				</section>
 			</div>
 	</section>
 	<?php include 'script-res.php' ?>
+	<script type="text/javascript">
+		class Users {
+			static getPositionString(value) {
+				switch(value) {
+					case '3':
+						return 'Chef';
+					case '4':
+						return 'Waiter';
+				}
+			}
+			static getStatusString(value) {
+				switch(value) {
+					case '1':
+						return 'Active';
+					case '0':
+						return 'InActive';
+				}
+			} 
+		}
+
+		async function setDataTableValue() {
+			let response = await fetch('http://localhost:8000/apis/user?returnType=datatable');
+			if (response.ok) {
+			  let json = await response.json();
+			  changeIntegerToText(json);
+				const table = $('#datatable-tabletoolss').DataTable({
+				    data: json,
+				    columnDefs: [
+			            { width: 100, targets: 0 },
+			            { width: 40, targets: 3 },
+			            { width: 40, targets: 5 },
+			            { width: 40, targets: 6 }
+			        ]
+				});
+
+				$('#datatable-tabletoolss').on('click', 'tr', function () {
+			        const data = table.row(this).data();
+			        alert( 'You clicked on '+data[0]+'\'s row' );
+			    });
+			} else {
+			  alert("HTTP-Error: " + response.status);
+			}
+		}
+
+		function changeIntegerToText(json) {
+			let users = [];
+			for (let i = 0; i < json.length; i++) {
+				let user = json[i];
+				user[5] = Users.getPositionString(user[5]);
+				user[6] = Users.getStatusString(user[6]);
+			}
+		}
+
+		setDataTableValue();
+	</script>
 
 </body>
 </html>

@@ -34,14 +34,12 @@ function changeIntegerToText(json) {
     }
 }
 
-let modal_ctrl = new ModalController();
-
 function showModal(action) {
     switch(action) {
         case 'add':
         break;
     }
-    modal_ctrl.showModal();
+    ModalController.showModal();
 }
 
 $(document).ready(function() {
@@ -49,7 +47,7 @@ $(document).ready(function() {
         showModal('add');
     });
     $('#buttonCancel').click(function() {
-        modal_ctrl.closeModal();
+        ModalController.closeModal();
     });
 });
 

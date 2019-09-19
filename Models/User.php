@@ -27,7 +27,12 @@ class User extends Database implements IActions {
 
 	public function create($args)
 	{
-		throw new \Exception('Method create() is not implemented.');
+		try {
+			$result = $this->rawQuery('insert into tbl_user (fullname, email, gender, address, position, image_path, status) values ("'.$args['fullname'].'", "'.$args['email'].'", '.$args['gender'].', "'.$args['address'].'", '.$args['position'].', "'.$args['image_path'].'", 1)');
+			return ['status' => $result];
+		} catch (Exception $e) {
+			return ['status' => false, 'error' => $e];
+		}
 	}
 
 	public function update($args)

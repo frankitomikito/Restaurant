@@ -1,0 +1,31 @@
+.myInput-container {
+	position: relative;
+	margin-top: 1rem;
+	
+	.floating-label {
+		position: absolute;
+	    top: 0;
+	    left: 0;
+	    z-index: 1;
+		transform: translateY(.9rem);
+
+		&.active {
+			transform: translateY(-0.9rem);;
+		}
+	}
+}
+.myInput-control {
+	position: relative;
+	width: 100%;
+    box-sizing: border-box;
+    border: none;
+  	border-bottom: 1px solid $primary-color;
+
+	&.margin {
+		margin: 1rem 0;
+	}
+
+	&:focus {
+  		border-bottom: 2px solid $primary-color;
+	}
+}

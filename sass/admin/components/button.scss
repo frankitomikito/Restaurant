@@ -1,6 +1,25 @@
 .myBtn {
 	font-size: 1.5rem;
-	font-weight: normal;;
+	font-weight: normal;
+	background-color: $primary-color;
+	outline: none;
+	border: none;
+	border-radius: .5rem;
+	color: white;
+	padding: .5rem 1rem;
+	min-width: 7rem;
+	transition: all .5s;
+
+	&:hover {
+		transform: translateY(-.3rem);
+		box-shadow: .3rem .3rem .8rem rgba($dark-color, .5);
+	}
+
+	&:active {
+		background-color: $secondary-color;
+		transform: translateY(0);
+		box-shadow: unset;
+	}
 }
 
 .datatable-addbtn {

@@ -1,6 +1,10 @@
 <?php
 
 $request = $_SERVER['REQUEST_URI'];
+if (strpos($request, '?') != False)
+    $request = substr($request, 0, strpos($request, '?'));
+
+$request = strtolower($request);
 switch ($request) {
     case '/' :
         require 'views/landingpage.php';
@@ -13,6 +17,9 @@ switch ($request) {
         break;
     case '/login':
         require 'views/login.php';
+        break;
+    case '/admin/dashboard': 
+        require 'dashboard/index.php';
         break;
     case '/admin/employee':
         require 'views/admin/employee.php';

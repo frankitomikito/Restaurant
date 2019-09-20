@@ -15,4 +15,36 @@ class Users {
 				return 'InActive';
 		}
 	} 
+	static getGenderString(value) {
+		switch (value) {
+			case '1':
+				return 'Male';
+			case '0':
+				return 'Female';
+		}
+	}
+	static getGenderInt(value) {
+		switch (value) {
+			case 'Male':
+				return '1';
+			case 'Female':
+				return '0';
+		}
+	}
+	static getPositionInt(value) {
+		switch (value) {
+			case 'Chef':
+				return '3';
+			case 'Waiter':
+				return '4';
+		}
+	}
+	static getStatusInt(value) {
+		switch (value) {
+			case 'Active':
+				return '1';
+			case 'InActive':
+				return '0';
+		}
+	}
 }

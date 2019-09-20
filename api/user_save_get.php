@@ -21,10 +21,13 @@
 		];
 		$user = new User;
 		$result = $user->create($data);
-		echo json_encode($result);
 		if ($result['status']) 
-			return new Response(['data' => $user->getAll()], 200);
+			return new Response(['data' => true], 200);
 		else 
 			return new Response(['error' => 'Something went wrong'], 404);
+	});
+
+	RequestRoute::PUT(function() {
+
 	});
 ?>

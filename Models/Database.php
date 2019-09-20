@@ -38,7 +38,7 @@ class Database implements IDatabaseAction {
 		return $array;
 	}
 
-	public function convertResultToDatatableValue($result) {
+	public function convertResultToDatatableArray($result) {
 		$array = Array();
 		while($row = $result->fetch_all()) {
 			for ($i=0; $i < sizeof($row); $i++) { 

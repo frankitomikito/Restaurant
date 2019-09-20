@@ -25,9 +25,19 @@ class RequestRoute extends Response implements IRequestMethod, IRequestParams {
 
 	public static function PUT($callback)
 	{
-		if ($_SERVER["REQUEST_METHOD"] == "PUT") {
-			echo $callback();
-		}
+		// if ($_SERVER["REQUEST_METHOD"] == "PUT") {
+		// 	parse_str(file_get_contents("php://input"), $_PUT);
+
+		// 	foreach ($_PUT as $key => $value)
+		// 	{
+		// 		unset($_PUT[$key]);
+		// 		echo 'test';
+		// 		$_PUT[str_replace('amp;', '', $key)] = $value;
+		// 	}
+
+		// 	$_REQUEST = array_merge($_REQUEST, $_PUT);
+		// 	echo $callback();
+		// }
 	}
 
 	public static function DELETE($callback)

@@ -205,51 +205,61 @@
 				<h1>Add Employee</h1>
 			</div>
 			<div class="mymodal-body">
-				<form>
+				<form novalidate name="modalForm">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="mymodal-avatar">
 								<img id="profileImg" src="../images/person_3.jpg">
-								<input id="uploadImg" onchange="angular.element(this).scope().onImageChange(this.files)" type="file" style="display: none;">
+								<input name="user_image" id="uploadImg" onchange="angular.element(this).scope().onImageChange(this.files)" type="file" style="display: none;">
 								<button type="button" class="myBtn" ng-click="pickImage()" style="margin-top: 1rem;">Upload</button>
 							</div>
 						</div>
 						<div class="col-md-12">
 							<div class="myInput-container">
 								<label class="floating-label active">Fullname</label>
-								<input type="string" ng-model="user.fullname" class="myInput-control margin" required>
+								<input name="fullname" type="string" ng-model="user.fullname" class="myInput-control margin" required>
 							</div>
 						</div>
 						<div class="col-md-12">
 							<div class="myInput-container">
 								<label class="floating-label active">Email</label>
-								<input type="email" ng-model="user.email" class="myInput-control margin" required>
+								<input name="email" type="email" ng-model="user.email" class="myInput-control margin" required>
 							</div>
 						</div>
 						<div class="col-md-12">
 							<div class="myInput-container">
 								<label class="floating-label active">Address</label>
-								<input type="string" ng-model="user.address" class="myInput-control margin" required>
+								<input name="address" type="string" ng-model="user.address" class="myInput-control margin" required>
 							</div>
 						</div>
 						<div class="col-md-12">
 							<label>
-								<input type="radio" ng-model="user.gender" value="1">
+								<input name="gender" type="radio" ng-model="user.gender" value="1">
 								Male
 							</label>
 							<label>
-								<input type="radio" ng-model="user.gender" value="0">
+								<input name="gender" type="radio" ng-model="user.gender" value="0">
 								Female
 							</label>
 						</div>
 						<div class="col-md-12">
 							<label>
-								<input type="radio" ng-model="user.position" value="3">
+								<input name="position" type="radio" ng-model="user.position" value="3">
 								Chef
 							</label>
 							<label>
-								<input type="radio" ng-model="user.position" value="4">
+								<input name="position" type="radio" ng-model="user.position" value="4">
 								Waiter
+							</label>
+						</div>
+						<div class="col-md-12" ng-if="user.status">
+							<label>
+								<input name="status" type="radio" ng-model="user.status" value="1">
+								Active
+							</label>
+							<label>
+								<input name="status" type="radio" ng-model="user.status" value="0">
+								InActive
 							</label>
 						</div>
 					</div>
@@ -257,7 +267,8 @@
 			</div>
 			<div class="mymodal-footer">
 				<button id="buttonCancel" ng-click="onCancel()" class="myBtn">Cancel</button>
-				<button class="myBtn" ng-click="onSubmit()">Save</button>
+				<button class="myBtn" ng-if="!edit" ng-disabled="!modalForm.$valid" ng-click="onSubmit()">Save</button>
+				<button class="myBtn" ng-if="edit" ng-disabled="!modalForm.$valid" ng-click="onUpdate()">Update</button>
 			</div>
 		</div>
 	</div>
@@ -265,7 +276,6 @@
 	<?php include 'script-res.php' ?>
 	<script src="../js/employee/classes/Users.js"></script>
 	<script src="../js/employee/classes/Modal.js"></script>
-	<script src="../js/employee/employee.js"></script>
 	<script src="../node_modules/angular/angular.js"></script>
 	<script src="../js/employee/AngularJS/module.js"></script>
 	<script src="../js/employee/AngularJS/modalctrl.js"></script>

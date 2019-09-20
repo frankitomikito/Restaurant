@@ -14,10 +14,10 @@ class User extends Database implements IActions {
 	public function getAll()
 	{
 		$returnType = RequestRoute::PARAMGET('returnType');
-		$result = $this->rawQuery('select user_id, fullname, email, gender, address, position, status, image_path from tbl_user where user_id != 1 and user_id != 4 and status != 0');
+		$result = $this->rawQuery('select user_id, fullname, email, gender, address, position, status, image_path from tbl_user where user_id != 1 and user_id != 4');
 		switch ($returnType) {
 			case 'datatable':
-				return $this->convertResultToDatatableValue($result);
+				return $this->convertResultToDatatableArray($result);
 				break;
 			default:
 				return $this->convertResultToJson($result);
@@ -37,7 +37,19 @@ class User extends Database implements IActions {
 
 	public function update($args)
 	{
-		throw new \Exception('Method update() is not implemented.');
+		try {
+			$this->rawQuery('update tbl_user set 
+				fullname = "'.$args['fullname'].'", 
+				email = "'.$args['email'].'", 
+				address = "'.$args['address'].'",
+				gender = '.$args['gender'].', 
+				position = '.$args['position'].',
+				image_path = "'.$args['image_path'].'",
+				status = '.$args['status'].' where user_id = '.$args['user_id']);
+			return ['status' => true];
+		} catch (Exception $th) {
+			return ['status' => false, 'error' => $th];
+		}
 	}
 
 	public function remove($id)
@@ -48,5 +60,38 @@ class User extends Database implements IActions {
 	public function search($args)
 	{
 		throw new \Exception('Method search() is not implemented.');
+	}
+
+	private function convertUsersToDatatableJson($result) {
+		$array = Array();
+		while($row = $result->fetch_object()) {
+			$row->position = User::getPositionText($row->position);
+			$row->status = User::getPositionText($row->status);
+			$row->gender = User::getGenderText($row->gender);
+			$array[] = $row;
+		}
+		return $array;
+	}
+
+	public static function getPositionText($num) {
+		switch ($num) {
+			case 1:
+				return 'Admin';
+			case 2:
+				return 'Customer';
+			case 3:
+				return 'Chef';
+			case 4:
+				return 'Waiter';
+		}
+	}
+
+	public static function getGenderText($num) {
+		switch ($num) {
+			case 0:
+				return "Female";
+			case 1:
+				return "Male";
+		}
 	}
 }

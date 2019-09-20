@@ -13,7 +13,10 @@ switch ($request) {
         require 'views/404.php';
         break;
     case '/apis/user':
-    	require 'api/user.php';
+    	require 'api/user_save_get.php';
+        break;
+    case '/apis/user_update':
+    	require 'api/user_update.php';
         break;
     case '/login':
         require 'views/login.php';

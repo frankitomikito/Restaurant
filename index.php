@@ -14,6 +14,14 @@ switch ($request) {
         case '/login':
         require 'views/login.php';
         break;
+        case '/forgot':
+        require 'views/forgot.php';
+        break;
+        case '/forgot/submit':
+        require 'views/reset-request.php';
+        break;
+        
+        
     default:
         require 'views/404.php';
         break;

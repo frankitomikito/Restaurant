@@ -1,4 +1,4 @@
-export class ModalController {
+class ModalController {
 
 	static showModal() {
 		const id = document.getElementById('myModal');

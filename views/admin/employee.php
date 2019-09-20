@@ -263,9 +263,9 @@
 	</div>
 
 	<?php include 'script-res.php' ?>
-	<script type="module" src="../js/employee/classes/Users.js"></script>
-	<script type="module" src="../js/employee/classes/Modal.js"></script>
-	<script type="module" src="../js/employee/employee.js"></script>
+	<script src="../js/employee/classes/Users.js"></script>
+	<script src="../js/employee/classes/Modal.js"></script>
+	<script src="../js/employee/employee.js"></script>
 	<script src="../node_modules/angular/angular.js"></script>
 	<script src="../js/employee/AngularJS/module.js"></script>
 	<script src="../js/employee/AngularJS/modalctrl.js"></script>

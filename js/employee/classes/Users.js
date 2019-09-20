@@ -1,4 +1,4 @@
-export default class Users {
+class Users {
 	static getPositionString(value) {
 		switch(value) {
 			case '3':

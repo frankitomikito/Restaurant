@@ -1,6 +1,3 @@
-import Users from './classes/Users.js';
-import {ModalController} from './classes/Modal.js';
-
 async function setDataTableValue() {
     let response = await fetch('http://localhost:8000/apis/user?returnType=datatable');
     if (response.ok) {
@@ -26,7 +23,6 @@ async function setDataTableValue() {
 }
 
 function changeIntegerToText(json) {
-    let users = [];
     for (let i = 0; i < json.length; i++) {
         let user = json[i];
         user[5] = Users.getPositionString(user[5]);
@@ -45,9 +41,6 @@ function showModal(action) {
 $(document).ready(function() {
     $('#buttonAdd').click(function() {
         showModal('add');
-    });
-    $('#buttonCancel').click(function() {
-        ModalController.closeModal();
     });
 });
 

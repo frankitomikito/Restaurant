@@ -39,6 +39,7 @@ module.controller('modalCtrl', ['$scope', 'userService', function(s, user_servic
 
     s.onCancel = () => {
         s.user = {};
+        ModalController.closeModal();
         $('#profileImg').attr('src', '../images/person_3.jpg');
         $('#uploadImg').val(null);
     }
@@ -57,15 +58,5 @@ module.controller('modalCtrl', ['$scope', 'userService', function(s, user_servic
             };
             reader.readAsDataURL(file[0]);
         }
-    }
-
-    function closeModal() {
-        const cont = document.getElementById('myModalContainer');
-        cont.className = 'mymodal-container close';
-        const id = document.getElementById('myModal');
-        id.className = 'mymodal close';
-        setTimeout(() => {
-            id.style.display = "none";
-        }, 600);
     }
 }]);

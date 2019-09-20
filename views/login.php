@@ -124,7 +124,7 @@
     if ($_SESSION['role'] == 1) {
        echo '<script>window.location="dashboard/index.php"</script>';
     }elseif ($_SESSION['role'] == 2) {
-      echo '<script>window.location="index.php"</script>';
+      echo '<script>window.location="/"</script>';
     } 
     
   }

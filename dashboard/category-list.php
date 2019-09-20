@@ -1,4 +1,4 @@
-<!-- table-list.php -->
+
 <?php include 'template/header.php'; 
 if (!isset($_SESSION['isLoggedIn'])) {
 	echo '<script>window.location="login.php"</script>';
@@ -28,8 +28,8 @@ if (!isset($_SESSION['isLoggedIn'])) {
 										<i class="fa fa-home"></i>
 									</a>
 								</li>
-								<li><span>Tables</span></li>
-								<li><span>Restaurant Tables</span></li>
+								<li><span>Category</span></li>
+								<li><span>Category List</span></li>
 							</ol>
 					
 							<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
@@ -46,17 +46,17 @@ if (!isset($_SESSION['isLoggedIn'])) {
 									<a href="#" class="fa fa-times"></a>
 								</div>
 						
-								<h2 class="panel-title">All Tables</h2>
+								<h2 class="panel-title">All Category</h2>
 							</header>
 							<div class="panel-body">
 								<table class="table table-bordered table-striped mb-none" id="datatable-tabletools" data-swf-path="assets/vendor/jquery-datatables/extras/TableTools/swf/copy_csv_xls_pdf.swf">
 									<thead>
 										<tr>
 											<th>No</th>
-											<th>Table Name</th>
-											<th>Capacity</th>
-											<th>Status</th>
-											<th>Action</th>
+											<th>Catagory Name</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+											
 										</tr>
 									</thead>
 									<tbody>
@@ -64,17 +64,17 @@ if (!isset($_SESSION['isLoggedIn'])) {
 										$count = 1;
 										include 'dbCon.php';
 										$con = connect();
-										$table_id = $_SESSION['id'];
-										$sql = "SELECT * FROM tbl_table";
+										$category_id = $_SESSION['id'];
+										$sql = "SELECT * FROM tbl_category";
 										$result = $con->query($sql);
 										foreach ($result as $r) {
 										?>
 										
 										<tr class="gradeX">
-										    <td><?php echo $r['table_id']; ?></td>	
-											<td><?php echo $r['table_name']; ?></td>
-											<td><?php echo $r['capacity']; ?></td>
+										    <td><?php echo $r['category_id']; ?></td>	
+											<td><?php echo $r['name']; ?></td>
 											<td><?php echo $r['status']; ?></td>
+											
 
 <td>
  <!-- Button trigger modal -->
@@ -91,19 +91,14 @@ if (!isset($_SESSION['isLoggedIn'])) {
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-	  </div>
-
-
-
+      </div>
+      
 
 
 
 	  <!-- ajhbsjhvukehjnkjqbdkhubqnckmzxbchubefkqnejqlnnjnhsvv -->
-<form action ="manage-update.php" method="POST">
-		<!-- ajhbsjhvukehjnkjqbdkhubqnckmzxbchubefkqnejqlnnjnhsvv -->									
-
-
-
+<form action ="category-update.php" method="POST">
+<!-- ajhbsjhvukehjnkjqbdkhubqnckmzxbchubefkqnejqlnnjnhsvv -->
 
 
 
@@ -112,16 +107,12 @@ if (!isset($_SESSION['isLoggedIn'])) {
 
       <div class="modal-body">
   <div class="form-group">
-    <label for="table_id">Table_id</label>
-    <input type="text" class="form-control" id="table_id" placeholder="Table ID" disabled = "true">
+    <label for="category_id">Category ID</label>
+    <input type="text" class="form-control" id="category_id" placeholder="Category ID" disabled = "true">
   </div>
   <div class="form-group">
-    <label for="table_name">Table Name</label>
-    <input type="text" class="form-control" id="table_name" placeholder="Table Name">
-  </div>
-  <div class="form-group">
-    <label for="capacity">Capacity</label>
-    <input type="text" class="form-control" id="capacity" placeholder="Capacity">
+    <label for="name">Category Name</label>
+    <input type="text" class="form-control" id="name" placeholder="Category Name">
   </div>
   <div class="form-group">
 	<label for="status">Status</label>
@@ -136,7 +127,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" name="updatedata" class="btn btn-primary">Save changes</button>
+        <button type="submit" name="updatecategory" class="btn btn-primary">Save changes</button>
 	  </div>
 	  
     </div>
@@ -213,10 +204,9 @@ if (!isset($_SESSION['isLoggedIn'])) {
 			console.log(data);
 
 
-			$('#table_id').val(data[0]);
-			$('#table_name').val(data[1]);
-			$('#capacity').val(data[2]);
-			$('#status').val(data[3]);  
+			$('#category_id').val(data[0]);
+			$('#name').val(data[1]);
+			$('#status').val(data[2]);
 			});
 		});
 	</script>

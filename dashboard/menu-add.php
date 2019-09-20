@@ -4,8 +4,14 @@ if (!isset($_SESSION['isLoggedIn'])) {
 	echo '<script>window.location="login.php"</script>';
 }
 
+
+
+
 ?>
 <body>
+									
+
+
 		<section class="body">
 
 			<!-- start: header -->
@@ -58,8 +64,8 @@ if (!isset($_SESSION['isLoggedIn'])) {
 										<div class="row">
 											<div class="col-sm-6">
 												<div class="form-group">
-													<label class="control-label">Item Name</label>
-													<input type="text" name="itemname" class="form-control" required="">
+													<label class="control-label">Menu Name</label>
+													<input type="text" name="menuname" class="form-control" required="">
 												</div>
 											</div>
 											<div class="col-sm-6">
@@ -68,27 +74,44 @@ if (!isset($_SESSION['isLoggedIn'])) {
 													<input type="text" name="price" class="form-control" required="">
 												</div>
 											</div>
+							
+										<div class="col-sm-6">
+												<div class="form-group">
+													<label class="control-label">Servings</label>
+													<input type="text" name="servings" class="form-control" required="">
+												</div>
+											</div>	
 										</div>
 										<div class="row">
 											<div class="col-sm-12">
 												<div class="form-group">
-													<label class="control-label">Made By</label>
-													<textarea class="form-control" name="madeby" rows="1" id="textareaDefault"></textarea>
+													<label class="control-label">Description</label>
+													<textarea class="form-control" name="description" rows="1" id="textareaDefault"></textarea>
 												</div>
 											</div>
 										</div>
+
+										<?php
+										$mysqli = NEW mysqli('localhost','root','','restaurant_v2');
+
+										$resultSet = $mysqli->query("SELECT category_id from tbl_category");
+										?>
+
 										<div class="row">
 											<div class="col-sm-6">
 												<div class="form-group">
-													<label class="control-label">Area</label>
-													<select data-plugin-selectTwo class="form-control populate" name="food_type" required="">
-														<option value=""> -Select- </option>
-														<option value="Fast Food">Fast Food</option>
-														<option value="Dessert">Dessert</option>
-														<option value="Drink">Drink</option>
+													<label class="control-label">Category</label>
+													<select data-plugin-selectTwo class="form-control populate" name="category" required="">
+														<?php
+														while ($rows = $resultSet->fetch_assoc()){
+															$category_id = $rows['category_id'];
+															echo "<option value='$category_id'>$category_id</option>";
+														}
+														?>
 													</select>
 												</div>
 											</div>
+
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label class="control-label">Image</label>

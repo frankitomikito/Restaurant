@@ -84,6 +84,30 @@
 						</ul>
 					</li>
 					<?php } ?> 
+					<?php if((isset($_SESSION['isLoggedIn']) && $_SESSION['role'] == 1)){ ?>
+					<li class="nav-parent">
+						<a>
+							<i class="fas fa-utensils-alt" aria-hidden="true"></i>
+							<span>Category</span>
+						</a>
+						<ul class="nav nav-children">
+							<li>
+								<a href="category-add.php">
+									<span class="pull-right label label-primary">add</span>
+									<i class="fa fa-plus-square" aria-hidden="true"></i>
+									<span>Category Add</span>
+								</a>
+							</li>
+							<li>
+								<a href="category-list.php">
+									<span class="pull-right label label-info">list</span>
+									<i class="fas fa-list-ul" aria-hidden="true"></i>
+									<span>Category List</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<?php } ?>
 				</ul>
 			</nav>
 

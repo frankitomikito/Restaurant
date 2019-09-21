@@ -11,13 +11,16 @@
 	});
 
 	RequestRoute::POST(function() {
+		$image_path = RequestRoute::PARAMFILE('user_image') ? 
+			ImageUploader::uploadImage(RequestRoute::PARAMFILE('user_image')) :
+			'images/012fdcec1c1935fa3971afc1c54931a5.jpg';
 		$data = [
 			'fullname' => RequestRoute::PARAMPOST('fullname'),
 			'email' => RequestRoute::PARAMPOST('email'),
 			'address' => RequestRoute::PARAMPOST('address'),
 			'position' => (int)RequestRoute::PARAMPOST('position'),
 			'gender' => (int)RequestRoute::PARAMPOST('gender'),
-			'image_path' => ImageUploader::uploadImage(RequestRoute::PARAMFILE('user_image'))
+			'image_path' => $image_path
 		];
 		$user = new User;
 		$result = $user->create($data);

@@ -53,6 +53,11 @@ class UserCode extends Database implements IActions {
     }
     
     private function generateCode() {
-        return 'lsdkjfsldkfj';
+        $str = '';
+        $str_len = 15;
+        for ($i = 0; $i < $str_len; $i++) {
+            $str .= chr(rand(97, 122)).chr(rand(48, 57));
+        }
+        return $str;
     }
 }

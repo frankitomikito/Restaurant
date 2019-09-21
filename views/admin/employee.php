@@ -233,6 +233,7 @@
 							</div>
 						</div>
 						<div class="col-md-12">
+							<h5>Gender</h5>
 							<label>
 								<input name="gender" type="radio" ng-model="user.gender" value="1">
 								Male
@@ -243,6 +244,7 @@
 							</label>
 						</div>
 						<div class="col-md-12">
+							<h5>Position</h5>
 							<label>
 								<input name="position" type="radio" ng-model="user.position" value="3">
 								Chef
@@ -253,6 +255,7 @@
 							</label>
 						</div>
 						<div class="col-md-12" ng-if="user.status">
+							<h5>Status</h5>
 							<label>
 								<input name="status" type="radio" ng-model="user.status" value="1">
 								Active

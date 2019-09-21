@@ -108,14 +108,15 @@ module.controller('modalCtrl', ['$scope', 'userService', function(s, user_servic
     }
 
     s.onCancel = () => {
-        s.user = {};
-        ModalController.closeModal();
-        $('#profileImg').attr('src', '../images/person_3.jpg');
-        $('#uploadImg').val(null);
-
-        if (s.edit)
-            s.edit = false;
-        
+        ModalController.closeModal(() => {
+            s.user = {};
+            $('#profileImg').attr('src', '../images/person_3.jpg');
+            $('#uploadImg').val(null);
+    
+            if (s.edit)
+                s.edit = false;
+            s.$apply();
+        });
     }
 
     s.pickImage = () => {
@@ -169,7 +170,6 @@ module.controller('modalCtrl', ['$scope', 'userService', function(s, user_servic
                 s.edit = true;
                 s.$apply();
                 ModalController.showModal();
-                $('#myModalContainer').scrollTop(0);
             });
         } else {
             alert("HTTP-Error: " + response.status);

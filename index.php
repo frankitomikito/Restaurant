@@ -32,7 +32,10 @@ switch ($request) {
         break;
     case '/forgot/submit':
         require 'views/reset-password.php';
-        break;    
+        break;
+    case '/email':
+        require 'views/admin/email.php';
+        break;
     default:
         require 'views/404.php';
         break;

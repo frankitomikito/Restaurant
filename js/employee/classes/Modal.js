@@ -9,9 +9,9 @@ class ModalController {
 
 	static closeModal() {
 		const cont = document.getElementById('myModalContainer');
-		cont.className = 'mymodal-container close';
+		cont.className = 'mymodal-container closed';
 		const id = document.getElementById('myModal');
-		id.className = 'mymodal close';
+		id.className = 'mymodal closed';
 		setTimeout(() => {
 			id.style.display = "none";
 		}, 600);

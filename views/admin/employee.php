@@ -199,7 +199,7 @@
 		</div>
 	</section>
 
-	<div ng-controller="modalCtrl" id="myModal" class="mymodal close" style="display: none;">
+	<div ng-controller="modalCtrl" id="myModal" class="mymodal closed" style="display: none;">
 		<div id="myModalContainer" class="mymodal-container">
 			<div class="mymodal-header">
 				<h1>Add Employee</h1>

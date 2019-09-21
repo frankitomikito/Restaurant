@@ -15,7 +15,7 @@
 		animation-fill-mode: backwards;
 	}
 
-	&.close {
+	&.closed {
 		animation-name: closemodal;
 		animation-duration: .5s;
 		animation-delay: .2s;
@@ -33,7 +33,7 @@
 		animation-delay: .2s;
 		animation-fill-mode: backwards;
 
-		&.close {
+		&.closed {
 			animation-name: closemodalcont;
 			animation-duration: .7s;
 			animation-fill-mode: backwards;

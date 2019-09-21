@@ -31,7 +31,7 @@ switch ($request) {
         require 'views/forgot.php';
         break;
     case '/forgot/submit':
-        require 'views/reset-request.php';
+        require 'views/reset-password.php';
         break;    
     default:
         require 'views/404.php';

@@ -55,6 +55,15 @@
 					              </div>
 					            </form>
                       <p class="text-center">For Register <a href="register.php">Click Here.</a> </p>
+                      <?php
+                        if(isset($_GET["newpwd"])){
+                          if($_GET["newpwd"] == "passwordupdated"){
+                            echo'<p class="signupsuccess">Your password has been reset!</p>';
+                          }
+                        }
+
+                      ?>
+                      <p class="text-center">Forgot Password? <a href="forgot.php">Click Here.</a> </p>
 					        </div>
 					    </div>
 	                </div>

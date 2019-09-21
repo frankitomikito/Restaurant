@@ -27,6 +27,12 @@ switch ($request) {
     case '/admin/employee':
         require 'views/admin/employee.php';
         break;
+    case '/forgot':
+        require 'views/forgot.php';
+        break;
+    case '/forgot/submit':
+        require 'views/reset-request.php';
+        break;    
     default:
         require 'views/404.php';
         break;

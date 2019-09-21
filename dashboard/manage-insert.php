@@ -21,20 +21,35 @@ $con = connect();
         }
     }
 
+    if (isset($_POST['addcategory'])){
+        $category_name = $_POST['name'];
+        $status = "1";    
+        $category_id = $_SESSION['id'];
+
+    	$iquery="INSERT INTO `tbl_category`(`name`,`status`) 
+            VALUES ('$category_name','$status');";
+    	if ($con->query($iquery) === TRUE) {
+    		echo '<script>alert("New table added successfully")</script>';
+    		echo '<script>window.location="category-add.php"</script>';
+    	}else {
+            echo "Error: " . $iquery . "<br>" . $con->error;
+        }
+    }
 
 
     if (isset($_POST['addItem'])){
-        $itemname = $_POST['itemname'];
+        $menuname = $_POST['menuname'];
         $price = $_POST['price'];
-        $madeby = $_POST['madeby'];
-        $food_type = $_POST['food_type'];
-
-        $res_id = $_SESSION['id'];
+        $servings = $_POST['servings'];
+        $description = $_POST['description'];
+        $category = $_POST['category'];
+        $status = 1;
+        $menu_id = $_SESSION['menu_id'];
         
 
         //$ecnpassword= md5($password);
 
-        $checkSQL = "SELECT * FROM `menu_item` WHERE res_id = '$res_id' and item_name = '$itemname' and price = '$price';";
+        $checkSQL = "SELECT * FROM `tbl_menu` WHERE menu_id = '$menu_id' and menuname = '$menuname' and description = '$description'and servings = '$servings'and price = '$price' and  category_id = '$category' and status = '$status';";
         $checkresult = $con->query($checkSQL);
         if ($checkresult->num_rows > 0) {
             echo '<script>alert("Item With This information Is Already Exit.")</script>';
@@ -57,8 +72,8 @@ $con = connect();
 
                     if ($extension =="jpg" || $extension =="png" || $extension =="jpeg"){
                         move_uploaded_file($file_tmp,$targetDirectory.$file_name);
-                        $iquery="INSERT INTO `menu_item`( `res_id`, `item_name`, `madeby`, `food_type`, `price`, `image`) 
-                            VALUES ('$res_id','$itemname','$madeby','$food_type','$price','$file_name');";
+                        $iquery="INSERT INTO `tbl_menu`( `name`, `description`, `servings`, `price`, `image_path`, `category_id`, `status`) 
+                            VALUES ('$menuname','$description','$servings','$price','$file_name','$category','$status');";
                         if ($con->query($iquery) === TRUE) {
                             echo '<script>alert("Item added successfully")</script>';
                             echo '<script>window.location="menu-add.php"</script>';

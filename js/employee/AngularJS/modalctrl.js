@@ -68,26 +68,30 @@ module.controller('modalCtrl', ['$scope', 'userService', function(s, user_servic
     s.user = { }
     s.users = null;
     s.edit = false;
+    s.save_btn_text = 'save';
+    let isSubmit = false;
     let table;
 
     setDataTableValue();
 
     s.onSubmit = () => {
-        user_service.addUser(s.user).then(
-          result => {
-            console.log(result);
-            if (result.data) {
-              alert("Saved Successfully!");
-              reInitializeTable();
-              s.onCancel();
-            } else {
-              alert(result.error);
-            }
-          },
-          error => {
-            console.log(error);
-          }
-        );
+        if (!isSubmit) {
+            s.save_btn_text = 'Please wait';
+            user_service.addUser(s.user).then(
+              result => {
+                if (result.data) {
+                  alert("Saved Successfully!");
+                  reInitializeTable();
+                  s.onCancel();
+                } else {
+                  alert(result.error);
+                }
+              },
+              error => {
+                console.log(error);
+              }
+            );
+        }
     }
 
     s.onUpdate = () => {
@@ -110,6 +114,7 @@ module.controller('modalCtrl', ['$scope', 'userService', function(s, user_servic
     s.onCancel = () => {
         ModalController.closeModal(() => {
             s.user = {};
+            s.save_btn_text = 'Save';
             $('#profileImg').attr('src', '../images/person_3.jpg');
             $('#uploadImg').val(null);
     

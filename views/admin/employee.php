@@ -270,7 +270,7 @@
 			</div>
 			<div class="mymodal-footer">
 				<button id="buttonCancel" ng-click="onCancel()" class="myBtn">Cancel</button>
-				<button class="myBtn" ng-if="!edit" ng-disabled="!modalForm.$valid" ng-click="onSubmit()">Save</button>
+				<button class="myBtn" ng-if="!edit" ng-disabled="!modalForm.$valid" ng-click="onSubmit()">{{save_btn_text}}</button>
 				<button class="myBtn" ng-if="edit" ng-disabled="!modalForm.$valid" ng-click="onUpdate()">Update</button>
 			</div>
 		</div>

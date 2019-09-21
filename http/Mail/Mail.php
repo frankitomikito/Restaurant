@@ -10,32 +10,32 @@ class Mail implements IMail{
     private $mail;
     public function __construct()
     {
-        $this->mail = new PHPMailer\PHPMailer\PHPMailer(true);
-        $this->mail->isSMTP();
-        $this->mail->SMTPDebug = 2;
-        $this->mail->Host = 'smtp.gmail.com';
+        $this->mail = new PHPMailer\PHPMailer\PHPMailer();
+        // $this->mail->SMTPDebug = 3;
+        $this->mail->isSMTP();   
+        $this->mail->Host = "smtp.gmail.com";
         $this->mail->SMTPAuth = true;
-        $this->mail->Username = 'email@gmail.com';
-        $this->mail->password = 'email password';
-        $this->mail->SMTPSecure = 'ssl';
-        $this->mail->Port = 465;
+        $this->mail->Username = "email@gmail.com";                 
+        $this->mail->Password = "emailpassword";
+        $this->mail->SMTPSecure = "tls";
+        $this->mail->Port = 587; 
     }
 
-    public function setRecipients($subject, $body, $alt_body, $recipient_address, $recipient_name = '')
+    public function setRecipients($subject, $body, $recipient_address, $recipient_name = '')
     {
         $this->mail->setFrom($this->mail->Username, 'Tak-Ang Restaurant');
         $this->mail->addAddress($recipient_address, $recipient_name);
-        $this->mail->isHTML();
         $this->mail->Subject = $subject;
         $this->mail->Body = $body;
-        $this->mail->AltBody = $alt_body;
-
+        $this->mail->isHTML(true);
     }
 
     public function send() {
         try {
-            $this->mail->send();
-            return true;
+            if ($this->mail->send())
+                return true;
+            else
+                return false;
         } catch (Exception  $er) {
             return $this->mail->ErrorInfo;
         }

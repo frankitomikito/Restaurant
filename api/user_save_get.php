@@ -2,6 +2,8 @@
 	require_once($_SERVER["DOCUMENT_ROOT"].'/Models/User.php');
 	require_once($_SERVER["DOCUMENT_ROOT"].'/http/RequestRoute.php');
 	require_once($_SERVER["DOCUMENT_ROOT"].'/http/Response.php');
+	require_once($_SERVER["DOCUMENT_ROOT"].'/http/Mail/Mail.php');
+	require_once($_SERVER["DOCUMENT_ROOT"].'/Models/UserCode.php');
 	require_once($_SERVER["DOCUMENT_ROOT"].'/Models/ImageUploader.php');
 
 	RequestRoute::GET(function() {
@@ -24,13 +26,23 @@
 		];
 		$user = new User;
 		$result = $user->create($data);
-		if ($result['status']) 
-			return new Response(['data' => true], 200);
+		if ($result['status']){
+			$user = $user->search('user_id');
+
+			$user_code = new UserCode;
+			$code_generated = $user_code->create(['user_id' => $user->user_id]);
+
+			$mail = new Mail;
+			$mail->setRecipients('Account Confirmation', 
+				'Hello '.$user->fullname.', please click this
+				 <a href="http://localhost:8000/account/confirmation?code='.$code_generated.'">Link</a> to confirm.',
+				 $user->email);
+			if ($mail->send()) 
+				return new Response(['data' => true], 200);
+			else 
+				return new Response(['error' => 'Something went wrong'], 404);
+		}
 		else 
 			return new Response(['error' => 'Something went wrong'], 404);
-	});
-
-	RequestRoute::PUT(function() {
-
 	});
 ?>

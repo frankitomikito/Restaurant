@@ -59,7 +59,21 @@ class User extends Database implements IActions {
 
 	public function search($args)
 	{
-		throw new \Exception('Method search() is not implemented.');
+		switch ($args) {
+			case 'user_id':
+				try {
+					$result = $this->rawQuery('select max(user_id) as user_id from tbl_user')->fetch_object();
+					$user = $this->rawQuery('select * from tbl_user where user_id = '.$result->user_id);
+					return $user->fetch_object();
+				} catch (\Throwable $th) {
+					return null;
+				}
+				break;
+			
+			default:
+				return null;
+				break;
+		}
 	}
 
 	private function convertUsersToDatatableJson($result) {

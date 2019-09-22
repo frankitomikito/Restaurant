@@ -39,7 +39,12 @@ class UserCode extends Database implements IActions {
 
 	public function update($args)
 	{
-		throw new \Exception('Method update() is not implemented.');
+		try {
+            $this->rawQuery('update tbl_user_code set status = 0 where code_id = '.$args);
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
 	}
 
 	public function remove($id)
@@ -49,7 +54,14 @@ class UserCode extends Database implements IActions {
 
 	public function search($args)
 	{
-		throw new \Exception('Method search() is not implemented.');
+        switch ($args['search']) {
+            case 'code':
+                $result = $this->rawQuery('select * from tbl_user_code where code = "'.$args['value'].'" and status != 0');
+                if ($result->num_rows > 0)
+                    return $result->fetch_assoc();
+                else 
+                    return null;
+        }
     }
     
     private function generateCode() {

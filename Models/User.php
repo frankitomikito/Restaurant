@@ -8,7 +8,8 @@ class User extends Database implements IActions {
 
 	public function get($id)
 	{
-		throw new \Exception('Method get() is not implemented.');
+		$result = $this->rawQuery('select * from tbl_user where user_id = '.$id);
+		return $result->fetch_assoc();
 	}
 
 	public function getAll()
@@ -49,6 +50,16 @@ class User extends Database implements IActions {
 			return ['status' => true];
 		} catch (Exception $th) {
 			return ['status' => false, 'error' => $th];
+		}
+	}
+
+	public function update_credentials($args) {
+		try {
+			$this->rawQuery('update tbl_user set username = "'.$args['username'].'", 
+			password = "'.$args['password'].'", email = "'.$args['email'].'" where user_id = '.$args['user_id']);
+			return true;
+		} catch (\Throwable $th) {
+			return false;
 		}
 	}
 

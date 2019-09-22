@@ -1,0 +1,31 @@
+.myCard {
+    background-color: $light-color;
+    padding: 2rem;
+    border-radius: .5rem;
+    box-shadow: .5rem .5rem .5rem rgba(#000000, .1);
+    margin: 1rem 0;
+
+    &.full-width {
+        width: 100%;
+    }
+
+    .myCard-title {
+        width: 100%;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        
+        &.center {
+            text-align: center;
+        }
+    }
+
+    .myCard-content {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .myCard-footer {
+        width: 100%;
+        text-align: center;
+    }
+}

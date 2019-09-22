@@ -9,6 +9,7 @@
 	    z-index: 1;
 		transform: translateY(.9rem);
 		color: black;
+		font-weight: 700;
 
 		&.active {
 			transform: translateY(-0.9rem);;
@@ -18,7 +19,8 @@
 .myInput-control {
 	position: relative;
 	width: 100%;
-    box-sizing: border-box;
+	box-sizing: border-box;
+	outline: none;
     border: none;
   	border-bottom: 1px solid $primary-color;
 

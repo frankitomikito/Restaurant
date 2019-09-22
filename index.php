@@ -18,6 +18,9 @@ switch ($request) {
     case '/apis/user_update':
     	require 'api/user_update.php';
         break;
+    case '/apis/user_code':
+        require 'api/user_code_update.php';
+        break;
     case '/login':
         require 'views/login.php';
         break;
@@ -26,6 +29,9 @@ switch ($request) {
         break;
     case '/admin/employee':
         require 'views/admin/employee.php';
+        break;
+    case '/account/confirmation':
+        require 'views/admin/account-confirmation.php';
         break;
     case '/forgot':
         require 'views/forgot.php';

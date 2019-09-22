@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "serve": "php -S localhost:8000",
-    "build:admin": "npm run sass:admin && grunt",
-    "uglify": "grunt uglify",
-    "sass:admin": "node-sass --output-style compressed sass/admin/index.scss build/admin/bundle.css"
+    "sass:employee": "node-sass --output-style compressed sass/admin/employee.scss build/admin/bundle.css",
+    "sass:confirmation": "node-sass --output-style compressed sass/admin/confirmation.scss build/admin/confirmation.css"
   },
   "repository": {
     "type": "git",

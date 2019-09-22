@@ -25,19 +25,10 @@ class RequestRoute extends Response implements IRequestMethod, IRequestParams {
 
 	public static function PUT($callback)
 	{
-		// if ($_SERVER["REQUEST_METHOD"] == "PUT") {
-		// 	parse_str(file_get_contents("php://input"), $_PUT);
-
-		// 	foreach ($_PUT as $key => $value)
-		// 	{
-		// 		unset($_PUT[$key]);
-		// 		echo 'test';
-		// 		$_PUT[str_replace('amp;', '', $key)] = $value;
-		// 	}
-
-		// 	$_REQUEST = array_merge($_REQUEST, $_PUT);
-		// 	echo $callback();
-		// }
+		if ($_SERVER["REQUEST_METHOD"] == "PUT") {
+			$response = $callback();
+			echo $response->data;
+		}
 	}
 
 	public static function DELETE($callback)
@@ -71,6 +62,24 @@ class RequestRoute extends Response implements IRequestMethod, IRequestParams {
 			else
 				return '';
 		}
+	}
+	
+	public static function PARAMPUT($param_name) {
+		//wa ko kasabot gi unsa nako ni xDDD
+		$putdata = file_get_contents("php://input");
+		$keywords = preg_split("/[------]+/", $putdata);
+		$parsed_val = Array();
+		foreach ($keywords as $key => $value) {
+			if(strpos($value, 'WebKitForm') !== 0 && strpos($value, 'Disposition') !== 0 && !empty($value)){
+				$current_val = preg_replace('/[\s]+/', '', $value);
+				$current_val = substr($current_val, 10, strlen($current_val));
+				if ($current_val !== false){
+					$current_val = preg_split("/\"+/", $current_val, -1, PREG_SPLIT_NO_EMPTY);
+					$parsed_val[$current_val[0]] = $current_val[1];
+				}
+			}
+		}
+		return  $parsed_val[$param_name];
 	}
 
 	public static function PARAMFILE($param_name)

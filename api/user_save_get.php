@@ -35,7 +35,7 @@
 			$mail = new Mail;
 			$mail->setRecipients('Account Confirmation', 
 				'Hello '.$user->fullname.', please click this
-				 <a href="http://localhost:8000/account/confirmation?code='.$code_generated.'">Link</a> to confirm.',
+				 <a href="http://localhost:8000/account/confirmation?code='.$code_generated.'">link</a> to confirm.',
 				 $user->email);
 			if ($mail->send()) 
 				return new Response(['data' => true], 200);

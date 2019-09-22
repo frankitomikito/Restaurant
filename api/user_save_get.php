@@ -45,4 +45,9 @@
 		else 
 			return new Response(['error' => 'Something went wrong'], 404);
 	});
+
+	RequestRoute::PUT(function() {
+		$val = RequestRoute::PARAMPUT('kaon');
+		return new Response($val, 200);
+	});
 ?>

@@ -19,7 +19,7 @@ module.controller('confirmationCtrl', ['$scope', 'confirmationService', function
         service.saveCredentials(s.user_credentials).then(
             result => {
                if (result['status']){
-                 alert('Saving Credentials Completed.');
+                alert('Saving Credentials Completed.');
                 window.location.href = '/login';
                }
                 else 

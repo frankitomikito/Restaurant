@@ -67,15 +67,15 @@ class RequestRoute extends Response implements IRequestMethod, IRequestParams {
 	public static function PARAMPUT($param_name) {
 		//wa ko kasabot gi unsa nako ni xDDD
 		$putdata = file_get_contents("php://input");
-		$keywords = preg_split("/[------]+/", $putdata);
+		$keywords = preg_split("/------+/", $putdata);
 		$parsed_val = Array();
 		foreach ($keywords as $key => $value) {
-			if(strpos($value, 'WebKitForm') !== 0 && strpos($value, 'Disposition') !== 0 && !empty($value)){
+			if(strpos(strpos($value, 'name') !== 0 && $value, 'Disposition') !== 0 && !empty($value)){
 				$current_val = preg_replace('/[\s]+/', '', $value);
-				$current_val = substr($current_val, 10, strlen($current_val));
-				if ($current_val !== false){
-					$current_val = preg_split("/\"+/", $current_val, -1, PREG_SPLIT_NO_EMPTY);
-					$parsed_val[$current_val[0]] = $current_val[1];
+				$current_val = substr($current_val, strpos($current_val, 'name'), strlen($current_val));
+				$current_val = preg_split("/\"+/", $current_val, -1, PREG_SPLIT_NO_EMPTY);
+				if (count($current_val) == 3) {
+					$parsed_val[$current_val[1]] = $current_val[2];
 				}
 			}
 		}

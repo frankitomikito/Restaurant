@@ -68,12 +68,18 @@ if (!isset($_SESSION['isLoggedIn'])) {
 										$sql = "SELECT * FROM tbl_category";
 										$result = $con->query($sql);
 										foreach ($result as $r) {
+											$status = $r['status'];
+											if ($status == 1){
+												$stat = 'AVAILABLE';
+											}else{
+												$stat = 'UNAVAILABLE';
+											}
 										?>
 										
 										<tr class="gradeX">
 										    <td><?php echo $r['category_id']; ?></td>	
 											<td><?php echo $r['name']; ?></td>
-											<td><?php echo $r['status']; ?></td>
+											<td><?php echo $stat ?></td>
 											
 
 <td>
@@ -97,7 +103,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 
 
 	  <!-- ajhbsjhvukehjnkjqbdkhubqnckmzxbchubefkqnejqlnnjnhsvv -->
-<form action ="category-update.php" method="POST">
+<form action ="manage-update.php" method="POST">
 <!-- ajhbsjhvukehjnkjqbdkhubqnckmzxbchubefkqnejqlnnjnhsvv -->
 
 
@@ -107,18 +113,20 @@ if (!isset($_SESSION['isLoggedIn'])) {
 
       <div class="modal-body">
   <div class="form-group">
-    <label for="category_id">Category ID</label>
-    <input type="text" class="form-control" id="category_id" placeholder="Category ID" disabled = "true">
+  <label for="menu_id">Category ID</label><br>
+	<input type="text" class="form-control" id="category_id2" name="category_id2" disabled="true" >
+    <input type="hidden" class="form-control" id="category_id" name="category_id" value="<?php echo $r['category_id']; ?>" placeholder="Category ID" >
   </div>
   <div class="form-group">
-    <label for="name">Category Name</label>
-    <input type="text" class="form-control" id="name" placeholder="Category Name">
+	<label for="name">Category Name</label>
+	<input type="text" class="form-control" id="name" name="name" value="<?php echo $r['name']; ?>" placeholder="Category Name">
   </div>
   <div class="form-group">
-	<label for="status">Status</label>
-	<select>
-  <option value="0" id="status">Unavailable</option>
-  <option value="1" id="status">Available</option>
+
+  <label for="status">Status</label>
+	<select name="status" value="<?php echo $r['status']; ?>" >
+	<option value="0" id="status" >Available</option>
+		<option value="1" id="status" >Unavailable</option>
 	</select>
 	<!-- <input type="text" class="form-control" id="status" placeholder="Status"> -->
   </div>
@@ -205,6 +213,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 
 
 			$('#category_id').val(data[0]);
+			$('#category_id2').val(data[0]);
 			$('#name').val(data[1]);
 			$('#status').val(data[2]);
 			});

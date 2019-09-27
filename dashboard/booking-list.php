@@ -52,14 +52,14 @@ if (!isset($_SESSION['isLoggedIn'])) {
 								<table class="table table-bordered table-striped mb-none" id="datatable-tabletools" data-swf-path="assets/vendor/jquery-datatables/extras/TableTools/swf/copy_csv_xls_pdf.swf">
 									<thead>
 										<tr>
-											<th>No</th>
-											<th>Transaction Id</th>
-											<th>Name</th>
-											<th>Phone</th>
-											<th>Date</th>
-											<th>Time</th>
-											<th>Bill</th>
-											<th class="hidden-phone">Status</th>
+											<th>Booking ID</th>
+											<th>Check in</th>
+											<th>User ID</th>
+											<th>Status</th>
+											<th>Table ID</th>
+											
+											
+											
 											<th class="hidden-phone">Action</th>
 											<th class="hidden-phone">View</th>
 										</tr>
@@ -70,35 +70,31 @@ if (!isset($_SESSION['isLoggedIn'])) {
 										include 'dbCon.php';
 										$con = connect();
 										$res_id = $_SESSION['id'];
-										$sql = "SELECT * FROM `booking_details` WHERE res_id = '$res_id'  ORDER BY make_date DESC;";
+										$sql = "SELECT *, time(check_in) as booktime FROM `tbl_booking` inner join tbl_booked_table on tbl_booking.booking_id=tbl_booked_table.booking_id;";
 										$result = $con->query($sql);
 										foreach ($result as $r) {
+											$status = $r['status'];
+											if ($status == 1){
+												$stat = 'CONFIRMED';
+											}else{
+												$stat = 'UNCONFIRM';
+											}
 										?>
 										<tr class="gradeX">
-											<td class="center hidden-phone"><?php echo $count; ?></td>
-											<td class="center hidden-phone"><?php echo $r['transactionid']; ?></td>
-											<td><?php echo $r['name']; ?></td>
-											<td><?php echo $r['phone']; ?></td>
-											<td><?php echo $r['booking_date']; ?></td>
-											<td><?php echo $r['booking_time']; ?></td>
-											<td><?php echo $r['bill']; ?> TK</td>
-											<td class="center hidden-phone">
-												<?php 
-													$status = $r['status'];
-													if ($status == 0) {
-												?>
-												<p class="text-danger">Rejected</p>
-												<?php }else{ ?>
-													<p class="text-success">Confirmed</p>
-												<?php } ?>
-											</td>
+											<td class="center hidden-phone"><?php echo $r['booking_id']; ?></td>
+											<td class="center hidden-phone"><?php echo $r['check_in']; ?></td>
+											<td><?php echo $r['user_id']; ?></td>
+											<td><?php echo $stat ?></td>
+											<td><?php echo $r['table_id']; ?></td>
+												
+					
 											<td class="center hidden-phone">
 												<?php 
 													if ($status == 1) {
 												?>
-												<a href="approve-reject.php?breject_id=<?php echo $r['id']; ?>" class="btn btn-danger"  onclick="if (!Done()) return false; ">Reject</a>
+												<a href="approve-reject.php?breject_id=<?php echo $r['booking_id']; ?>" class="btn btn-danger"  onclick="if (!Done()) return false; ">Reject</a>
 												<?php }else{ ?>
-												<a href="approve-reject.php?bapprove_id=<?php echo $r['id']; ?>" class="btn btn-success"  onclick="if (!Done()) return false; ">Confirm</a>	
+												<a href="approve-reject.php?bapprove_id=<?php echo $r['booking_id']; ?>" class="btn btn-success"  onclick="if (!Done()) return false; ">Confirm</a>	
 												<?php } ?>
 											</td>
 											<td class="center hidden-phone">

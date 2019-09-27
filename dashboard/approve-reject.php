@@ -1,27 +1,27 @@
 <!-- approve-reject.php -->
 <?php 
 	// APPROVED 
-	if (isset($_GET['approve_id'])) {
-		$id =$_GET['approve_id'];
-		$sql ="UPDATE `restaurant_info` SET `approve_status`=1 WHERE id = '$id';";
+	if (isset($_GET['bapprove_id'])) {
+		$id =$_GET['bapprove_id'];
+		$sql ="UPDATE `tbl_booking` SET `status`=1 WHERE booking_id = '$id';";
 		include_once 'dbCon.php';
 		$con = connect();
 		if ($con->query($sql) === TRUE) {
 		echo '<script>alert("APPROVED.")</script>';
-		echo '<script>window.location="restaurant-list.php"</script>';
+		echo '<script>window.location="../dashboard/booking-list.php"</script>';
 	    } else {
 			echo "Error: " . $sql . "<br>" . $con->error;
 		} 
 	}
 	// REJECT
-	if (isset($_GET['reject_id'])) {
-		$id =$_GET['reject_id'];
-		$sql ="UPDATE `restaurant_info` SET `approve_status`=0 WHERE id = '$id';";
+	if (isset($_GET['breject_id'])) {
+		$id =$_GET['breject_id'];
+		$sql ="UPDATE `tbl_booking` SET `status`=0 WHERE booking_id = '$id';";
 		include_once 'dbCon.php';
 		$con = connect();
 		if ($con->query($sql) === TRUE) {
 		echo '<script>alert("REJECTED.")</script>';
-		echo '<script>window.location="restaurant-list.php"</script>';
+		echo '<script>window.location="../dashboard/booking-list.php"</script>';
 	    } else {
 			echo "Error: " . $sql . "<br>" . $con->error;
 		} 

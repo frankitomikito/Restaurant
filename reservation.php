@@ -5,6 +5,12 @@ if (!isset($_SESSION['isLoggedIn'])) {
     echo '<script>alert("You need to login first.")</script>';
     echo '<script>window.location="login.php"</script>';
     }
+
+if(isset($_SESSION['id'])){
+  //echo '<script>alert("'.$_SESSION['id'].'")</script>';
+  $_SESSION['userid'] = $_SESSION['id'];
+}
+
 ?>
   
 
@@ -19,7 +25,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
         <div class="container">
           <div class="row slider-text align-items-center justify-content-center">
             <div class="col-md-10 col-sm-12 ftco-animate text-center" style="padding-bottom: 25%;">
-              <p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span>Reservation</span></p>
+              <p class="breadcrumbs"><span class="mr-2"><a href="/">Home</a></span> <span>Reservation</span></p>
               <h1 class="mb-3">Make a Reservation</h1>
             </div>
           </div>
@@ -38,9 +44,9 @@ if (!isset($_SESSION['isLoggedIn'])) {
           <div class="col-md-4 ftco-animate img" style="background-image: url(images/bg_1.jpg);"></div>
           <div class="col-md-8 ftco-animate makereservation p-5 bg-light">
             
-            <form action="choose-table.php" method="POST">
+            <form action="choose-table.php?id=<?php echo $_SESSION['id'];?>" method="POST">
               <div class="row">
-                <div class="col-md-6">
+                <!-- <div class="col-md-6">
                   <div class="form-group">
                     <label for="">Name</label>
                     <input type="text" name="reservation_name" class="form-control" placeholder="Your Name" required="">
@@ -51,7 +57,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
                     <label for="">Phone</label>
                     <input type="text" name="reservation_phone" class="form-control" placeholder="Phone" required="">
                   </div>
-                </div>
+                </div> -->
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="">Date</label>
@@ -82,7 +88,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
                 
                 <div class="col-md-12 mt-3">
                   <div class="form-group">
-                    <input type="hidden" name="res_id" value="<?php echo $_GET['res_id']; ?>">
+                   
                     <input type="submit" name="reservation" value="Make a Reservation" class="btn btn-primary py-3 px-5">
                   </div>
                 </div>
@@ -90,6 +96,11 @@ if (!isset($_SESSION['isLoggedIn'])) {
             </form>
           </div>
         </div>
+
+        
+
+
+
       </div>
     </section>
 

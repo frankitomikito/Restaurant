@@ -24,7 +24,7 @@
         <div class="row slider-text align-items-center justify-content-center text-center">
           <div class="col-md-10 col-sm-12 ftco-animate">
             <h1 class="mb-3">Tasty &amp; Delicious Food</h1>
-            <p><a href="" class="btn btn-primary btn-outline-white px-5 py-3">Book a table</a></p>
+            <p><a href="reservation.php" class="btn btn-primary btn-outline-white px-5 py-3">Book a table</a></p>
           </div>
         </div>
       </div>
@@ -36,7 +36,7 @@
         <div class="row slider-text align-items-center justify-content-center text-center">
           <div class="col-md-10 col-sm-12 ftco-animate">
             <h1 class="mb-3">Book a table for yourself at a time convenient for you</h1>
-            <p><a href="" class="btn btn-primary btn-outline-white px-5 py-3">Book a table</a></p>
+            <p><a href="reservation.php" class="btn btn-primary btn-outline-white px-5 py-3">Book a table</a></p>
           </div>
         </div>
       </div>
@@ -44,34 +44,7 @@
   </section>
   <!-- END slider -->
 
-  <div class="ftco-section-reservation">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 reservation pt-5 px-5">
-          <div class="block-17">
-
-            <form action="restaurant-list.php" method="POST" class="d-block d-lg-flex">
-              <div class="fields d-block d-lg-flex">
-                <div class="select-wrap one-half">
-                  <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                  <select name="city" id="" class="form-control" disabled="">
-                    <option value="Tak-Ang">Tak-Ang</option>
-                  </select>
-                </div>
-                <div class="select-wrap one-half">
-                  <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                  <select data-plugin-selectTwo class="form-control populate" name="area" required="">
-                    <option value=""> -Select- </option>
-                  </select>
-                </div>
-              </div>
-              <input type="submit" class="search-submit btn btn-primary" name="find" value="Find">
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+ 
 
 
   <?php include 'template/font-menu.php'; ?>

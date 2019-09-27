@@ -72,6 +72,12 @@ if (!isset($_SESSION['isLoggedIn'])) {
 										$sql = "SELECT * FROM tbl_menu";
 										$result = $con->query($sql);
 										foreach ($result as $r) {
+											$status = $r['status'];
+											if ($status == 1){
+												$stat = 'AVAILABLE';
+											}else{
+												$stat = 'UNAVAILABLE';
+											}
 										?>
 										
 										<tr class="gradeX">
@@ -86,7 +92,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 												</figure>
 											</td>
 											<td><?php echo $r['category_id']; ?></td>
-											<td><?php echo $r['status']; ?></td>
+											<td><?php echo $stat ?></td>
 
 <td>
  <!-- Button trigger modal -->
@@ -111,7 +117,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 
 
 	  <!-- ajhbsjhvukehjnkjqbdkhubqnckmzxbchubefkqnejqlnnjnhsvv -->
-<form action ="updatemenu" method="POST">
+<form action ="manage-update.php" method="POST">
 		<!-- ajhbsjhvukehjnkjqbdkhubqnckmzxbchubefkqnejqlnnjnhsvv -->									
 
 
@@ -124,32 +130,30 @@ if (!isset($_SESSION['isLoggedIn'])) {
 
       <div class="modal-body">
   <div class="form-group">
-    <label for="menu_id">Menu id</label>
-    <input type="text" class="form-control" id="menu_id" placeholder="Table ID" disabled = "true">
+	<label for="menu_id">Menu id</label><br>
+	<input type="text" class="form-control" id="menu_id2" name="menu_id2" disabled="true" >
+    <input type="hidden" class="form-control" id="menu_id" name="menu_id" value="<?php echo $r['menu_id']; ?>" placeholder="Table ID" >
   </div>
   <div class="form-group">
     <label for="name">Menu Name</label>
-    <input type="text" class="form-control" id="name" placeholder="Menu Name">
+    <input type="text" class="form-control" id="name" name="name" value="<?php echo $r['name']; ?>" placeholder="Menu Name">
   </div>
   <div class="form-group">
     <label for="description">Description</label>
-    <input type="text" class="form-control" id="description" placeholder="Description">
+    <input type="text" class="form-control" id="description" name="description" value="<?php echo $r['description']; ?>" placeholder="Description">
   </div>
   <div class="form-group">
     <label for="servings">Servings</label>
-    <input type="text" class="form-control" id="servings" placeholder="Servings">
+    <input type="text" class="form-control" id="servings" name="servings" value="<?php echo $r['servings']; ?>" placeholder="Servings">
   </div>
   <div class="form-group">
     <label for="price">Price</label>
-    <input type="text" class="form-control" id="price" placeholder="Price">
+    <input type="text" class="form-control" id="price" name="price" value="<?php echo $r['price']; ?>" placeholder="Price">
   </div>
   <div class="form-group">
 	<label class="control-label">Image</label>
-	<input type="file" name="image_path" class="form-control"  required="">
+	<input type="file" name="image_path" class="form-control"  value="<?php echo $r['image_path']; ?>" required="">
 	</div>
-	
-
- 
 
  										 <?php
 										$mysqli = NEW mysqli('localhost','root','','restaurant_v2');
@@ -159,7 +163,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 
   <div class="form-group">
   <label class="control-label">Category</label>
-	<select data-plugin-selectTwo class="form-control populate" name="category" required="">
+	<select data-plugin-selectTwo class="form-control populate" name="category_id" value="<?php echo $r['category']; ?>" required="">
 	<?php
 	while ($rows = $resultSet->fetch_assoc()){
 	$category_id = $rows['category_id'];
@@ -169,9 +173,9 @@ if (!isset($_SESSION['isLoggedIn'])) {
 	</select>
 
 	<label for="status">Status</label>
-	<select>
-  <option value="0" id="status">Unavailable</option>
-  <option value="1" id="status">Available</option>
+	<select name="status" value="<?php echo $r['status']; ?>" >
+	<option value="0" id="status" >Available</option>
+		<option value="1" id="status" >Unavailable</option>
 	</select>
 
 	
@@ -183,7 +187,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" name="" class="btn btn-primary">Save changes</button>
+        <button type="submit" name="updatemenu" class="btn btn-primary">Save changes</button>
 	  </div>
 	  
     </div>
@@ -261,6 +265,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 
 
 			$('#menu_id').val(data[0]);
+			$('#menu_id2').val(data[0]);
 			$('#name').val(data[1]);
 			$('#description').val(data[2]);
 			$('#servings').val(data[3]);

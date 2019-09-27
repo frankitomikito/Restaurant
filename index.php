@@ -42,6 +42,9 @@ switch ($request) {
     case '/email':
         require 'views/admin/email.php';
         break;
+    case '../dashboard/booking-list':
+        require 'dashboard/booking-list.php';
+        break;
     default:
         require 'views/404.php';
         break;

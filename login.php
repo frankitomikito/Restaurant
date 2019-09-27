@@ -11,7 +11,7 @@
         <div class="container">
           <div class="row slider-text align-items-center justify-content-center">
             <div class="col-md-10 col-sm-12 ftco-animate text-center" style="padding-bottom: 25%;">
-              <p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span>Login</span></p>
+              <p class="breadcrumbs"><span class="mr-2"><a href="/">Home</a></span> <span>Login</span></p>
               <h1 class="mb-3">Login</h1>
             </div>
           </div>
@@ -99,7 +99,7 @@
   
 
   include 'dbCon.php';
-  $con = connect();
+   $con = connect();
 
   $emailSQL = "SELECT * FROM tbl_user WHERE email = '$email';";
 
@@ -133,7 +133,7 @@
     if ($_SESSION['role'] == 1) {
        echo '<script>window.location="dashboard/index.php"</script>';
     }elseif ($_SESSION['role'] == 2) {
-      echo '<script>window.location="index.php"</script>';
+      echo '<script>window.location="/"</script>';
     } 
     
   }

@@ -30,60 +30,19 @@
 								<a href="table-add.php">
 									<span class="pull-right label label-primary">add</span>
 									<i class="fa fa-plus-square" aria-hidden="true"></i>
-									<span>Table</span>
+									<span>Table Add</span>
 								</a>
 							</li>
 							<li>
 								<a href="table-list.php">
 									<span class="pull-right label label-info">list</span>
 									<i class="fas fa-list-ul" aria-hidden="true"></i>
-									<span>Table</span>
+									<span>Table List</span>
 								</a>
 							</li>
 						</ul>
 					</li>
 					<?php } ?>
-					<?php if((isset($_SESSION['isLoggedIn']) && $_SESSION['role'] == 1)){ ?>
-					<li class="nav-parent">
-						<a>
-							<i class="fas fa-utensils-alt" aria-hidden="true"></i>
-							<span>Menu Item</span>
-						</a>
-						<ul class="nav nav-children">
-							<li>
-								<a href="menu-add.php">
-									<span class="pull-right label label-primary">add</span>
-									<i class="fa fa-plus-square" aria-hidden="true"></i>
-									<span>Menu</span>
-								</a>
-							</li>
-							<li>
-								<a href="menu-list.php">
-									<span class="pull-right label label-info">list</span>
-									<i class="fas fa-list-ul" aria-hidden="true"></i>
-									<span>Menu</span>
-								</a>
-							</li>
-						</ul>
-					</li>
-					<?php } ?>
-					<?php if((isset($_SESSION['isLoggedIn']) && $_SESSION['role'] == 1)){ ?>
-					<li class="nav-parent">
-						<a>
-							<i class="fas fa-money-check-alt" aria-hidden="true"></i>
-							<span>Booking & Payment</span>
-						</a>
-						<ul class="nav nav-children">
-							<li>
-								<a href="booking-list.php">
-									<span class="pull-right label label-info">list</span>
-									<i class="fas fa-list-ul" aria-hidden="true"></i>
-									<span>Booking</span>
-								</a>
-							</li>
-						</ul>
-					</li>
-					<?php } ?> 
 					<?php if((isset($_SESSION['isLoggedIn']) && $_SESSION['role'] == 1)){ ?>
 					<li class="nav-parent">
 						<a>
@@ -108,6 +67,89 @@
 						</ul>
 					</li>
 					<?php } ?>
+					<?php if((isset($_SESSION['isLoggedIn']) && $_SESSION['role'] == 1)){ ?>
+					<li class="nav-parent">
+						<a>
+							<i class="fas fa-utensils-alt" aria-hidden="true"></i>
+							<span>Menu Item</span>
+						</a>
+						<ul class="nav nav-children">
+							<li>
+								<a href="menu-add.php">
+									<span class="pull-right label label-primary">add</span>
+									<i class="fa fa-plus-square" aria-hidden="true"></i>
+									<span>Menu Add</span>
+								</a>
+							</li>
+							<li>
+								<a href="menu-list.php">
+									<span class="pull-right label label-info">list</span>
+									<i class="fas fa-list-ul" aria-hidden="true"></i>
+									<span>Menu List</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<?php } ?>
+					<?php if((isset($_SESSION['isLoggedIn']) && $_SESSION['role'] == 1)){ ?>
+					<li class="nav-parent">
+						<a>
+							<i class="fas fa-money-check-alt" aria-hidden="true"></i>
+							<span>Booking</span>
+						</a>
+						<ul class="nav nav-children">
+							<li>
+								<a href="booking-list.php">
+									<span class="pull-right label label-info">list</span>
+									<i class="fas fa-list-ul" aria-hidden="true"></i>
+									<span>Booking List</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<?php } ?> 
+					<?php if((isset($_SESSION['isLoggedIn']) && $_SESSION['role'] == 1)){ ?>
+					<li class="nav-parent">
+						<a>
+							<i class="fas fa-money-check-alt" aria-hidden="true"></i>
+							<span>Profile</span>
+						</a>
+						<ul class="nav nav-children">
+							<li>
+								<a href="profile.php">
+									<span class="pull-right label label-info">Profile</span>
+									<i class="fas fa-list-ul" aria-hidden="true"></i>
+									<span>Profile</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<?php } ?> 
+					<?php if((isset($_SESSION['isLoggedIn']) && $_SESSION['role'] == 1)){ ?>
+					<li class="nav-parent">
+						<a>
+							<i class="fas fa-utensils-alt" aria-hidden="true"></i>
+							<span>User</span>
+						</a>
+						<ul class="nav nav-children">
+							<li>
+								<a href="user-list.php">
+									<span class="pull-right label label-primary">add</span>
+									<i class="fa fa-plus-square" aria-hidden="true"></i>
+									<span>User Add</span>
+								</a>
+							</li>
+							<li>
+								<a href="user-list.php">
+									<span class="pull-right label label-info">list</span>
+									<i class="fas fa-list-ul" aria-hidden="true"></i>
+									<span>User List</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<?php } ?>
+					
 				</ul>
 			</nav>
 

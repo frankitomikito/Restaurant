@@ -62,26 +62,30 @@ if (!isset($_SESSION['isLoggedIn'])) {
 									<tbody>
 										<?php
 										$count = 1;
+										$c=0;
 										include 'dbCon.php';
 										$con = connect();
 										$table_id = $_SESSION['id'];
 										$sql = "SELECT * FROM tbl_table";
 										$result = $con->query($sql);
 										foreach ($result as $r) {
+											$status = $r['status'];
+											if ($status == 1){
+												$stat = 'AVAILABLE';
+											}else{
+												$stat = 'UNAVAILABLE';
+											}
 										?>
 										
 										<tr class="gradeX">
 										    <td><?php echo $r['table_id']; ?></td>	
 											<td><?php echo $r['table_name']; ?></td>
 											<td><?php echo $r['capacity']; ?></td>
-											<td><?php echo $r['status']; ?></td>
-
+											<td><?php echo $stat ?></td>
+											
 <td>
  <!-- Button trigger modal -->
 <button type="button" class="btn btn-success editbtn" data-toggle="modal" data-target="#exampleModalLong">Edit</button>
-
-
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -93,50 +97,36 @@ if (!isset($_SESSION['isLoggedIn'])) {
         </button>
 	  </div>
 
-
-
-
-
-
 	  <!-- ajhbsjhvukehjnkjqbdkhubqnckmzxbchubefkqnejqlnnjnhsvv -->
-<form action ="manage-update.php" method="POST">
+	  <form action ="manage-update.php" method="POST">
 		<!-- ajhbsjhvukehjnkjqbdkhubqnckmzxbchubefkqnejqlnnjnhsvv -->									
 
-
-
-
-
-
-
-
-
       <div class="modal-body">
-  <div class="form-group">
-    <label for="table_id">Table_id</label>
-    <input type="text" class="form-control" id="table_id" placeholder="Table ID" disabled = "true">
-  </div>
-  <div class="form-group">
-    <label for="table_name">Table Name</label>
-    <input type="text" class="form-control" id="table_name" placeholder="Table Name">
-  </div>
-  <div class="form-group">
-    <label for="capacity">Capacity</label>
-    <input type="text" class="form-control" id="capacity" placeholder="Capacity">
-  </div>
-  <div class="form-group">
-	<label for="status">Status</label>
-	<select>
-  <option value="0" id="status">Unavailable</option>
-  <option value="1" id="status">Available</option>
-	</select>
-	<!-- <input type="text" class="form-control" id="status" placeholder="Status"> -->
-  </div>
-
-
+		<div class="form-group">
+			<label for="table_id">Table_id</label><br>
+			<input type="text" class="form-control" id="table_id2" disabled="true">
+			<input type="hidden" class="form-control" id="table_id" name="table_id" value="<?php echo $r['table_id']; ?>" placeholder="Table ID">
+		</div>
+		<div class="form-group">
+			<label for="table_name">Table Name</label>
+			<input type="text" class="form-control" id="table_name" name="table_name" value="<?php echo $r['table_name']; ?>" placeholder="Table Name">
+		</div>
+		<div class="form-group">
+			<label for="capacity">Capacity</label>
+			<input type="text" class="form-control" id="capacity" name="capacity" value="<?php echo $r['capacity']; ?>" placeholder="Capacity">
+		</div>
+		<div class="form-group">
+			<label for="status">Status</label>
+			<select  name="status" value="<?php echo $r['status']; ?>" >
+		<option value="0" id="status" >Available</option>
+		<option value="1" id="status" >Unavailable</option>
+			</select>
+			<!-- <input type="text" class="form-control" id="status" placeholder="Status"> -->
+		</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" name="updatedata" class="btn btn-primary">Save changes</button>
+		<button type="submit" name="updatedata" id="updatedata" class="btn btn-primary">Save changes</button>	
 	  </div>
 	  
     </div>
@@ -212,8 +202,8 @@ if (!isset($_SESSION['isLoggedIn'])) {
 			
 			console.log(data);
 
-
 			$('#table_id').val(data[0]);
+			$('#table_id2').val(data[0]);
 			$('#table_name').val(data[1]);
 			$('#capacity').val(data[2]);
 			$('#status').val(data[3]);  

@@ -26,7 +26,7 @@ $con = connect();
 
 	        	if (isset($_FILES['image'])) {
 				 // files handle
-				    $targetDirectory = "dashboard/user-image/";
+				    $targetDirectory = "images/profile/";
 				    // get the file name
 				    $file_name = $_FILES['image']['name'];
 				    // get the mime type
@@ -42,7 +42,7 @@ $con = connect();
 				    if ($extension =="jpg" || $extension =="png" || $extension =="jpeg"){
 				    	move_uploaded_file($file_tmp,$targetDirectory.$file_name);
 				    	$iquery="INSERT INTO `tbl_user`(`fullname`, `username`, `email`, `password`, `gender`, `address`, `position`, `image_path`, `status`) 
-			        		VALUES ('$fullname','$username','$email','$password','$gender','$address','$role','$file_name','$status');";
+			        		VALUES ('$fullname','$username','$email','$password','$gender','$address','$role','$targetDirectory$file_name','$status');";
 			        	if ($con->query($iquery) === TRUE) {
 			        		echo '<script>alert("You Register successfully")</script>';
 			        		echo '<script>window.location="login.php"</script>';

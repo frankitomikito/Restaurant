@@ -58,14 +58,11 @@
                         </div>
                         <div class="form-group">
                         <input type="radio" name="gender"
-                      <?php if (isset($gender) && $gender=="female") echo "checked";?>
-                      value="female">Female
+                      <?php if (isset($gender) && $gender==0) echo "checked";?>
+                      value="0">Female
                       <input type="radio" name="gender"
-                      <?php if (isset($gender) && $gender=="male") echo "checked";?>
-                      value="male">Male
-                      <input type="radio" name="gender"
-                      <?php if (isset($gender) && $gender=="other") echo "checked";?>
-                      value="other">Other
+                      <?php if (isset($gender) && $gender==1) echo "checked";?>
+                      value="1">Male
                         </div>
                         <div class="form-group">
                           <textarea name="address" id="" cols="30" rows="2" class="form-control" placeholder="Address"></textarea>

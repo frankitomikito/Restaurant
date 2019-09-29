@@ -9,7 +9,7 @@ RequestRoute::PUT(function() {
     $user = new User;
     $get_user = $user->get(RequestRoute::PARAMPUT('user_id'));
     $get_user['username'] = RequestRoute::PARAMPUT('username');
-    $get_user['password'] = RequestRoute::PARAMPUT('password');
+    $get_user['password'] = password_hash(RequestRoute::PARAMPUT('password'), PASSWORD_DEFAULT);
     $is_success = $user->update_credentials($get_user);
     if ($is_success) {
         $user_code = new UserCode;

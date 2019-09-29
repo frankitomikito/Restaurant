@@ -22,7 +22,8 @@
 							</figure>
 							<div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@JSOFT.com">
 								<span class="name"><?php echo $_SESSION['name']; ?></span>
-								<span class="role">administrator</span>
+								
+								<span class="role"><?php echo $_SESSION['role']; ?></span>
 							</div>
 			
 							<i class="fa custom-caret"></i>

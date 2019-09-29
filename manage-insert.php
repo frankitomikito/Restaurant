@@ -5,12 +5,14 @@ include_once 'dbCon.php';
 $con = connect();
 	if (isset($_POST['regascus'])){
 		$fullname = $_POST['fullname'];
-		$username = $_POST['username'];
+		$username = mysqli_real_escape_string($con, $_POST['username']);
+		$password = mysqli_real_escape_string($con, $_POST['password']);
+		$password = password_hash($password, PASSWORD_DEFAULT);
 		$email = $_POST['email'];
 		$gender = $_POST['gender'];
         $address = $_POST['address'];
-        $password = $_POST['password'];
-        $role = 2;
+		$role = 2;
+		$status = 1;
 
         
 
@@ -40,7 +42,7 @@ $con = connect();
 				    if ($extension =="jpg" || $extension =="png" || $extension =="jpeg"){
 				    	move_uploaded_file($file_tmp,$targetDirectory.$file_name);
 				    	$iquery="INSERT INTO `tbl_user`(`fullname`, `username`, `email`, `password`, `gender`, `address`, `position`, `image_path`, `status`) 
-			        		VALUES ('$fullname','$username','$email','$password','$gender','$address','$role','$file_name','$fullname');";
+			        		VALUES ('$fullname','$username','$email','$password','$gender','$address','$role','$file_name','$status');";
 			        	if ($con->query($iquery) === TRUE) {
 			        		echo '<script>alert("You Register successfully")</script>';
 			        		echo '<script>window.location="login.php"</script>';
@@ -56,7 +58,7 @@ $con = connect();
 					$file_name = "";
 
 					$iquery="INSERT INTO `tbl_user`(`fullname`, `username`, `email`, `password`, `gender`, `address`, `position`, `image_path`, `status`) 
-			        		VALUES ('$fullname','$username','$email','$password','$gender','$address','$role','$file_name','$fullname');";
+			        		VALUES ('$fullname','$username','$email','$password','$gender','$address','$role','$file_name','$status');";
 		        	if ($con->query($iquery) === TRUE) {
 		        		echo '<script>alert("New faculty added successfully")</script>';
 		        		echo '<script>window.location="register.php"</script>';

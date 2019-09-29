@@ -87,21 +87,33 @@ class User extends Database implements IActions {
 		}
 	}
 
-	private function convertUsersToDatatableJson($result) {
-		$array = Array();
-		while($row = $result->fetch_object()) {
-			$row->position = User::getPositionText($row->position);
-			$row->status = User::getPositionText($row->status);
-			$row->gender = User::getGenderText($row->gender);
-			$array[] = $row;
+	public function login($args) {
+		try {
+			$user = null;
+			if (strpos($args['useremail'], '@') !== false)
+				$user = $this->rawQuery('select * from tbl_user where email = "'.$args['useremail'].'"');
+			else
+				$user = $this->rawQuery('select * from tbl_user where username = "'.$args['useremail'].'"');
+			
+			if ($user->num_rows > 0) {
+				$user = $user->fetch_assoc();
+				if ((bool)password_verify($args['password'], $user['password'])) {
+					return $user;
+				} else {
+					return null;
+				}
+			} else {
+				return null;
+			}
+		} catch (\Throwable $th) {
+			return null;
 		}
-		return $array;
 	}
 
 	public static function getPositionText($num) {
 		switch ($num) {
 			case 1:
-				return 'Admin';
+				return 'Administrator';
 			case 2:
 				return 'Customer';
 			case 3:
@@ -118,5 +130,16 @@ class User extends Database implements IActions {
 			case 1:
 				return "Male";
 		}
+	}
+	
+	private function convertUsersToDatatableJson($result) {
+		$array = Array();
+		while($row = $result->fetch_object()) {
+			$row->position = User::getPositionText($row->position);
+			$row->status = User::getPositionText($row->status);
+			$row->gender = User::getGenderText($row->gender);
+			$array[] = $row;
+		}
+		return $array;
 	}
 }

@@ -11,7 +11,7 @@
 	        <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
 			<?php if(!isset($_SESSION['isLoggedIn'])){ ?>
 			
-	        <li class="nav-item"><a href="login.php" class="nav-link">Login</a></li>
+	        <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
 			<?php } elseif (isset($_SESSION['isLoggedIn'])) { ?>
 			<li class="nav-item"><a href="myreservation.php" class="nav-link" >My Reservation</a></li>
 	        <li class="nav-item"><a href="logout.php" class="nav-link"><?php echo $_SESSION['name']; ?>(Logout)</a></li>

@@ -21,6 +21,9 @@ switch ($request) {
     case '/apis/user_code':
         require 'api/user_code_update.php';
         break;
+    case '/apis/menu':
+        require 'api/menu.php';
+        break;
     case '/login':
         require 'views/login.php';
         break;

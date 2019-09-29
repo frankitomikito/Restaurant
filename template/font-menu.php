@@ -1,4 +1,4 @@
-<section class="ftco-section bg-light">
+<section class="ftco-section bg-light" ng-controller="MenuController">
       <div class="container">
         <div class="row justify-content-center mb-5 pb-5">
           <div class="col-md-7 text-center heading-section ftco-animate">
@@ -18,20 +18,20 @@
             <div class="tab-content py-5" id="v-pills-tabContent">
               <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                 <div class="row">
-                  <div class="col-lg-6">
-                    <div class="menus d-flex ftco-animate">
-                      <div class="menu-img" style="background-image: url(images/dish-3.jpg);"></div>
+                  <div class="col-lg-6" ng-repeat="menu in menus" ng-click="onClickMenu(menu, $index)" style="cursor: pointer;">
+                    <div class="menus d-flex main-dish">
+                      <div class="menu-img" style="background-image: url(dashboard/item-image/{{menu.image_path}});"></div>
                       <div class="text d-flex">
                         <div class="one-half">
-                          <h3>Grilled Beef with potatoes</h3>
-                          <p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
+                          <h3>{{menu.name}}</h3>
+                          <p>{{menu.description}}</p>
                         </div>
                         <div class="one-forth">
-                          <span class="price">Php 290.00</span>
+                          <span class="price">Php {{menu.price}}</span>
                         </div>
                       </div>
                     </div>
-                    <div class="menus d-flex ftco-animate">
+                    <!-- <div class="menus d-flex ftco-animate">
                       <div class="menu-img" style="background-image: url(images/dish-4.jpg);"></div>
                       <div class="text d-flex">
                         <div class="one-half">
@@ -78,10 +78,10 @@
                           <span class="price">Php 220.00</span>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
 
-                  <div class="col-lg-6">
+                  <!-- <div class="col-lg-6">
                     <div class="menus d-flex ftco-animate">
                       <div class="menu-img" style="background-image: url(images/dish-8.jpg);"></div>
                       <div class="text d-flex">
@@ -142,7 +142,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div><!-- END -->
 

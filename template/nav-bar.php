@@ -14,8 +14,15 @@
 	        <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
 			<?php } elseif (isset($_SESSION['isLoggedIn'])) { ?>
 			<li class="nav-item"><a href="myreservation.php" class="nav-link" >My Reservation</a></li>
-	        <li class="nav-item"><a href="logout.php" class="nav-link"><?php echo $_SESSION['name']; ?>(Logout)</a></li>
-	        <?php } ?>
+			<li class="nav-item"><a href="logout.php" class="nav-link"><?php echo $_SESSION['name']; ?>(Logout)</a></li>
+			<?php if ($_SESSION['role'] == 2) { ?>
+			<li class="nav-item">
+				<a id="a_cart" class="nav-link" >
+					<i class="fas fa-shopping-cart"></i>
+					<span id="cart" style="display: inline-block;transform: translateY(-.5rem);"></span>
+				</a>
+			</li>
+	        <?php } } ?>
 	      </ul>
 	    </div>
 	  </div>

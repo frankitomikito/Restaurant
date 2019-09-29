@@ -44,7 +44,7 @@ include 'template/header.php'; ?>
           <div class="row slider-text align-items-center justify-content-center">
             <div class="col-md-10 col-sm-12 ftco-animate text-center" style="padding-bottom: 25%;">
               <p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span>Tables</span></p>
-              <h1 class="mb-3">Choose Tables</h1>
+              <h1 class="mb-3">Reservation</h1>
             </div>
           </div>
         </div>
@@ -83,23 +83,24 @@ include 'template/header.php'; ?>
 	  <h4>Table Name:</h4><h5><?php  echo $table; ?></h5><br>
 	  <h4>Capacity:</h4><h5><?php echo $capacity; ?></h5><br>
       <?php
-	  if($status = 0){
-	?> 
+        switch ($status) {
+          case 0:
+            echo '<h4>Status:</h4><h5>Confirmed</h5><br>';
+            break;
+          case 1:
+            echo '<h4>Status:</h4><h5>Confirmed</h5><br>';
+            break;
+          case 2:
+            echo '<h4>Status:</h4><h5>Cancelled</h5><br>';
+            break;
+          default:
+            echo '<h4>No Reservation</h4>';
+            break;
+        }
+      }
+  ?> 
 	  
-	  <h4>Status:</h4><h5>Confirmed</h5><br>
-	<?php
-	 }else if($status = 1){
-         ?>
-	  <h4>Status:</h4><h5>Unconfirmed</h5><br>
-         <?php
-     } else if($status = 2){
-        ?>
-     <h4>Status:</h4><h5>Cancelled</h5><br>
-     <?php }
-	 else{
-	  ?>
-	 	<h4>No Reservation</h4> 
-       <?php } }  ?>
+    
        
        <form method="POST">
 		<input type="hidden" value="<?php echo $booking_id;?>" name="booking_id">

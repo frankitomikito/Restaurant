@@ -103,7 +103,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 
 
 	  <!-- ajhbsjhvukehjnkjqbdkhubqnckmzxbchubefkqnejqlnnjnhsvv -->
-<form action ="manage-update.php" method="POST">
+<form action ="category-edit.php" method="POST">
 <!-- ajhbsjhvukehjnkjqbdkhubqnckmzxbchubefkqnejqlnnjnhsvv -->
 
 
@@ -124,9 +124,9 @@ if (!isset($_SESSION['isLoggedIn'])) {
   <div class="form-group">
 
   <label for="status">Status</label>
-	<select name="status" value="<?php echo $r['status']; ?>" >
-	<option value="0" id="status" >Available</option>
-		<option value="1" id="status" >Unavailable</option>
+	<select name="status" id="status" value="<?php echo $r['status']; ?>" >
+	<option value="1" >Available</option>
+		<option value="0" >Unavailable</option>
 	</select>
 	<!-- <input type="text" class="form-control" id="status" placeholder="Status"> -->
   </div>

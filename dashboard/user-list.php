@@ -163,9 +163,9 @@ if (!isset($_SESSION['isLoggedIn'])) {
 	</div>
 		<div class="form-group">
 			<label for="status">Status</label>
-			<select  name="status" value="<?php echo $r['status']; ?>" >
-		<option value="0" id="status" >Active</option>
-		<option value="1" id="status" >Inactive</option>
+			<select  name="status"  id="status" value="<?php echo $r['status']; ?>" >
+		<option value="1" >Active</option>
+		<option value="0"  >Inactive</option>
 			</select>
 			<!-- <input type="text" class="form-control" id="status" placeholder="Status"> -->
 		</div>

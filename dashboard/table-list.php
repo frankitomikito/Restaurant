@@ -117,16 +117,19 @@ if (!isset($_SESSION['isLoggedIn'])) {
 		</div>
 		<div class="form-group">
 			<label for="status">Status</label>
-			<select  name="status" value="<?php echo $r['status']; ?>" >
-		<option value="0" id="status" >Available</option>
-		<option value="1" id="status" >Unavailable</option>
+			<select  name="status"  id="status" value="<?php echo $r['status']; ?>" >
+		<option value="1" >Available</option>
+		<option value="0" >Unavailable</option>
 			</select>
+
+
+			
 			<!-- <input type="text" class="form-control" id="status" placeholder="Status"> -->
 		</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		<button type="submit" name="updatedata" id="updatedata" class="btn btn-primary">Save changes</button>	
+		<button type="submit" name="updatedata" class="btn btn-primary">Save changes</button>	
 	  </div>
 	  
     </div>

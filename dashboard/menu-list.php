@@ -173,9 +173,9 @@ if (!isset($_SESSION['isLoggedIn'])) {
 	</select>
 
 	<label for="status">Status</label>
-	<select name="status" value="<?php echo $r['status']; ?>" >
-	<option value="0" id="status" >Available</option>
-		<option value="1" id="status" >Unavailable</option>
+	<select name="status" id="status" value="<?php echo $r['status']; ?>" >
+	<option value="0"  >Available</option>
+		<option value="1"  >Unavailable</option>
 	</select>
 
 	
@@ -270,6 +270,8 @@ if (!isset($_SESSION['isLoggedIn'])) {
 			$('#description').val(data[2]);
 			$('#servings').val(data[3]);
 			$('#price').val(data[4]);
+			$('#image_path').val(data[5]);
+			$('#status').val(data[6]);
 			
 		
 			

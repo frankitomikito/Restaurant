@@ -8,7 +8,7 @@ if(isset($_POST['updatecategory']))
  $category_name = $_POST['name'];
  $status = $_POST['status'];
 
- $query ="UPDATE tbl_category SET name='$category_id', status='$status' WHERE category_id= '$category_id' ";
+ $query ="UPDATE tbl_category SET name='$category_name', status='$status' WHERE category_id= '$category_id' ";
  $query_run = mysqli_query($connection, $query);
 
  if($query_run){

@@ -45,7 +45,7 @@ $con = connect();
 			        		VALUES ('$fullname','$username','$email','$password','$gender','$address','$role','$targetDirectory$file_name','$status');";
 			        	if ($con->query($iquery) === TRUE) {
 			        		echo '<script>alert("You Register successfully")</script>';
-			        		echo '<script>window.location="login.php"</script>';
+			        		echo '<script>window.location="/login"</script>';
 			        	}else {
 			                echo "Error: " . $iquery . "<br>" . $con->error;
 			            }

@@ -13,6 +13,7 @@ async function reloadTable() {
 function changeIntegerToText(json) {
     for (let i = 0; i < json.length; i++) {
         let user = json[i];
+        user[0] = parseInt(user[0]);
         user[3] = Users.getGenderString(user[3]);
         user[5] = Users.getPositionString(user[5]);
         user[6] = Users.getStatusString(user[6]);

@@ -1,4 +1,5 @@
-<?php include 'template/header.php'; 
+<?php include 'header.php'; 
+session_start();
 if (!isset($_SESSION['isLoggedIn'])) {
 	echo '<script>window.location="/login"</script>';
 } ?>
@@ -233,13 +234,13 @@ if (!isset($_SESSION['isLoggedIn'])) {
 			</div>
 		</div>
 	</div>
-
 	<?php include 'script-res.php' ?>
-	<script src="../js/employee/classes/Users.js"></script>
+	<script src="../build/admin/bundle.min.js"></script>
+	<!-- <script src="../js/employee/classes/Users.js"></script>
 	<script src="../js/employee/classes/Modal.js"></script>
 	<script src="../node_modules/angular/angular.js"></script>
 	<script src="../js/employee/AngularJS/module.js"></script>
-	<script src="../js/employee/AngularJS/modalctrl.js"></script>
+	<script src="../js/employee/AngularJS/modalctrl.js"></script> -->
 
 </body>
 

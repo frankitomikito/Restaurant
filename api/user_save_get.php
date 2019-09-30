@@ -32,15 +32,16 @@
 			$user_code = new UserCode;
 			$code_generated = $user_code->create(['user_id' => $user->user_id]);
 
-			$mail = new Mail;
-			$mail->setRecipients('Account Confirmation', 
-				'Hello '.$user->fullname.', please click this
-				 <a href="http://localhost:8000/account/confirmation?code='.$code_generated.'">link</a> to confirm.',
-				 $user->email);
-			if ($mail->send()) 
-				return new Response(['data' => true], 200);
-			else 
-				return new Response(['error' => 'Something went wrong'], 404);
+			// $mail = new Mail;
+			// $mail->setRecipients('Account Confirmation', 
+			// 	'Hello '.$user->fullname.', please click this
+			// 	 <a href="http://localhost:8000/account/confirmation?code='.$code_generated.'">link</a> to confirm.',
+			// 	 $user->email);
+			// if ($mail->send()) 
+			// 	return new Response(['data' => true], 200);
+			// else 
+			// 	return new Response(['error' => 'Something went wrong'], 404);
+			return new Response(['data' => true], 200);
 		}
 		else 
 			return new Response(['error' => 'Something went wrong'], 404);

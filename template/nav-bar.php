@@ -14,6 +14,11 @@
 	        <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
 			<?php } elseif (isset($_SESSION['isLoggedIn'])) { ?>
 			<li class="nav-item"><a href="myreservation.php" class="nav-link" >My Reservation</a></li>
+			<?php if ($_SESSION['role'] == 2) { ?>
+			<li class="nav-item">
+				<a href="/orders" class="nav-link" >My Orders</a></li>
+			</li>
+			<?php } ?>
 			<li class="nav-item"><a href="logout.php" class="nav-link"><?php echo $_SESSION['name']; ?>(Logout)</a></li>
 			<?php if ($_SESSION['role'] == 2) { ?>
 			<li class="nav-item">

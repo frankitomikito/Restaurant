@@ -111,18 +111,32 @@
       </div>
       <div class="mymodal-body dish-menu">
         <div class="row">
+          <div class="col-lg-12">
+            <label>Table Number</label>
+            <select ng-model="table_id">
+              <option ng-repeat="reservation in reservations | filter: status = 1" value="{{reservation.table_id}}">
+                {{reservation.table_name}}
+              </option>
+            </select>
+          </div>
           <div class="col-lg-12" ng-repeat="menu in menus">
-            <div class="menus d-flex main-dish" style="margin-bottom: 10px; background: white !important;">
+            <div class="menus d-flex main-dish" style="margin-bottom: 10px; background: white !important; position: relative;">
+            <div style="position:absolute; top: .1rem; right: .5rem; border-radius: 50%; background-color: red; color: white; width: 2rem; height: 2rem;
+              display: flex; justify-content: center; align-items: center;">
+              <a ng-click="removeItem(menu, $index)" style="cursor: pointer;">
+                <i class="fas fa-times"></i>
+              </a>
+            </div>
               <div class="menu-img" style="background-image: url(dashboard/item-image/{{menu.image_path}});"></div>
               <div class="text d-flex">
                 <div class="one-half">
                   <h3>{{menu.name}}</h3>
                   <div class="myInput-container" style="width: 30%;">
                     <label class="floating-label active">Quantity</label>
-                    <input type="number" ng-model="quantity[$index]" class="myInput-control margin" required>
+                    <input type="number" ng-model="quantity[$index]" class="myInput-control margin" min="1" required>
                   </div>
                 </div>
-                <div class="one-forth">
+                <div class="one-forth" style="padding-top: .8rem;">
                   <span class="price">Php {{orderPrice(quantity[$index], menu.price, $index)}}</span>
                 </div>
               </div>

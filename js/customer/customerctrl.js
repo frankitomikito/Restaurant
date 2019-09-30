@@ -12,21 +12,82 @@ module.service('MenuService', ['$http', function(h) {
     }
 }]);
 
-module.controller('ModalController', ['$scope', 'OrderFactory', function(s, order_factory) {
+module.service('ReservationService', function($http) {
+    this.getReservation = () => {
+        return $http.get('http://localhost:8000/apis/reservation')
+    }
+});
+
+module.service('OrderService', function($http) {
+    this.submitOrder = (data) => {
+        const form_data = new FormData();
+        angular.forEach(data, (value, key) => {
+            if (angular.isObject(value) || angular.isArray(value)) {
+                form_data.append(key, JSON.stringify(value));
+            } else {
+                form_data.append(key, value);
+            }
+        });
+        return $http({
+            method: 'POST',
+            url: 'http://localhost:8000/apis/order',
+            data: form_data,
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined }
+        });
+    }
+});
+
+module.controller('ModalController', ['$scope', 'OrderFactory', 'OrderService', 'ReservationService', function(s, order_factory, order_service, reservation_service) {
 
     s.quantity = [];
     s.prices = [];
+    s.table_id = null;
+    s.reservations = [];
+
+    init();
 
     s.onCancel = () => {
         ModalController.closeModal();
-        console.log(s.quantity);
     }
 
     s.order = () => {
         const receipt = {};
+        const orders = [];
+        const factory_orders = order_factory.orders;
         receipt.total = s.totalPrice(s.prices);
-        console.log(receipt);
+        receipt.table_id = parseInt(s.table_id);
+        for (let i = 0; i < factory_orders.length; i++) {
+            orders.push({
+                menu_id: parseInt(factory_orders[i].menu_id),
+                quantity: s.quantity[i]
+            });
+        }
+        const data = {
+            receipt: receipt,
+            orders: orders
+        }
+        console.log(data);
+        order_service.submitOrder(data).then(
+            result => {
+                if (result.status == 201) {
+                    alert('Order Submitted Successfully!');
+                    window.location.href = "/orders";
+                } else {
+                    alert('Something went wrong, Try Again.');
+                }
+            },
+            () => alert('Check your internet connection')
+        )
+    }
 
+    s.removeItem = (item, index) => {
+        const items = order_factory.orders;
+        order_factory.orders.splice(items.indexOf(items.filter(f => f.menu == item.menu_id), 1));
+        s.menus = order_factory.orders;
+        s.orderPrice(0, item.price, index);
+        const elem_cart = document.getElementById('cart');
+        elem_cart.innerText = (parseInt(elem_cart.innerText) - 1) == 0 ? '' : parseInt(elem_cart.innerText) - 1; 
     }
 
     s.orderPrice = (quantity, price, index) => {
@@ -42,15 +103,21 @@ module.controller('ModalController', ['$scope', 'OrderFactory', function(s, orde
         return final_total;
     }
 
-    $('#a_cart').click(function() {
-        ModalController.showModal();
-        const orders = order_factory.orders;
-        angular.forEach(orders, (value, key) => {
-            s.quantity[key] = 1;
+    function init() {
+        $('#a_cart').click(function() {
+            ModalController.showModal();
+            const orders = order_factory.orders;
+            angular.forEach(orders, (value, key) => {
+                s.quantity[key] = 1;
+            });
+            s.menus = orders;
+            s.$apply();
         });
-        s.menus = orders;
-        s.$apply();
-    });
+
+        reservation_service.getReservation().then(
+            result => s.reservations = result.data
+        );
+    }
 }]);
 
 module.controller('MenuController', ['$scope', 'MenuService', 'OrderFactory',

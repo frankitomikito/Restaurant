@@ -24,6 +24,12 @@ switch ($request) {
     case '/apis/menu':
         require 'api/menu.php';
         break;
+    case '/apis/reservation':
+        require 'api/reservation.php';
+        break;
+    case '/apis/order':
+        require 'api/order.php';
+        break;
     case '/login':
         require 'views/login.php';
         break;
@@ -32,6 +38,9 @@ switch ($request) {
         break;
     case '/admin/employee':
         require 'views/admin/employee.php';
+        break;
+    case '/orders':
+        require 'views/customer/orders.php';
         break;
     case '/account/confirmation':
         require 'views/admin/account-confirmation.php';

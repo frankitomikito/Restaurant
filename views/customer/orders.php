@@ -99,9 +99,10 @@ if (isset($_SESSION['id'])) {
   <?php include 'template/script.php'; ?>
 
   <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-  <script src="../js/employee/classes/Modal.js"></script>
+  <script src="../build/customer/orders/bundle.min.js"></script>
+  <!-- <script src="../js/employee/classes/Modal.js"></script>
 	<script src="../node_modules/angular/angular.js"></script>
-	<script src="../js/customer/ordersctrl.js"></script>
+	<script src="../js/customer/ordersctrl.js"></script> -->
 
 </body>
 

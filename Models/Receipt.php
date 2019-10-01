@@ -37,7 +37,9 @@ class Receipt extends Database implements IActions {
     }
 
 	public function search($args){
-
+        $result = $this->rawQuery('SELECT tr.date_ordered, tr.total, tr.discount FROM tbl_receipt AS tr 
+        INNER JOIN tbl_table AS tb ON tb.table_id = tr.table_id WHERE MONTHNAME(tr.date_ordered) = "'.$args.'"');
+        return $this->convertResultToJson($result);
     }
 
 }

@@ -1,6 +1,6 @@
 <header class="header">
 				<div class="logo-container">
-					<a href="index.php" class="logo">
+					<a href="/" class="logo">
 						Tak-Ang Restaurant
 					</a>
 					<div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">

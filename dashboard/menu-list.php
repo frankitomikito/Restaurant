@@ -152,7 +152,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
   </div>
   <div class="form-group">
 	<label class="control-label">Image</label>
-	<input type="file" name="image_path" class="form-control"  value="<?php echo $r['image_path']; ?>" required="">
+	<input type="file" name="image_path" class="form-control"  value="<?php echo $r['image_path']; ?>" >
 	</div>
 
  										 <?php
@@ -163,7 +163,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 
   <div class="form-group">
   <label class="control-label">Category</label>
-	<select data-plugin-selectTwo class="form-control populate" name="category_id" value="<?php echo $r['category']; ?>" required="">
+	<select data-plugin-selectTwo class="form-control populate" name="category_id" id="category_id" value="<?php echo $r['category_id']; ?>" required="">
 	<?php
 	while ($rows = $resultSet->fetch_assoc()){
 	$category_id = $rows['category_id'];
@@ -174,8 +174,8 @@ if (!isset($_SESSION['isLoggedIn'])) {
 
 	<label for="status">Status</label>
 	<select name="status" id="status" value="<?php echo $r['status']; ?>" >
-	<option value="0"  >Available</option>
-		<option value="1"  >Unavailable</option>
+	<option value="1"  >Available</option>
+		<option value="0"  >Unavailable</option>
 	</select>
 
 	

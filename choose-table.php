@@ -57,7 +57,7 @@ include 'template/header.php'; ?>
                $con = connect();
                $sql = "SELECT * FROM `tbl_table` WHERE status = 1 ;";
                $result = $con->query($sql);
-              ?>
+              ?> 
                   <form  action="save_book.php" method="POST">
                       <table class="table table-hover">
                         <th>Table Name</th>

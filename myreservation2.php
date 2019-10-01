@@ -73,6 +73,7 @@ include 'template/header.php'; ?>
                 <a href="myreservation2.php"><font color="white">Cancelled Reservations</font></a>
                 </div>
 
+               
                 </div>
                 
                
@@ -89,6 +90,8 @@ include 'template/header.php'; ?>
       <div class="container">
         <div class="row justify-content-center mb-5 pb-5">
           <div class="col-md-7 text-center heading-section ftco-animate">
+
+          
             <!-- <span class="subheading">Our Tables</span> -->
             <h2>My Reservation</h2>
            
@@ -100,20 +103,18 @@ include 'template/header.php'; ?>
 	  }
 	  $count=0;
 	  $con = connect();
-	  $sql = "Select *,tbl_booking.status as newstat from tbl_booking inner join tbl_booked_table on tbl_booking.booking_id=tbl_booked_table.booking_id inner join tbl_table on tbl_table.table_id=tbl_booked_table.table_id  where user_id='$userid'";
+	  $sql = "Select *,tbl_booking.status as newstat from tbl_booking inner join tbl_booked_table on tbl_booking.booking_id=tbl_booked_table.booking_id inner join tbl_table on tbl_table.table_id=tbl_booked_table.table_id  where user_id='$userid' AND tbl_booking.status = 2";
 	  $result = $con->query($sql);
 	  foreach($result as $re){
 		$booking_id = $re['booking_id'];
 		$date = $re['check_in'];
 		$table = $re['table_name'];
 		$capacity = $re['capacity'];
-    $status = $re['newstat'];
-    
+		$status = $re['newstat'];
 		$count++;
      
       
       ?>
-    
       <h4>DateTime:</h4><h5><?php echo $date; ?></h5><br>
 	  <h4>Table Name:</h4><h5><?php  echo $table; ?></h5><br>
 	  <h4>Capacity:</h4><h5><?php echo $capacity; ?></h5><br>
@@ -142,10 +143,7 @@ include 'template/header.php'; ?>
 
 
 
-    <form method="POST">
-		<input type="hidden" value="<?php echo $booking_id;?>" name="booking_id">
-		<button type="submit" name="cancel" class="btn btn-primary">Cancel Reservation</button>
-		</form>
+    
       
       
         
@@ -187,7 +185,7 @@ include 'template/header.php'; ?>
 
 	if($result){
 	echo '<script> alert ("Reservation Cancelled"); </script>';
-  echo '<script>window.location="myreservation0.php"</script>';
+  echo '<script>window.location="myreservation2.php"</script>';
 	}
 	else{
 	echo '<script> alert("Error"); </script>';

@@ -135,7 +135,7 @@ $con = connect();
         $description = $_POST['description'];
         $category = $_POST['category'];
         $status = 1;
-        $menu_id = $_SESSION['menu_id'];
+        $menu_id = $_SESSION['id']; 
         
 
         //$ecnpassword= md5($password);

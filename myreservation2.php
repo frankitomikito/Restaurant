@@ -73,7 +73,10 @@ include 'template/header.php'; ?>
                 <a href="myreservation2.php"><font color="white">Cancelled Reservations</font></a>
                 </div>
 
-               
+                <div class="select-wrap one-half">
+                <a href="myreservation3.php"><font color="white">Rejected Reservations</font></a>
+                </div>
+
                 </div>
                 
                
@@ -115,11 +118,23 @@ include 'template/header.php'; ?>
      
       
       ?>
-      <h4>DateTime:</h4><h5><?php echo $date; ?></h5><br>
-	  <h4>Table Name:</h4><h5><?php  echo $table; ?></h5><br>
-	  <h4>Capacity:</h4><h5><?php echo $capacity; ?></h5><br>
-      <?php
+
+
+<table class="table table-hover">
+        <th>Date Time</th>
+        <th>Table Name</th>
+        <th>Capacity</th>
+       
+
+
+        <tr>
+        <td><?php echo $date; ?></td>
+        <td><?php echo $table; ?></td>
+        <td><?php echo $capacity; ?></td>
+      
+        <?php
         switch ($status) {
+            
           case 0:
             echo '<h4>Status:</h4><h5>Unconfirmed</h5><br>';
             break;
@@ -127,14 +142,32 @@ include 'template/header.php'; ?>
             echo '<h4>Status:</h4><h5>Confirmed</h5><br>';
             break;
           case 2:
-            echo '<h4>Status:</h4><h5>Cancelled</h5><br>';
+            echo '<h4>Status:</h4><h5><font color="violet">Cancelled</font></h5><br>';
+            break;
+            case 3:
+            echo '<h4>Status:</h4><h5>Rejected</h5><br>';
             break;
           default:
             echo '<h4>No Reservation</h4>';
             break;
         }
       }
+    
   ?> 
+
+
+
+
+        </tr>
+
+
+
+
+
+    
+    
+  
+      </table>
     
     
 <!-- ahgsvhjxcbuhsbchcc-->

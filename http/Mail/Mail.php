@@ -15,8 +15,8 @@ class Mail implements IMail{
         $this->mail->isSMTP();   
         $this->mail->Host = "smtp.gmail.com";
         $this->mail->SMTPAuth = true;
-        $this->mail->Username = "email@gmail.com";                 
-        $this->mail->Password = "emailpassword";
+        $this->mail->Username = "anvicmosquera0818@gmail.com";                 
+        $this->mail->Password = "anvicmosquera12345";
         $this->mail->SMTPSecure = "tls";
         $this->mail->Port = 587; 
     }

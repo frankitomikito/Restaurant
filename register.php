@@ -77,7 +77,7 @@
                           <input type="submit" value="Register" name="regascus" class="btn btn-primary py-3 px-5">
                         </div>
                       </form>
-                      <p class="text-center">For Login <a href="login.php">Click Here</a> </p>
+                      <p class="text-center">For Login <a href="/login">Click Here</a> </p>
                   </div>
               </div>
                   </div>
@@ -133,7 +133,7 @@
                           <input type="submit" value="Register" name="regasres" class="btn btn-primary py-3 px-5">
                         </div>
                       </form>
-                      <p class="text-center">For Login <a href="login.php">Click Here</a> </p>
+                      <p class="text-center">For Login <a href="/login">Click Here</a> </p>
                   </div>
               </div>
                   </div>

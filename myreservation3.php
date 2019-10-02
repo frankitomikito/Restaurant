@@ -1,4 +1,4 @@
-<!-- choose-table.php -->
+z<!-- choose-table.php -->
 <?php 
 
 if(isset($_SESSION['userid'])){
@@ -61,8 +61,6 @@ include 'template/header.php'; ?>
 
                 <div class="fields d-block d-lg-flex">
 
-              
-
                 <div class="select-wrap one-half">
                 <a href="myreservation0.php"><font color="white">Unconfirmed Reservations</font></a>
                 </div>
@@ -74,7 +72,7 @@ include 'template/header.php'; ?>
                 <div class="select-wrap one-half">
                 <a href="myreservation2.php"><font color="white">Cancelled Reservations</font></a>
                 </div>
-               
+
                 <div class="select-wrap one-half">
                 <a href="myreservation3.php"><font color="white">Rejected Reservations</font></a>
                 </div>
@@ -95,6 +93,8 @@ include 'template/header.php'; ?>
       <div class="container">
         <div class="row justify-content-center mb-5 pb-5">
           <div class="col-md-7 text-center heading-section ftco-animate">
+
+          
             <!-- <span class="subheading">Our Tables</span> -->
             <h2>My Reservation</h2>
            
@@ -106,7 +106,7 @@ include 'template/header.php'; ?>
 	  }
 	  $count=0;
 	  $con = connect();
-	  $sql = "Select *,tbl_booking.status as newstat from tbl_booking inner join tbl_booked_table on tbl_booking.booking_id=tbl_booked_table.booking_id inner join tbl_table on tbl_table.table_id=tbl_booked_table.table_id  where user_id='$userid' AND tbl_booking.status = 0";
+	  $sql = "Select *,tbl_booking.status as newstat from tbl_booking inner join tbl_booked_table on tbl_booking.booking_id=tbl_booked_table.booking_id inner join tbl_table on tbl_table.table_id=tbl_booked_table.table_id  where user_id='$userid' AND tbl_booking.status = 3";
 	  $result = $con->query($sql);
 	  foreach($result as $re){
 		$booking_id = $re['booking_id'];
@@ -118,13 +118,25 @@ include 'template/header.php'; ?>
      
       
       ?>
-      <h4>DateTime:</h4><h5><?php echo $date; ?></h5><br>
-	  <h4>Table Name:</h4><h5><?php  echo $table; ?></h5><br>
-	  <h4>Capacity:</h4><h5><?php echo $capacity; ?></h5><br>
-      <?php
+
+
+<table class="table table-hover">
+        <th>Date Time</th>
+        <th>Table Name</th>
+        <th>Capacity</th>
+       
+
+
+        <tr>
+        <td><?php echo $date; ?></td>
+        <td><?php echo $table; ?></td>
+        <td><?php echo $capacity; ?></td>
+      
+        <?php
         switch ($status) {
+            
           case 0:
-            echo '<h4>Status:</h4><h5><font color="red">Unconfirmed</font></h5><br>';
+            echo '<h4>Status:</h4><h5>Unconfirmed</h5><br>';
             break;
           case 1:
             echo '<h4>Status:</h4><h5>Confirmed</h5><br>';
@@ -132,13 +144,30 @@ include 'template/header.php'; ?>
           case 2:
             echo '<h4>Status:</h4><h5>Cancelled</h5><br>';
             break;
+            case 3:
+            echo '<h4>Status:</h4><h5><code>Rejected</code></h5><br>';
+            break;
           default:
             echo '<h4>No Reservation</h4>';
             break;
         }
       }
-  ?> 
     
+  ?> 
+
+
+
+
+        </tr>
+
+
+
+
+
+    
+    
+  
+      </table>
     
 <!-- ahgsvhjxcbuhsbchcc-->
 
@@ -146,10 +175,7 @@ include 'template/header.php'; ?>
 
 
 
-    <form method="POST">
-		<input type="hidden" value="<?php echo $booking_id;?>" name="booking_id">
-		<button type="submit" name="cancel" class="btn btn-primary">Cancel Reservation</button>
-		</form>
+    
       
       
         
@@ -191,7 +217,7 @@ include 'template/header.php'; ?>
 
 	if($result){
 	echo '<script> alert ("Reservation Cancelled"); </script>';
-    echo '<script>window.location="myreservation0.php"</script>';
+  echo '<script>window.location="myreservation2.php"</script>';
 	}
 	else{
 	echo '<script> alert("Error"); </script>';

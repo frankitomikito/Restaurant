@@ -14,7 +14,7 @@
 	        <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
 			<?php } elseif (isset($_SESSION['isLoggedIn'])) { ?>
 			<?php if ($_SESSION['role'] == 2) { ?>
-			<li class="nav-item"><a href="myreservation.php" class="nav-link" >My Reservation</a></li>
+			<li class="nav-item"><a href="myreservation0.php" class="nav-link" >My Reservation</a></li>
 			<li class="nav-item">
 				<a href="/orders" class="nav-link" >My Orders</a></li>
 			</li>

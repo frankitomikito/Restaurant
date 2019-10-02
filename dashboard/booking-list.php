@@ -60,7 +60,8 @@ if (!isset($_SESSION['isLoggedIn'])) {
 											
 											
 											
-											<th class="hidden-phone">Action</th>
+											<th class="hidden-phone">Approve</th>
+											<th class="hidden-phone">Reject</th>
 											<th class="hidden-phone">View</th>
 										</tr>
 									</thead>
@@ -77,7 +78,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 											if ($status == 1){
 												$stat = 'CONFIRMED';
 											}else{
-												$stat = 'UNCONFIRM';
+												$stat = 'REJECTED';
 											}
 										?>
 										<tr class="gradeX">
@@ -86,17 +87,10 @@ if (!isset($_SESSION['isLoggedIn'])) {
 											<td><?php echo $r['user_id']; ?></td>
 											<td><?php echo $stat ?></td>
 											<td><?php echo $r['table_id']; ?></td>
-												
 					
-											<td class="center hidden-phone">
-												<?php 
-													if ($status == 1) {
-												?>
-												<a href="approve-reject.php?breject_id=<?php echo $r['booking_id']; ?>" class="btn btn-danger"  onclick="if (!Done()) return false; ">Reject</a>
-												<?php }else{ ?>
-												<a href="approve-reject.php?bapprove_id=<?php echo $r['booking_id']; ?>" class="btn btn-success"  onclick="if (!Done()) return false; ">Confirm</a>	
-												<?php } ?>
-											</td>
+												<td><a href="approve-reject.php?bapprove_id=<?php echo $r['booking_id']; ?>" class="btn btn-success" >Confirm</a>	</td>
+												<td><a href="approve-reject.php?breject_id=<?php echo $r['booking_id']; ?>" class="btn btn-danger" >Reject</a>		</td>
+											
 											<td class="center hidden-phone">
 												<a href="invoice.php?booking-number=<?php echo $r['booking_id']; ?>" class="btn btn-primary">View</a>
 											</td>

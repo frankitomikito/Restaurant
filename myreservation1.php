@@ -73,6 +73,9 @@ include 'template/header.php'; ?>
                 <a href="myreservation2.php"><font color="white">Cancelled Reservations</font></a>
                 </div>
 
+                <div class="select-wrap one-half">
+                <a href="myreservation3.php"><font color="white">Rejected Reservations</font></a>
+                </div>
                
                 </div>
                 
@@ -124,7 +127,7 @@ include 'template/header.php'; ?>
             echo '<h4>Status:</h4><h5>Unconfirmed</h5><br>';
             break;
           case 1:
-            echo '<h4>Status:</h4><h5>Confirmed</h5><br>';
+            echo '<h4>Status:</h4><h5><font color="green">Confirmed</font></h5><br>';
             break;
           case 2:
             echo '<h4>Status:</h4><h5>Cancelled</h5><br>';

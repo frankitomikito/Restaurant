@@ -16,7 +16,7 @@
 	// REJECT
 	if (isset($_GET['breject_id'])) {
 		$id =$_GET['breject_id'];
-		$sql ="UPDATE `tbl_booking` SET `status`=0 WHERE booking_id = '$id';";
+		$sql ="UPDATE `tbl_booking` SET `status`= 3 WHERE booking_id = '$id';";
 		include_once 'dbCon.php';
 		$con = connect();
 		if ($con->query($sql) === TRUE) {

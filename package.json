@@ -7,6 +7,7 @@
     "serve": "php -S localhost:8000",
     "sass:employee": "node-sass --output-style compressed sass/admin/employee.scss build/admin/bundle.css",
     "sass:confirmation": "node-sass --output-style compressed sass/admin/confirmation.scss build/admin/confirmation.css",
+    "sass:dashboard": "node-sass --output-style compressed sass/admin/dashboard.scss build/admin/dashboard/bundle.css",
     "sass:customer": "node-sass --output-style compressed sass/customer/customer.scss build/customer/bundle.css"
   },
   "repository": {

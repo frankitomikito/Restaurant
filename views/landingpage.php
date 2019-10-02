@@ -121,7 +121,7 @@
           </div>
           <div class="col-lg-12" ng-repeat="menu in menus">
             <div class="menus d-flex main-dish" style="margin-bottom: 10px; background: white !important; position: relative;">
-            <div style="position:absolute; top: .1rem; right: .5rem; border-radius: 50%; background-color: red; color: white; width: 2rem; height: 2rem;
+            <div style="position:absolute; top: .3rem; right: .3rem; border-radius: 50%; background-color: red; color: white; width: 2rem; height: 2rem;
               display: flex; justify-content: center; align-items: center;">
               <a ng-click="removeItem(menu, $index)" style="cursor: pointer;">
                 <i class="fas fa-times"></i>
@@ -161,10 +161,10 @@
   <!-- <script src="node_modules/angular/angular.js"></script>
   <script src="js/employee/classes/Modal.js"></script>
   <script src="js/customer/customerctrl.js"></script> -->
-  <script src="build/customer/landingpage/bundle.min.js"></script>
   <script src="dashboard/assets/vendor/jquery/jquery.js"></script>
   <script src="dashboard/assets/vendor/select2/select2.js"></script>
   <script src="dashboard/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+  <script src="build/customer/landingpage/bundle.min.js"></script>
 
 </body>
 

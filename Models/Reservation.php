@@ -11,9 +11,9 @@ class Reservation extends Database implements IActions {
 
 	public function getAll(){
         $result = $this->rawQuery('SELECT tbt.*, tb.table_id, tt.table_name FROM tbl_booking AS tbt 
-        INNER JOIN tbl_booked_table AS tb ON tb.booking_id = tbt.booking_id 
+        INNER JOIN tbl_booked_table AS tb ON tb.booking_id = tbt.booking_id
         INNER JOIN tbl_table AS tt ON tt.table_id = tb.table_id
-        WHERE tbt.user_id ='.$_SESSION['id']);
+        WHERE tbt.user_id = '.$_SESSION['id'].' AND tbt.status = 1');
         return $this->convertResultToJson($result);
     }
 

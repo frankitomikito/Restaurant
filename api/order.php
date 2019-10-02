@@ -8,14 +8,22 @@ require_once('Models/Order.php');
 
 RequestRoute::GET(function() {
     $receipt = new Receipt;
-    if (RequestRoute::PARAMGET('month') !== null) {
+    $order = new Order;
+
+    if (!empty(RequestRoute::PARAMGET('month'))) {
         return new Response($receipt->search(RequestRoute::PARAMGET('month')), 200);
     }
+    else if(!empty(RequestRoute::PARAMGET('date'))) {
+        $param = [
+            "search" => 'todaysales',
+            "value" => RequestRoute::PARAMGET('date')
+        ];
+        return new Response($order->search($param), 200);
+    }
     else {
-        $order = new Order;
         $response = [
             "orders" => $order->getAll(),
-            "receipt" => $receipt->getAll()
+            "receipt" => $receipt->getAll(),
         ];
         return new Response($response, 200);
     }

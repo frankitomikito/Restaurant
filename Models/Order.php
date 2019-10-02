@@ -37,7 +37,13 @@ class Order extends Database implements IActions {
     }
 
 	public function search($args){
-
+        if($args['search'] == 'todaysales') {
+            $result = $this->rawQuery('SELECT tm.name, SUM(tor.quantity * tm.price) AS total  FROM tbl_menu AS tm
+            INNER JOIN tbl_receipt AS tr ON DATE(tr.date_ordered) = "'.$args['value'].'"
+            INNER JOIN tbl_order AS tor ON tor.menu_id = tm.menu_id AND tor.order_id = tr.order_id 
+            GROUP BY tm.name');
+            return $this->convertResultToJson($result);
+        }
     }
 
 }

@@ -20,7 +20,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 
 			<section role="main" class="content-body">
 				<header class="page-header">
-					<h2>Table</h2>
+					<h2>Sales Report</h2>
 
 					<div class="right-wrapper pull-right">
 						<ol class="breadcrumbs">
@@ -41,7 +41,14 @@ if (!isset($_SESSION['isLoggedIn'])) {
 
 				<section class="panel">
 					<div class="myCard">
-						<h2 class="myCard-title">Sales Report</h2>
+						<h2 class="myCard-title" style="margin-top: 0;">Today Sales Chart</h2>
+						<div class="myCard-content" style="text-align:center;">
+							<canvas id="todaySalesChart"></canvas>
+							<h2 id="totalSales" style="font-weight: 700;"></h1>
+						</div>
+					</div>
+					<div class="myCard">
+						<h2 id="month_title" class="myCard-title" style="margin-top: 0;"></h2>
 						<div class="myCard-content">
 							<canvas id="salesChart"></canvas>
 						</div>

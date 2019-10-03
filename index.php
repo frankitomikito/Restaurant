@@ -45,6 +45,9 @@ switch ($request) {
     case '/account/confirmation':
         require 'views/admin/account-confirmation.php';
         break;
+    case '/customer/confirmation':
+        require 'views/customer/email-confirmation.php';
+        break;
     case '/forgot':
         require 'views/forgot.php';
         break;

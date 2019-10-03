@@ -25,26 +25,37 @@
 			'image_path' => $image_path
 		];
 		$user = new User;
-		$result = $user->create($data);
-		if ($result['status']){
-			$user = $user->search('user_id');
-
-			$user_code = new UserCode;
-			$code_generated = $user_code->create(['user_id' => $user->user_id]);
-
-			// $mail = new Mail;
-			// $mail->setRecipients('Account Confirmation', 
-			// 	'Hello '.$user->fullname.', please click this
-			// 	 <a href="http://localhost:8000/account/confirmation?code='.$code_generated.'">link</a> to confirm.',
-			// 	 $user->email);
-			// if ($mail->send()) 
-			// 	return new Response(['data' => true], 200);
-			// else 
-			// 	return new Response(['error' => 'Something went wrong'], 404);
-			return new Response(['data' => true], 200);
+		$is_email_exist = $user->search([
+			'search' => 'email',
+			'value' => $data['email']
+		]);
+		if (!$is_email_exist) {
+			$result = $user->create($data);
+			if ($result['status']){
+				$user = $user->search([
+					'search' => 'user_id'
+				]);
+	
+				$user_code = new UserCode;
+				$code_generated = $user_code->create(['user_id' => $user->user_id]);
+	
+				$mail = new Mail;
+				$mail->setRecipients('Account Confirmation', 
+					'Hello '.$user->fullname.', please click this
+					 <a href="http://localhost:8000/account/confirmation?code='.$code_generated.'">link</a> to confirm.',
+					 $user->email);
+				if ($mail->send()) 
+					return new Response(['status' => true], 200);
+				else 
+					return new Response(['error' => 'Something went wrong'], 404);
+			}
+			else 
+				return new Response(['error' => 'Something went wrong'], 404);
 		}
-		else 
-			return new Response(['error' => 'Something went wrong'], 404);
+		else {
+			return new Response(['error' => 'Email already exist.'], 200);
+		}
+		
 	});
 
 	RequestRoute::PUT(function() {

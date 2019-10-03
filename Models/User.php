@@ -70,7 +70,7 @@ class User extends Database implements IActions {
 
 	public function search($args)
 	{
-		switch ($args) {
+		switch ($args['search']) {
 			case 'user_id':
 				try {
 					$result = $this->rawQuery('select max(user_id) as user_id from tbl_user')->fetch_object();
@@ -80,7 +80,19 @@ class User extends Database implements IActions {
 					return null;
 				}
 				break;
-			
+			case 'email':
+				try {
+					$result = $this->rawQuery('select count(email) as isExist from tbl_user where email = 
+					"'.$args['value'].'"')->fetch_object();
+					if ((bool)$result->isExist) {
+						return true;
+					} else {
+						return false;
+					}
+				} catch (\Throwable $th) {
+					return null;
+				}
+				break;
 			default:
 				return null;
 				break;

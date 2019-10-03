@@ -66,7 +66,10 @@ module.service('userService', ['$http', function(h) {
 }]);
 
 module.controller('modalCtrl', ['$scope', 'userService', function(s, user_service) {
-    s.user = { }
+    s.user = {
+        gender: '1',
+        position: '3',
+    }
     s.users = null;
     s.edit = false;
     s.save_btn_text = 'save';
@@ -80,12 +83,13 @@ module.controller('modalCtrl', ['$scope', 'userService', function(s, user_servic
             s.save_btn_text = 'Please wait';
             user_service.addUser(s.user).then(
               result => {
-                if (result.data) {
+                if (result.data.status) {
                   alert("Saved Successfully!");
                   reInitializeTable();
                   s.onCancel();
                 } else {
-                  alert(result.error);
+                  alert(result.data.error);
+                  s.save_btn_text = 'Save';
                 }
               },
               error => {

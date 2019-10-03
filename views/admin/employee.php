@@ -235,12 +235,12 @@ if (!isset($_SESSION['isLoggedIn'])) {
 		</div>
 	</div>
 	<?php include 'script-res.php' ?>
-	<script src="../build/admin/bundle.min.js"></script>
-	<!-- <script src="../js/employee/classes/Users.js"></script>
+	<!-- <script src="../build/admin/bundle.min.js"></script> -->
+	<script src="../js/employee/classes/Users.js"></script>
 	<script src="../js/employee/classes/Modal.js"></script>
-	<script src="../node_modules/angular/angular.js"></script>
+	<script src="../js/angular.js"></script>
 	<script src="../js/employee/AngularJS/module.js"></script>
-	<script src="../js/employee/AngularJS/modalctrl.js"></script> -->
+	<script src="../js/employee/AngularJS/modalctrl.js"></script>
 
 </body>
 

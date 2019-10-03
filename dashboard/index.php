@@ -6,6 +6,18 @@ if (!isset($_SESSION['isLoggedIn'])) {
 
 ?>
 <link rel="stylesheet" href="../build/admin/dashboard/bundle.css">
+
+<style>
+@media print {
+  header, #sidebar-left {
+    display: none !important;
+  }
+  .panel {
+	  margin-top: -100px;
+	  margin-left: -40px;
+  }
+}
+</style>
 <body>
 	<section class="body">
 

@@ -101,13 +101,11 @@ if (!isset($_SESSION['isLoggedIn'])) {
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label class="control-label">Category</label>
-													<select data-plugin-selectTwo class="form-control populate" name="category" required="">
-														<?php
-														while ($rows = $resultSet->fetch_assoc()){
-															$category_id = $rows['category_id'];
-															echo "<option value='$category_id'>$category_id</option>";
-														}
-														?>
+													<select data-plugin-selectTwo class="form-control populate" name="category" value="<?php echo $r['category_id']; ?>" required="">
+													<option value="1"  >Main</option>
+													<option value="2"  >Dessert</option>
+													<option value="3"  >Drinks</option>
+													<option value="4"  >Special</option>
 													</select>
 												</div>
 											</div>

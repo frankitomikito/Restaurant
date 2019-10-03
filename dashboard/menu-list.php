@@ -71,6 +71,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 										$menu_id = $_SESSION['id'];
 										$sql = "SELECT * FROM tbl_menu";
 										$result = $con->query($sql);
+										$result2 = $con->query($sql);
 										foreach ($result as $r) {
 											$status = $r['status'];
 											if ($status == 1){
@@ -78,7 +79,24 @@ if (!isset($_SESSION['isLoggedIn'])) {
 											}else{
 												$stat = 'UNAVAILABLE';
 											}
+											foreach ($result2 as $t) {
+												$category = $r['category_id'];
+												if ($category == 1){
+													$cat = 'Main';
+												}elseif($category == 2){
+													$cat = 'Dessert';
+												}elseif($category == 3){
+													$cat = 'Drinks';
+												}else{
+													$cat = 'Special';
+												}
+											}
 										?>
+
+
+
+
+
 										
 										<tr class="gradeX">
 										    <td><?php echo $r['menu_id']; ?></td>	
@@ -91,7 +109,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 													<img style="height: 50px;width: 50px;border-radius: 10px;    border: 1px solid darkgray;" src="item-image/<?php echo $r['image_path']; ?>" alt="No Image" >
 												</figure>
 											</td>
-											<td><?php echo $r['category_id']; ?></td>
+											<td><?php echo $cat ?></td>
 											<td><?php echo $stat ?></td>
 
 <td>
@@ -175,7 +193,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 	<label for="status">Status</label>
 	<select name="status" id="status" value="<?php echo $r['status']; ?>" >
 	<option value="1"  >Available</option>
-		<option value="0"  >Unavailable</option>
+	<option value="0"  >Unavailable</option>
 	</select>
 
 	

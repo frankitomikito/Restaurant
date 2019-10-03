@@ -164,7 +164,7 @@
 
   <?php include 'template/script.php'; ?>
 
-  <script src="node_modules/angular/angular.js"></script>
+  <script src="js/angular.js"></script>
   <script src="js/employee/classes/Modal.js"></script>
   <script src="js/customer/customerctrl.js"></script>
   <script src="dashboard/assets/vendor/jquery/jquery.js"></script>

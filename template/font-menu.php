@@ -18,8 +18,8 @@
             <div class="tab-content py-5" id="v-pills-tabContent">
               <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                 <div class="row">
-                  <div class="col-lg-6" ng-repeat="menu in menus" ng-click="onClickMenu(menu, $index)" style="cursor: pointer;">
-                    <div class="menus d-flex main-dish">
+                  <div class="col-lg-6" ng-repeat="menu in menus" <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 2) echo 'ng-click="onClickMenu(menu, $index)"' ?> style="cursor: pointer;">
+                    <div id="menu-{{menu.menu_id}}" class="menus d-flex main-dish">
                       <div class="menu-img" style="background-image: url(dashboard/item-image/{{menu.image_path}});"></div>
                       <div class="text d-flex">
                         <div class="one-half">

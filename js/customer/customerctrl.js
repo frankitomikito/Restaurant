@@ -83,10 +83,14 @@ module.controller('ModalController', ['$scope', 'OrderFactory', 'OrderService', 
 
     s.removeItem = (item, index) => {
         const items = order_factory.orders;
-        order_factory.orders.splice(items.indexOf(items.filter(f => f.menu == item.menu_id), 1));
+        order_factory.orders.splice(items.indexOf(items.filter(f => f.menu_id == item.menu_id)[0]), 1);
+        
         s.menus = order_factory.orders;
-        s.orderPrice(0, item.price, index);
+        s.prices.splice(s.prices.indexOf(item.price), 1);
+
         const elem_cart = document.getElementById('cart');
+        const menu_elem = document.getElementById(`menu-${item.menu_id}`);
+        menu_elem.style.border = '';
         elem_cart.innerText = (parseInt(elem_cart.innerText) - 1) == 0 ? '' : parseInt(elem_cart.innerText) - 1; 
     }
 
@@ -101,6 +105,10 @@ module.controller('ModalController', ['$scope', 'OrderFactory', 'OrderService', 
             final_total += value;
         });
         return final_total;
+    }
+
+    s.canOrder = (table_id) => {
+        return table_id && order_factory.orders.length > 0 ? true : false;
     }
 
     function init() {

@@ -120,7 +120,7 @@
           <div class="col-lg-12">
             <label>Table Number</label>
             <select ng-model="table_id">
-              <option ng-repeat="reservation in reservations | filter: status = 1" value="{{reservation.table_id}}">
+              <option ng-repeat="reservation in reservations | filter: status = 1 track by $index" value="{{reservation.table_id}}">
                 {{reservation.table_name}}
               </option>
             </select>
@@ -155,7 +155,7 @@
       </div>
       <div class="mymodal-footer">
         <button id="buttonCancel" ng-click="onCancel()" class="myBtn" style="font-size: .9rem;">Close</button>
-        <button class="myBtn" ng-click="order()" style="font-size: .9rem;">Order</button>
+        <button class="myBtn" ng-click="order()" ng-disabled="!canOrder(table_id)" style="font-size: .9rem;">Order</button>
       </div>
     </div>
   </div>
@@ -164,13 +164,13 @@
 
   <?php include 'template/script.php'; ?>
 
-  <!-- <script src="node_modules/angular/angular.js"></script>
+  <script src="node_modules/angular/angular.js"></script>
   <script src="js/employee/classes/Modal.js"></script>
-  <script src="js/customer/customerctrl.js"></script> -->
+  <script src="js/customer/customerctrl.js"></script>
   <script src="dashboard/assets/vendor/jquery/jquery.js"></script>
   <script src="dashboard/assets/vendor/select2/select2.js"></script>
   <script src="dashboard/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
-  <script src="build/customer/landingpage/bundle.min.js"></script>
+  <!-- <script src="build/customer/landingpage/bundle.min.js"></script> -->
 
 </body>
 

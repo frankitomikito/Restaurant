@@ -44,8 +44,29 @@ $con = connect();
 				    	$iquery="INSERT INTO `tbl_user`(`fullname`, `username`, `email`, `password`, `gender`, `address`, `position`, `image_path`, `status`) 
 			        		VALUES ('$fullname','$username','$email','$password','$gender','$address','$role','$file_name','$status');";
 			        	if ($con->query($iquery) === TRUE) {
-			        		echo '<script>alert("You Register successfully")</script>';
-			        		echo '<script>window.location="/login"</script>';
+
+							require_once($_SERVER["DOCUMENT_ROOT"].'/http/Mail/Mail.php');
+							require_once($_SERVER["DOCUMENT_ROOT"].'/Models/UserCode.php');
+							require_once($_SERVER["DOCUMENT_ROOT"].'/Models/User.php');
+
+							$user = new User;
+							$user = $user->search([
+								'search' => 'user_id'
+							]);
+				
+							$user_code = new UserCode;
+							$code_generated = $user_code->create(['user_id' => $user->user_id]);
+				
+							$mail = new Mail;
+							$mail->setRecipients('Account Confirmation', 
+								'Hello '.$user->fullname.', please click this
+								 <a href="http://localhost:8000/customer/confirmation?code='.$code_generated.'">link</a> to confirm.',
+								 $user->email);
+							if ($mail->send()) {
+								echo '<script>alert("You Register successfully. Please Confirm your email."); window.location="/login";</script>';
+							} else {
+								echo '<script>alert("Something went wrong, please try again.")</script>';
+							}
 			        	}else {
 			                echo "Error: " . $iquery . "<br>" . $con->error;
 			            }

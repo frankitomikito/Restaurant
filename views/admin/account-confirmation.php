@@ -64,7 +64,7 @@
         </div>
     </div>
     
-	<script src="../node_modules/angular/angular.js"></script>
+	<script src="../js/angular.js"></script>
     <script src="../js/employee/AngularJS/confirmationctrl.js"></script>
 </body>
 </html>

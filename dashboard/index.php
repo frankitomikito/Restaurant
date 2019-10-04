@@ -41,8 +41,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 									<i class="fa fa-home"></i>
 								</a>
 							</li>
-							<li><span>Tables</span></li>
-							<li><span>Booking List</span></li>
+							<li><span>Dashboard</span></li>
 						</ol>
 
 						<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>

@@ -38,64 +38,134 @@ if (!isset($_SESSION['isLoggedIn'])) {
 									</a>
 								</li>
 								<li class="nav-parent">
-									<a>
-										<i class="fas fa-tablets" aria-hidden="true"></i>
-										<span>Restaurant Table</span>
+							<a>
+								<i class="fas fa-tablets" aria-hidden="true"></i>
+								<span>Restaurant Table</span>
+							</a>
+							<ul class="nav nav-children">
+								<li>
+									<a href="../dashboard/table-add.php">
+										<span class="pull-right label label-primary">add</span>
+										<i class="fa fa-plus-square" aria-hidden="true"></i>
+										<span>Table Add</span>
 									</a>
-									<ul class="nav nav-children">
-										<li>
-											<a href="table-add.php">
-												<span class="pull-right label label-primary">add</span>
-												<i class="fa fa-plus-square" aria-hidden="true"></i>
-												<span>Table</span>
-											</a>
-										</li>
-										<li>
-											<a href="table-list.php">
-												<span class="pull-right label label-info">list</span>
-												<i class="fas fa-list-ul" aria-hidden="true"></i>
-												<span>Table</span>
-											</a>
-										</li>
-									</ul>
 								</li>
-								<li class="nav-parent">
-									<a>
-										<i class="fas fa-utensils-alt" aria-hidden="true"></i>
-										<span>Menu Item</span>
+								<li>
+									<a href="../dashboard/table-list.php">
+										<span class="pull-right label label-info">list</span>
+										<i class="fas fa-list-ul" aria-hidden="true"></i>
+										<span>Table List</span>
 									</a>
-									<ul class="nav nav-children">
-										<li>
-											<a href="menu-add.php">
-												<span class="pull-right label label-primary">add</span>
-												<i class="fa fa-plus-square" aria-hidden="true"></i>
-												<span>Menu</span>
-											</a>
-										</li>
-										<li>
-											<a href="menu-list.php">
-												<span class="pull-right label label-info">list</span>
-												<i class="fas fa-list-ul" aria-hidden="true"></i>
-												<span>Menu</span>
-											</a>
-										</li>
-									</ul>
 								</li>
-								<li class="nav-parent">
-									<a>
-										<i class="fas fa-money-check-alt" aria-hidden="true"></i>
-										<span>Booking &amp; Payment</span>
+							</ul>
+						</li>
+					<?php if ((isset($_SESSION['isLoggedIn']) && $_SESSION['role'] == 1)) { ?>
+						<li class="nav-parent">
+							<a>
+								<i class="fas fa-utensils-alt" aria-hidden="true"></i>
+								<span>Category</span>
+							</a>
+							<ul class="nav nav-children">
+								<li>
+									<a href="../dashboard/category-add.php">
+										<span class="pull-right label label-primary">add</span>
+										<i class="fa fa-plus-square" aria-hidden="true"></i>
+										<span>Category Add</span>
 									</a>
-									<ul class="nav nav-children">
-										<li>
-											<a href="booking-list.php">
-												<span class="pull-right label label-info">list</span>
-												<i class="fas fa-list-ul" aria-hidden="true"></i>
-												<span>Booking</span>
-											</a>
-										</li>
-									</ul>
 								</li>
+								<li>
+									<a href="../dashboard/category-list.php">
+										<span class="pull-right label label-info">list</span>
+										<i class="fas fa-list-ul" aria-hidden="true"></i>
+										<span>Category List</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					<?php } ?>
+					<?php if ((isset($_SESSION['isLoggedIn']) && $_SESSION['role'] == 1)) { ?>
+						<li class="nav-parent">
+							<a>
+								<i class="fas fa-utensils-alt" aria-hidden="true"></i>
+								<span>Menu Item</span>
+							</a>
+							<ul class="nav nav-children">
+								<li>
+									<a href="../dashboard/menu-add.php">
+										<span class="pull-right label label-primary">add</span>
+										<i class="fa fa-plus-square" aria-hidden="true"></i>
+										<span>Menu Add</span>
+									</a>
+								</li>
+								<li>
+									<a href="../dashboard/menu-list.php">
+										<span class="pull-right label label-info">list</span>
+										<i class="fas fa-list-ul" aria-hidden="true"></i>
+										<span>Menu List</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					<?php } ?>
+					<?php if ((isset($_SESSION['isLoggedIn']) && $_SESSION['role'] == 1)) { ?>
+						<li class="nav-parent">
+							<a>
+								<i class="fas fa-money-check-alt" aria-hidden="true"></i>
+								<span>Booking</span>
+							</a>
+							<ul class="nav nav-children">
+								<li>
+									<a href="../dashboard/booking-list.php">
+										<span class="pull-right label label-info">list</span>
+										<i class="fas fa-list-ul" aria-hidden="true"></i>
+										<span>Booking List</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					<?php } ?>
+
+					<?php if ((isset($_SESSION['isLoggedIn']) && $_SESSION['role'] == 1)) { ?>
+						<!-- <li class="nav-parent">
+							<a>
+								<i class="fas fa-utensils-alt" aria-hidden="true"></i>
+								<span>User</span>
+							</a>
+							<ul class="nav nav-children">
+								<li>
+									<a href="user-add.php">
+										<span class="pull-right label label-primary">add</span>
+										<i class="fa fa-plus-square" aria-hidden="true"></i>
+										<span>User Add</span>
+									</a>
+								</li>
+								<li>
+									<a href="user-list.php">
+										<span class="pull-right label label-info">list</span>
+										<i class="fas fa-list-ul" aria-hidden="true"></i>
+										<span>User List</span>
+									</a>
+								</li>
+							</ul>
+						</li> -->
+					<?php } ?>
+					<?php if ((isset($_SESSION['isLoggedIn']) && $_SESSION['role'] == 1)) { ?>
+						<li class="nav-parent">
+							<a>
+								<i class="fas fa-money-check-alt" aria-hidden="true"></i>
+								<span>Profile</span>
+							</a>
+							<ul class="nav nav-children">
+								<li>
+									<a href="../dashboard/profile.php">
+										<span class="pull-right label label-info">Profile</span>
+										<i class="fas fa-list-ul" aria-hidden="true"></i>
+										<span>Profile</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					<?php } ?>
 
 							</ul>
 						</nav>

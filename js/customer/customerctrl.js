@@ -133,10 +133,10 @@ module.controller('MenuController', ['$scope', 'MenuService', 'OrderFactory',
 
     initMenu();
 
-    s.onClickMenu = (menu, index) => {
+    s.onClickMenu = (menu, elem) => {
         order_factory.orders.push(menu);
         const cart = document.getElementById('cart');
-        const selected = document.querySelectorAll('.main-dish')[index];
+        const selected = elem;
         if (!selected.style.border) {
             selected.style.border = '2px solid green';
             cart.innerText = cart.innerText ? parseInt(cart.innerText) + 1 : 1;

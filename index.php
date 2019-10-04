@@ -33,13 +33,16 @@ switch ($request) {
     case '/login':
         require 'views/login.php';
         break;
+    case '/customer/reservation':
+        require 'views/customer/reservation.php';
+        break;
     case '/admin/dashboard': 
         require 'dashboard/index.php';
         break;
     case '/admin/employee':
         require 'views/admin/employee.php';
         break;
-    case '/orders':
+    case '/customer/orders':
         require 'views/customer/orders.php';
         break;
     case '/account/confirmation':
@@ -56,6 +59,9 @@ switch ($request) {
         break;
     case '/email':
         require 'views/admin/email.php';
+        break;
+    case '/logout':
+        require 'logout.php';
         break;
     case '../dashboard/booking-list':
         require 'dashboard/booking-list.php';

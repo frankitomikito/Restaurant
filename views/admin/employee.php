@@ -32,7 +32,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 									</a>
 								</li>
 								<li class="nav-active">
-									<a href="index.php">
+									<a href="/admin/employee">
 										<i class="fa fa-users" aria-hidden="true"></i>
 										<span>Employee</span>
 									</a>

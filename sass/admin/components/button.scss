@@ -31,6 +31,28 @@
 	}
 }
 
+.nav-btn {
+    font-family: 'Roboto', sans-serif;
+	display: inline-block;
+	background-color: $light-color;
+    box-shadow: .1rem .1rem .2rem rgba(#000000, .1);
+	border-radius: .2rem;
+	padding: .6rem 1rem;
+	color: black;
+	cursor: pointer;
+
+	&:not(:last-child) {
+		margin-right: 1rem;
+	}
+
+	&.active {
+		background-color: $primary-color;
+		box-shadow: .3rem .3rem .5rem rgba(#000000, .3);
+		color: white !important;
+	}
+
+}
+
 .datatable-addbtn {
 	cursor: pointer;
 }

@@ -120,7 +120,7 @@
           <div class="col-lg-12">
             <label>Table Number</label>
             <select ng-model="table_id">
-              <option ng-repeat="reservation in reservations | filter: status = 1 track by $index" value="{{reservation.table_id}}">
+              <option ng-repeat="reservation in reservations | filter: status:1 track by $index" value="{{reservation.table_id}}">
                 {{reservation.table_name}}
               </option>
             </select>

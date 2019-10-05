@@ -13,7 +13,7 @@ if (isset($_SESSION['id'])) {
 
 ?>
 
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<link rel="stylesheet" href="../libraries/datatables/css/jquery.dataTables.css">
 <link rel="stylesheet" href="../build/customer/bundle.css">
 
 <body ng-app="myApp">
@@ -69,7 +69,7 @@ if (isset($_SESSION['id'])) {
         <div class="row">
           <div class="col-lg-12" ng-repeat="order in curr_orders">
             <div class="menus d-flex main-dish" style="margin-bottom: 10px; background: white !important;">
-              <div class="menu-img" style="background-image: url(dashboard/item-image/{{order.image_path}});"></div>
+              <div class="menu-img" style="background-image: url(../dashboard/item-image/{{order.image_path}});"></div>
               <div class="text d-flex">
                 <div class="one-half">
                   <h3>{{order.name}}</h3>
@@ -98,10 +98,10 @@ if (isset($_SESSION['id'])) {
 
   <?php include 'script.php'; ?>
 
-  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+  <script src="../libraries/datatables/js/jquery.dataTables.js"></script>
   <script src="../../build/customer/orders/bundle.min.js"></script>
-  <!-- <script src="../js/employee/classes/Modal.js"></script>
-	<script src="../node_modules/angular/angular.js"></script>
+  <!-- <script src="../js/angular.js"></script>
+  <script src="../js/employee/classes/Modal.js"></script>
 	<script src="../js/customer/ordersctrl.js"></script> -->
 
 </body>

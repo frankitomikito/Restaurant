@@ -34,7 +34,8 @@ class RequestRoute extends Response implements IRequestMethod, IRequestParams {
 	public static function DELETE($callback)
 	{
 		if ($_SERVER["REQUEST_METHOD"] == "DELETE") {
-			echo $callback();
+			$response = $callback();
+			echo $response->data;
 		}
 	}
 
@@ -80,6 +81,10 @@ class RequestRoute extends Response implements IRequestMethod, IRequestParams {
 			}
 		}
 		return  $parsed_val[$param_name];
+	}
+
+	public static function PARAMDELETE($param_name) {
+		return $this->PARAMPUT($param_name);
 	}
 
 	public static function PARAMFILE($param_name)

@@ -21,7 +21,7 @@
 			<?php } elseif ($_SESSION['role'] == 1) { ?>
 				<li class="nav-item"><a href="dashboard/index.php" class="nav-link" >Dashboard</a></li>
 			<?php } ?>
-			<li class="nav-item"><a href="/logout" class="nav-link"><?php echo $_SESSION['name']; ?>(Logout)</a></li>
+			<li class="nav-item"><a href="logout.php" class="nav-link"><?php echo $_SESSION['name']; ?>(Logout)</a></li>
 			<?php if ($_SESSION['role'] == 2) { ?>
 			<li class="nav-item">
 				<a id="a_cart" class="nav-link" >

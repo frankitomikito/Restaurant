@@ -123,7 +123,9 @@ module.controller('ModalController', ['$scope', 'OrderFactory', 'OrderService', 
         });
 
         reservation_service.getReservation().then(
-            result => s.reservations = result.data
+            result => {
+                s.reservations = result.data;
+            }
         );
     }
 }]);

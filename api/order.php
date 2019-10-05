@@ -23,7 +23,7 @@ RequestRoute::GET(function() {
     else {
         $response = [
             "orders" => $order->getAll(),
-            "receipt" => $receipt->getAll(),
+            "receipt" => $receipt->get($_SESSION['id']),
         ];
         return new Response($response, 200);
     }

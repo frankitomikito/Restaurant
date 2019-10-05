@@ -72,7 +72,7 @@ module.controller('ModalController', ['$scope', 'OrderFactory', 'OrderService', 
             result => {
                 if (result.status == 201) {
                     alert('Order Submitted Successfully!');
-                    window.location.href = "/orders";
+                    window.location.href = "/customer/orders";
                 } else {
                     alert('Something went wrong, Try Again.');
                 }

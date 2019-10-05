@@ -37,13 +37,13 @@ if (!isset($_SESSION['isLoggedIn'])) {
 										<span>Tables</span>
 									</a>
 								</li>
-								<li class="nav-active">
+								<li>
 									<a href="/cashier/booking">
 										<i class="fa fa-book" aria-hidden="true"></i>
 										<span>Booking</span>
 									</a>
 								</li>
-								<li>
+								<li class="nav-active">
 									<a href="/cashier/receipts">
 										<i class="fa fa-book" aria-hidden="true"></i>
 										<span>Receipts</span>
@@ -64,7 +64,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 			</aside>
 			<section role="main" class="content-body">
 				<header class="page-header">
-					<h2>Booking</h2>
+					<h2>Receipts</h2>
 
 					<div class="right-wrapper pull-right">
 						<ol class="breadcrumbs">
@@ -73,7 +73,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 									<i class="fa fa-home"></i>
 								</a>
 							</li>
-							<li><span>Booking</span></li>
+							<li><span>Receipts</span></li>
 						</ol>
 
 						<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
@@ -88,16 +88,18 @@ if (!isset($_SESSION['isLoggedIn'])) {
 							<a href="#" class="fa fa-caret-down"></a>
 						</div>
 
-						<h2 class="panel-title">List of bookings</h2>
+						<h2 class="panel-title">List of receipts</h2>
 					</header>
 					<div class="panel-body">
 						<table class="table table-bordered table-striped mb-none" id="table_id" data-swf-path="assets/vendor/jquery-datatables/extras/TableTools/swf/copy_csv_xls_pdf.swf">
 							<thead>
 								<tr>
-									<th>Booking Id</th>
-									<th>Date & Time</th>
+									<th>Receipt Id</th>
+									<th>Full Name</th>
+									<th>DateTime</th>
+									<th>Total</th>
+									<th>Discount</th>
 									<th>Table Name</th>
-									<th>Capacity</th>
 									<th>Status</th>
 								</tr>
 							</thead>
@@ -111,7 +113,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 	</section>
 	
 	<?php include 'views/admin/script-res.php' ?>
-	<script src="../js/cashier/booking.js"></script>
+	<script src="../js/cashier/receipts.js"></script>
 
 </body>
 

@@ -31,16 +31,22 @@ if (!isset($_SESSION['isLoggedIn'])) {
 										<span>Dashboard</span>
 									</a>
 								</li>
+								<li class="nav-active">
+									<a href="/cashier/tables">
+										<i class="fa fa-book" aria-hidden="true"></i>
+										<span>Tables</span>
+									</a>
+								</li>
 								<li>
 									<a href="/cashier/booking">
 										<i class="fa fa-book" aria-hidden="true"></i>
 										<span>Booking</span>
 									</a>
 								</li>
-								<li class="nav-active">
-									<a href="/cashier/payment">
+								<li>
+									<a href="/cashier/receipts">
 										<i class="fa fa-book" aria-hidden="true"></i>
-										<span>Payment</span>
+										<span>Receipts</span>
 									</a>
 								</li>
 							</ul>
@@ -58,7 +64,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 			</aside>
 			<section role="main" class="content-body">
 				<header class="page-header">
-					<h2>Booking</h2>
+					<h2>Tables</h2>
 
 					<div class="right-wrapper pull-right">
 						<ol class="breadcrumbs">
@@ -67,7 +73,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 									<i class="fa fa-home"></i>
 								</a>
 							</li>
-							<li><span>Booking</span></li>
+							<li><span>Tables</span></li>
 						</ol>
 
 						<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
@@ -82,14 +88,13 @@ if (!isset($_SESSION['isLoggedIn'])) {
 							<a href="#" class="fa fa-caret-down"></a>
 						</div>
 
-						<h2 class="panel-title">List of bookings</h2>
+						<h2 class="panel-title">List of tables</h2>
 					</header>
 					<div class="panel-body">
 						<table class="table table-bordered table-striped mb-none" id="table_id" data-swf-path="assets/vendor/jquery-datatables/extras/TableTools/swf/copy_csv_xls_pdf.swf">
 							<thead>
 								<tr>
-									<th>Booking Id</th>
-									<th>Date & Time</th>
+									<th>Table Id</th>
 									<th>Table Name</th>
 									<th>Capacity</th>
 									<th>Status</th>
@@ -105,7 +110,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 	</section>
 	
 	<?php include 'views/admin/script-res.php' ?>
-	<script src="../js/cashier/booking.js"></script>
+	<script src="../js/cashier/tables.js"></script>
 
 </body>
 

@@ -32,15 +32,21 @@ if (!isset($_SESSION['isLoggedIn'])) {
 									</a>
 								</li>
 								<li>
+									<a href="/cashier/tables">
+										<i class="fa fa-book" aria-hidden="true"></i>
+										<span>Tables</span>
+									</a>
+								</li>
+								<li>
 									<a href="/cashier/booking">
 										<i class="fa fa-book" aria-hidden="true"></i>
 										<span>Booking</span>
 									</a>
                                 </li>
                                 <li>
-									<a href="/cashier/payment">
+									<a href="/cashier/receipts">
 										<i class="fa fa-book" aria-hidden="true"></i>
-										<span>Payment</span>
+										<span>Receipts</span>
 									</a>
 								</li>
 							</ul>

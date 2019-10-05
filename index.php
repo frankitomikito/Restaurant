@@ -30,6 +30,12 @@ switch ($request) {
     case '/apis/order':
         require 'api/order.php';
         break;
+    case '/apis/receipt':
+        require 'api/receipt.php';
+        break;
+    case '/apis/table':
+        require 'api/table.php';
+        break;
     case '/login':
         require 'views/login.php';
         break;
@@ -57,8 +63,11 @@ switch ($request) {
     case '/cashier/booking':
         require 'views/cashier/booking.php';
         break;
-    case '/cashier/payment':
-        require 'views/cashier/payment.php';
+    case '/cashier/receipts':
+        require 'views/cashier/receipts.php';
+        break;
+    case '/cashier/tables':
+        require 'views/cashier/tables.php';
         break;
     case '/forgot':
         require 'views/forgot.php';

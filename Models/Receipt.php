@@ -6,13 +6,16 @@ require_once('http/RequestRoute.php');
 
 class Receipt extends Database implements IActions {
     public function get($id){
-
+        $result = $this->rawQuery('SELECT tr.order_id, tr.date_ordered, tr.total, tr.discount, tb.table_name, tr.status FROM tbl_receipt AS tr
+        INNER JOIN tbl_table AS tb ON tb.table_id = tr.table_id
+        WHERE user_id = '.$id);
+        return $this->convertResultToDatatableArray($result);
     }
 
 	public function getAll(){
-        $result = $this->rawQuery('SELECT tr.order_id, tr.date_ordered, tr.total, tr.discount, tb.table_name, tr.status FROM tbl_receipt AS tr
-        INNER JOIN tbl_table AS tb ON tb.table_id = tr.table_id
-        WHERE user_id = '.$_SESSION['id']);
+        $result = $this->rawQuery('SELECT tr.order_id, tu.fullname, tr.date_ordered, tr.total, tr.discount, tb.table_name, tr.status FROM tbl_receipt AS tr
+        INNER JOIN tbl_user AS tu ON tu.user_id = tr.user_id
+        INNER JOIN tbl_table AS tb ON tb.table_id = tr.table_id');
         return $this->convertResultToDatatableArray($result);
     }
 

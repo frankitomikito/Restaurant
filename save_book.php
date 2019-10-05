@@ -13,8 +13,8 @@ if(isset($_POST['reserve'])){
     foreach($result as $re){
         $count++;
     }
-
-    if($count > 0 ){
+    // if($count > 0 ){
+    if(false){
         echo '<script>alert("You have pending reservation.")</script>';
         echo '<script>window.location="reservation.php"</script>';
     }

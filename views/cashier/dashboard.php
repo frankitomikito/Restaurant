@@ -1,14 +1,14 @@
-<?php include 'header.php'; 
+<?php include 'views/admin/header.php'; 
 session_start();
 if (!isset($_SESSION['isLoggedIn'])) {
 	echo '<script>window.location="/login"</script>';
 } ?>
-<?php include 'header.php' ?>
+<?php include 'views/admin/header.php' ?>
 
 <body ng-app="employeeApp">
 	<section class="body">
 
-		<?php include 'top-bar.php' ?>
+		<?php include 'views/admin/top-bar.php' ?>
 
 		<div class="inner-wrapper">
 			<aside id="sidebar-left" class="sidebar-left">
@@ -25,148 +25,26 @@ if (!isset($_SESSION['isLoggedIn'])) {
 					<div class="nano-content" tabindex="0" style="right: -15px;">
 						<nav id="menu" class="nav-main" role="navigation">
 							<ul class="nav nav-main">
-								<li>
-									<a href="/dashboard/">
+								<li class="nav-active">
+									<a href="/cashier/dashboard">
 										<i class="fa fa-home" aria-hidden="true"></i>
 										<span>Dashboard</span>
 									</a>
 								</li>
-								<li class="nav-active">
-									<a href="/admin/employee">
-										<i class="fa fa-users" aria-hidden="true"></i>
-										<span>Employee</span>
-									</a>
-								</li>
-								<li class="nav-parent">
-							<a>
-								<i class="fas fa-tablets" aria-hidden="true"></i>
-								<span>Restaurant Table</span>
-							</a>
-							<ul class="nav nav-children">
 								<li>
-									<a href="../dashboard/table-add.php">
-										<span class="pull-right label label-primary">add</span>
-										<i class="fa fa-plus-square" aria-hidden="true"></i>
-										<span>Table Add</span>
+									<a href="/cashier/booking">
+										<i class="fa fa-book" aria-hidden="true"></i>
+										<span>Booking</span>
 									</a>
-								</li>
-								<li>
-									<a href="../dashboard/table-list.php">
-										<span class="pull-right label label-info">list</span>
-										<i class="fas fa-list-ul" aria-hidden="true"></i>
-										<span>Table List</span>
+                                </li>
+                                <li>
+									<a href="/cashier/payment">
+										<i class="fa fa-book" aria-hidden="true"></i>
+										<span>Payment</span>
 									</a>
 								</li>
 							</ul>
 						</li>
-					<?php if ((isset($_SESSION['isLoggedIn']) && $_SESSION['role'] == 1)) { ?>
-						<li class="nav-parent">
-							<a>
-								<i class="fas fa-utensils-alt" aria-hidden="true"></i>
-								<span>Category</span>
-							</a>
-							<ul class="nav nav-children">
-								<li>
-									<a href="../dashboard/category-add.php">
-										<span class="pull-right label label-primary">add</span>
-										<i class="fa fa-plus-square" aria-hidden="true"></i>
-										<span>Category Add</span>
-									</a>
-								</li>
-								<li>
-									<a href="../dashboard/category-list.php">
-										<span class="pull-right label label-info">list</span>
-										<i class="fas fa-list-ul" aria-hidden="true"></i>
-										<span>Category List</span>
-									</a>
-								</li>
-							</ul>
-						</li>
-					<?php } ?>
-					<?php if ((isset($_SESSION['isLoggedIn']) && $_SESSION['role'] == 1)) { ?>
-						<li class="nav-parent">
-							<a>
-								<i class="fas fa-utensils-alt" aria-hidden="true"></i>
-								<span>Menu Item</span>
-							</a>
-							<ul class="nav nav-children">
-								<li>
-									<a href="../dashboard/menu-add.php">
-										<span class="pull-right label label-primary">add</span>
-										<i class="fa fa-plus-square" aria-hidden="true"></i>
-										<span>Menu Add</span>
-									</a>
-								</li>
-								<li>
-									<a href="../dashboard/menu-list.php">
-										<span class="pull-right label label-info">list</span>
-										<i class="fas fa-list-ul" aria-hidden="true"></i>
-										<span>Menu List</span>
-									</a>
-								</li>
-							</ul>
-						</li>
-					<?php } ?>
-					<?php if ((isset($_SESSION['isLoggedIn']) && $_SESSION['role'] == 1)) { ?>
-						<li class="nav-parent">
-							<a>
-								<i class="fas fa-money-check-alt" aria-hidden="true"></i>
-								<span>Booking</span>
-							</a>
-							<ul class="nav nav-children">
-								<li>
-									<a href="../dashboard/booking-list.php">
-										<span class="pull-right label label-info">list</span>
-										<i class="fas fa-list-ul" aria-hidden="true"></i>
-										<span>Booking List</span>
-									</a>
-								</li>
-							</ul>
-						</li>
-					<?php } ?>
-
-					<?php if ((isset($_SESSION['isLoggedIn']) && $_SESSION['role'] == 1)) { ?>
-						<!-- <li class="nav-parent">
-							<a>
-								<i class="fas fa-utensils-alt" aria-hidden="true"></i>
-								<span>User</span>
-							</a>
-							<ul class="nav nav-children">
-								<li>
-									<a href="user-add.php">
-										<span class="pull-right label label-primary">add</span>
-										<i class="fa fa-plus-square" aria-hidden="true"></i>
-										<span>User Add</span>
-									</a>
-								</li>
-								<li>
-									<a href="user-list.php">
-										<span class="pull-right label label-info">list</span>
-										<i class="fas fa-list-ul" aria-hidden="true"></i>
-										<span>User List</span>
-									</a>
-								</li>
-							</ul>
-						</li> -->
-					<?php } ?>
-					<?php if ((isset($_SESSION['isLoggedIn']) && $_SESSION['role'] == 1)) { ?>
-						<li class="nav-parent">
-							<a>
-								<i class="fas fa-money-check-alt" aria-hidden="true"></i>
-								<span>Profile</span>
-							</a>
-							<ul class="nav nav-children">
-								<li>
-									<a href="../dashboard/profile.php">
-										<span class="pull-right label label-info">Profile</span>
-										<i class="fas fa-list-ul" aria-hidden="true"></i>
-										<span>Profile</span>
-									</a>
-								</li>
-							</ul>
-						</li>
-					<?php } ?>
-
 							</ul>
 						</nav>
 
@@ -308,7 +186,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 			</div>
 		</div>
 	</div>
-	<?php include 'script-res.php' ?>
+	<?php include 'views/admin/script-res.php' ?>
 	<!-- <script src="../build/admin/bundle.min.js"></script> -->
 	<script src="../js/employee/classes/Users.js"></script>
 	<script src="../js/employee/classes/Modal.js"></script>

@@ -5,6 +5,8 @@ class Users {
 				return 'Chef';
 			case '4':
 				return 'Waiter';
+			case '5':
+				return 'Cashier';
 		}
 	}
 	static getStatusString(value) {
@@ -37,6 +39,8 @@ class Users {
 				return '3';
 			case 'Waiter':
 				return '4';
+			case 'Cashier':
+				return '5';
 		}
 	}
 	static getStatusInt(value) {

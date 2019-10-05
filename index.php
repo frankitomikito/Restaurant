@@ -51,6 +51,15 @@ switch ($request) {
     case '/customer/confirmation':
         require 'views/customer/email-confirmation.php';
         break;
+    case '/cashier/dashboard':
+        require 'views/cashier/dashboard.php';
+        break;
+    case '/cashier/booking':
+        require 'views/cashier/booking.php';
+        break;
+    case '/cashier/payment':
+        require 'views/cashier/payment.php';
+        break;
     case '/forgot':
         require 'views/forgot.php';
         break;

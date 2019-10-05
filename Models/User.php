@@ -132,6 +132,8 @@ class User extends Database implements IActions {
 				return 'Chef';
 			case 4:
 				return 'Waiter';
+			case 5:
+				return 'Cashier';
 		}
 	}
 

@@ -1,6 +1,6 @@
 $(document).ready(function() {
     const table = $('#table_id').DataTable({
-                    ajax: 'http://localhost:8000/apis/reservation?datatable=true',
+                    ajax: 'http://localhost:8000/api/reservation.php?datatable=true',
                     dataSrc: 'data',
                     columns: [{
                             data: 0
@@ -51,7 +51,7 @@ $(document).ready(function() {
 async function cancelBooking(data, table) {
   const form_data = new FormData();
   form_data.append('booking_id', data[0]);
-  await fetch("http://localhost:8000/apis/reservation", {
+  await fetch("http://localhost:8000/api/reservation.php", {
     method: "DELETE",
     body: form_data,
   }).then(async (result) => {

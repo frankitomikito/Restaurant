@@ -110,7 +110,7 @@ function monthSalesReport(callback) {
 }
 
 async function getReceipts(month) {
-    const result = await fetch(`http://localhost:8000/apis/order?month=${month}`);
+    const result = await fetch(`http://localhost:8000/api/order.php?month=${month}`);
     if (result.ok) {
         return await result.json();
     } else {
@@ -119,7 +119,7 @@ async function getReceipts(month) {
 }
 
 async function getSalesMenu(date) {
-    const result =  await fetch(`http://localhost:8000/apis/order?date=${date}`);
+    const result =  await fetch(`http://localhost:8000/api/order.php?date=${date}`);
     if (result.ok) {
         return await result.json();
     } else {

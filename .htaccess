@@ -2,8 +2,3 @@
 # HTID:10898645: DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES BELOW
 # php_value display_errors 1
 # DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES ABOVE HTID:10898645:
-RewriteEngine On
-RewriteBase /
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.+)$ index.php [QSA,L]

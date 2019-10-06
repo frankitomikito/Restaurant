@@ -2,7 +2,7 @@
 
 require_once('Database.php');
 require_once('Interfaces/IActions.php');
-require_once('http/RequestRoute.php');
+require_once('../http/RequestRoute.php');
 
 class UserCode extends Database implements IActions {
     

@@ -1,106 +1,177 @@
-<?php
-session_start();
-
-$request = $_SERVER['REQUEST_URI'];
-if (strpos($request, '?') != False)
-    $request = substr($request, 0, strpos($request, '?'));
-
-$request = strtolower($request);
-switch ($request) {
-    case '/' :
-        require 'views/landingpage.php';
-        break;
-    case '/about' :
-        require 'views/404.php';
-        break;
-    case '/apis/user':
-    	require 'api/user_save_get.php';
-        break;
-    case '/apis/user_update':
-    	require 'api/user_update.php';
-        break;
-    case '/apis/user_code':
-        require 'api/user_code_update.php';
-        break;
-    case '/apis/menu':
-        require 'api/menu.php';
-        break;
-    case '/apis/reservation':
-        require 'api/reservation.php';
-        break;
-    case '/apis/order':
-        require 'api/order.php';
-        break;
-    case '/apis/receipt':
-        require 'api/receipt.php';
-        break;
-    case '/apis/table':
-        require 'api/table.php';
-        break;
-    case '/apis/resetpassword':
-        require 'api/resetpassword.php';
-        break;
-    case '/login':
-        require 'views/login.php';
-        break;
-    case '/customer/reservation':
-        require 'views/customer/reservation.php';
-        break;
-    case '/admin/dashboard': 
-        require 'dashboard/index.php';
-        break;
-    case '/admin/employee':
-        require 'views/admin/employee.php';
-        break;
-    case '/customer/orders':
-        require 'views/customer/orders.php';
-        break;
-    case '/account/confirmation':
-        require 'views/admin/account-confirmation.php';
-        break;
-    case '/customer/confirmation':
-        require 'views/customer/email-confirmation.php';
-        break;
-    case '/cashier/booking':
-        require 'views/cashier/booking.php';
-        break;
-    case '/cashier/receipts':
-        require 'views/cashier/receipts.php';
-        break;
-    case '/cashier/tables':
-        require 'views/cashier/tables.php';
-        break;
-    case '/chef/orders':
-        require 'views/chef/orders.php';
-        break;
-    case '/forgot':
-        require 'views/forgot.php';
-        break;
-    case '/forgot/submit':
-        require 'views/reset-password.php';
-        break;
-    case '/account/reset':
-        require 'views/reset-password.php';
-        break;
-    case '/email':
-        require 'views/admin/email.php';
-        break;
-    case '/logout':
-        require 'logout.php';
-        break;
-    case '/reservation':
-        require 'reservation.php';
-        break;
-    case '/choosetable':
-        require 'choose-table.php';
-        break;
-    case '/savebook':
-        require 'save_book.php';
-        break;
-    case '../dashboard/booking-list':
-        require 'dashboard/booking-list.php';
-        break;
-    default:
-        require 'views/404.php';
-        break;
+<!-- signin.php -->
+<?php include 'template/header.php'; ?>
+<link rel="stylesheet" href="build/customer/bundle.css">
+<style>
+@media print {
+  header {
+    display: none !important;
+  }
 }
+</style>
+<body ng-app="myApp">
+  <?php include 'template/nav-bar.php'; ?>
+  <!-- END nav -->
+
+  <section class="home-slider owl-carousel">
+    <div class="slider-item" style="background-image: url('images/bg_1.jpg');">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row slider-text align-items-center justify-content-center text-center">
+          <div class="col-md-10 col-sm-12 ftco-animate">
+            <h1 class="mb-3">Book a table for yourself at a time convenient for you</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slider-item" style="background-image: url('images/bg_2.jpg');">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row slider-text align-items-center justify-content-center text-center">
+          <div class="col-md-10 col-sm-12 ftco-animate">
+            <h1 class="mb-3">Tasty &amp; Delicious Food</h1>
+            <p><a href="reservation.php" class="btn btn-primary btn-outline-white px-5 py-3">Book a table</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slider-item" style="background-image: url('images/bg_3.jpg');">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row slider-text align-items-center justify-content-center text-center">
+          <div class="col-md-10 col-sm-12 ftco-animate">
+            <h1 class="mb-3">Book a table for yourself at a time convenient for you</h1>
+            <p><a href="reservation.php" class="btn btn-primary btn-outline-white px-5 py-3">Book a table</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- END slider -->
+
+
+
+
+  <?php include 'template/font-menu.php'; ?>
+
+  <section class="ftco-section parallax-img" style="background-image: url('images/bg_3.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row justify-content-center mb-5 pb-5">
+        <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+          <h2>Our Specialties</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="ftco-section bg-light">
+    <div class="container special-dish">
+      <div class="row d-flex no-gutters">
+        <div class="col-lg-6">
+          <div class="block-3 d-md-flex ftco-animate">
+            <div class="image order-last" style="background-image: url(images/dish-3.jpg);"></div>
+            <div class="text text-center order-first">
+              <h2 class="heading">Beef Steak</h2>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts</p>
+              <span class="price">from Php 90.00</span>
+            </div>
+          </div>
+          <div class="block-3 d-md-flex ftco-animate">
+            <div class="image order-first" style="background-image: url(images/dish-4.jpg);"></div>
+            <div class="text text-center order-first">
+              <h2 class="heading">Beef Ribs Steak</h2>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts</p>
+              <span class="price">from Php 250.00</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="block-3 d-md-flex ftco-animate">
+            <div class="image order-last" style="background-image: url(images/dish-5.jpg);"></div>
+            <div class="text text-center order-first">
+              <h2 class="heading">Chopsuey</h2>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts</p>
+              <span class="price">from Php 150.00</span>
+            </div>
+          </div>
+          <div class="block-3 d-md-flex ftco-animate">
+            <div class="image order-first" style="background-image: url(images/dish-6.jpg);"></div>
+            <div class="text text-center order-first">
+              <h2 class="heading">Roasted Chieken</h2>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts</p>
+              <span class="price">from Php 90.00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <div ng-controller="ModalController" id="myModal" class="mymodal closed" style="display: none;">
+    <div id="myModalContainer" class="mymodal-container">
+      <div class="mymodal-header">
+        <h1 style="font-size: 2rem;">Order List</h1>
+      </div>
+      <div class="mymodal-body dish-menu">
+        <div class="row">
+          <div class="col-lg-12">
+            <label>Table Number</label>
+            <select ng-model="table_id">
+              <option ng-repeat="reservation in reservations | filter: status:1 track by $index" value="{{reservation.table_id}}">
+                {{reservation.table_name}}
+              </option>
+            </select>
+          </div>
+          <div class="col-lg-12" ng-repeat="menu in menus">
+            <div class="menus d-flex main-dish" style="margin-bottom: 10px; background: white !important; position: relative;">
+            <div style="position:absolute; top: .3rem; right: .3rem; border-radius: 50%; background-color: red; color: white; width: 2rem; height: 2rem;
+              display: flex; justify-content: center; align-items: center;">
+              <a ng-click="removeItem(menu, $index)" style="cursor: pointer;">
+                <i class="fas fa-times"></i>
+              </a>
+            </div>
+              <div class="menu-img" style="background-image: url(dashboard/item-image/{{menu.image_path}}); margin-top: .9rem;"></div>
+              <div class="text d-flex">
+                <div class="one-half">
+                  <h3>{{menu.name}}</h3>
+                  <div class="myInput-container" style="width: 30%;">
+                    <label class="floating-label active">Quantity</label>
+                    <input type="number" ng-model="quantity[$index]" class="myInput-control margin" min="1" required>
+                  </div>
+                </div>
+                <div class="one-forth" style="padding-top: .8rem;">
+                  <span class="price">Php {{orderPrice(quantity[$index], menu.price, $index)}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12" style="text-align: right;">
+            <h2>Total: PHP {{totalPrice(prices)}}</h2>
+          </div>
+        </div>
+      </div>
+      <div class="mymodal-footer">
+        <button id="buttonCancel" ng-click="onCancel()" class="myBtn" style="font-size: .9rem;">Close</button>
+        <button class="myBtn" ng-click="order()" ng-disabled="!canOrder(table_id)" style="font-size: .9rem;">Order</button>
+      </div>
+    </div>
+  </div>
+  <?php include 'template/footer.php'; ?>
+
+
+  <?php include 'template/script.php'; ?>
+
+  <script src="js/angular.js"></script>
+  <script src="js/employee/classes/Modal.js"></script>
+  <script src="js/customer/customerctrl.js"></script>
+  <script src="dashboard/assets/vendor/jquery/jquery.js"></script>
+  <script src="dashboard/assets/vendor/select2/select2.js"></script>
+  <script src="dashboard/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+  <!-- <script src="build/customer/landingpage/bundle.min.js"></script> -->
+
+</body>
+
+</html>

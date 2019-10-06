@@ -84,7 +84,7 @@ class RequestRoute extends Response implements IRequestMethod, IRequestParams {
 	}
 
 	public static function PARAMDELETE($param_name) {
-		return $this->PARAMPUT($param_name);
+		return RequestRoute::PARAMPUT($param_name);
 	}
 
 	public static function PARAMFILE($param_name)

@@ -1,6 +1,6 @@
 <?php 
 
-require_once('http/RequestRoute.php');
+require_once('../http/RequestRoute.php');
 
 class ImageUploader {
 	public static function uploadImage($file) {

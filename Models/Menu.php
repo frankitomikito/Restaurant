@@ -2,7 +2,7 @@
 
 require_once('Database.php');
 require_once('Interfaces/IActions.php');
-require_once('http/RequestRoute.php');
+require_once('..\http\RequestRoute.php');
 
 class Menu extends Database implements IActions {
     public function get($id){

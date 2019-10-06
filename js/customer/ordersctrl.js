@@ -13,7 +13,7 @@ const module = angular.module('myApp', []);
 
 module.service('OrderService', function($http) {
     this.getOrder = () => {
-        return $http.get('http://localhost:8000/apis/order');
+        return $http.get('http://localhost:8000/api/order.php');
     }
 });
 
@@ -34,7 +34,7 @@ module.controller('ModalController', ['$scope', 'OrderService', function(s, orde
     }
 
     async function setDataTableValue() {
-        let response = await fetch('http://localhost:8000/apis/order');
+        let response = await fetch('http://localhost:8000/api/order.php');
         let orders;
         if (response.ok) {
           let json = await response.json();

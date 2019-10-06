@@ -7,7 +7,7 @@ module.service('confirmationService', function($http) {
         });
         return $http({
             method: 'PUT',
-            url: 'http://localhost:8000/apis/resetpassword',
+            url: 'http://localhost:8000/api/resetpassword.php',
             data: form_data,
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }
@@ -27,7 +27,7 @@ module.controller('confirmationCtrl', ['$scope', 'confirmationService', function
                 result => {
                    if (result['status']){
                     alert('New password saved!.');
-                    window.location.href = '/login';
+                    window.location.href = 'login.php';
                    }
                     else 
                        alert(result['error']);

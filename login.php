@@ -56,7 +56,7 @@
                           </div>
                         </form>
                         <p class="text-center">For Register <a href="register.php">Click Here.</a> </p>
-                        <p class="text-center">Forgot Password? <a href="/forgot">Click Here.</a> </p>
+                        <p class="text-center">Forgot Password? <a href="forgot.php">Click Here.</a> </p>
                       </div>
                     </div>
                   </div>

@@ -167,9 +167,9 @@
   <script src="js/angular.js"></script>
   <script src="js/employee/classes/Modal.js"></script>
   <script src="js/customer/customerctrl.js"></script>
-  <script src="dashboard/assets/vendor/jquery/jquery.js"></script>
-  <script src="dashboard/assets/vendor/select2/select2.js"></script>
-  <script src="dashboard/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+  <script src="admin/assets/vendor/jquery/jquery.js"></script>
+  <script src="admin/assets/vendor/select2/select2.js"></script>
+  <script src="admin/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
   <!-- <script src="build/customer/landingpage/bundle.min.js"></script> -->
 
 </body>

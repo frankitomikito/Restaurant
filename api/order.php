@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-require_once($_SERVER['DOCUMENT_ROOT'].'/http/RequestRoute.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/http/Response.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/Models/Receipt.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/Models/Order.php');
+require_once('../http/RequestRoute.php');
+require_once('../http/Response.php');
+require_once('../Models/Receipt.php');
+require_once('../Models/Order.php');
 
 RequestRoute::GET(function() {
     $receipt = new Receipt;

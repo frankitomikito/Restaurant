@@ -1,10 +1,10 @@
 <?php 
 
-require_once($_SERVER['DOCUMENT_ROOT'].'/http/RequestRoute.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/http/Response.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/Models/User.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/Models/UserCode.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/http/Mail/Mail.php');
+require_once('../http/RequestRoute.php');
+require_once('../http/Response.php');
+require_once('../Models/User.php');
+require_once('../Models/UserCode.php');
+require_once('../http/Mail/Mail.php');
 
 RequestRoute::POST(function() {
     $email = RequestRoute::PARAMPOST('email');

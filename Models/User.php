@@ -2,7 +2,7 @@
 
 require_once('Database.php');
 require_once('Interfaces/IActions.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'\http\RequestRoute.php');
+require_once('../http/RequestRoute.php');
 
 class User extends Database implements IActions {
 

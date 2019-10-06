@@ -1,8 +1,8 @@
 <?php 
 
-require_once($_SERVER['DOCUMENT_ROOT'].'/http/RequestRoute.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/http/Response.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/Models/Table.php');
+require_once('../http/RequestRoute.php');
+require_once('../http/Response.php');
+require_once('../Models/Table.php');
 
 RequestRoute::GET(function() {
     $table = new Table;

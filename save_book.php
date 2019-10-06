@@ -40,7 +40,7 @@ if(isset($_POST['reserve'])){
         $sql = "Insert into tbl_booked_table (table_id,booking_id) values ('$name','$bookid') ;";
         if ($con->query($sql) === TRUE) {
             echo '<script>alert("Kindly wait for the confirmation.")</script>';
-          echo '<script>window.location="reservation.php"</script>';
+          echo '<script>window.location="/reservation"</script>';
         }else{
           echo '<script>alert("ERROR")</script>';
         }

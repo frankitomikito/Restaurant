@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $request = $_SERVER['REQUEST_URI'];
 if (strpos($request, '?') != False)
@@ -86,6 +87,15 @@ switch ($request) {
         break;
     case '/logout':
         require 'logout.php';
+        break;
+    case '/reservation':
+        require 'reservation.php';
+        break;
+    case '/choosetable':
+        require 'choose-table.php';
+        break;
+    case '/savebook':
+        require 'save_book.php';
         break;
     case '../dashboard/booking-list':
         require 'dashboard/booking-list.php';

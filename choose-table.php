@@ -1,9 +1,5 @@
 <!-- choose-table.php -->
 <?php 
-
-if(isset($_SESSION['userid'])){
-    echo '<script>alert("'.$_SESSION['userid'].'")</script>';
-  }
  $datetime="";
  $uid;
 if (isset($_POST['reservation'])) {
@@ -58,7 +54,7 @@ include 'template/header.php'; ?>
                $sql = "SELECT * FROM `tbl_table` WHERE status = 1 ;";
                $result = $con->query($sql);
               ?> 
-                  <form  action="save_book.php" method="POST">
+                  <form  action="/savebook" method="POST">
                       <table class="table table-hover">
                         <th>Table Name</th>
                         <th>Capacity</th>

@@ -1,9 +1,5 @@
 <!-- choose-table.php -->
 <?php
-
-if (isset($_SESSION['userid'])) {
-    echo '<script>alert("' . $_SESSION['userid'] . '")</script>';
-}
 $datetime = "";
 $uid;
 if (isset($_POST['reservation'])) {

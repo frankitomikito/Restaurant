@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 require_once('http/RequestRoute.php');
 require_once('http/Response.php');

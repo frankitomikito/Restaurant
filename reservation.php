@@ -3,7 +3,7 @@
 
 if (!isset($_SESSION['isLoggedIn'])) {
     echo '<script>alert("You need to login first.")</script>';
-    echo '<script>window.location="login.php"</script>';
+    echo '<script>window.location="/login"</script>';
     }
 
 if(isset($_SESSION['id'])){
@@ -44,7 +44,7 @@ if(isset($_SESSION['id'])){
           <div class="col-md-4 ftco-animate img" style="background-image: url(images/bg_1.jpg);"></div>
           <div class="col-md-8 ftco-animate makereservation p-5 bg-light">
             
-            <form action="choose-table.php?id=<?php echo $_SESSION['id'];?>" method="POST">
+            <form action="/choosetable?id=<?php echo $_SESSION['id'];?>" method="POST">
               <div class="row">
                 <!-- <div class="col-md-6">
                   <div class="form-group">

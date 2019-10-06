@@ -30,7 +30,7 @@
         <div class="row slider-text align-items-center justify-content-center text-center">
           <div class="col-md-10 col-sm-12 ftco-animate">
             <h1 class="mb-3">Tasty &amp; Delicious Food</h1>
-            <p><a href="reservation.php" class="btn btn-primary btn-outline-white px-5 py-3">Book a table</a></p>
+            <p><a href="/reservation" class="btn btn-primary btn-outline-white px-5 py-3">Book a table</a></p>
           </div>
         </div>
       </div>
@@ -42,7 +42,7 @@
         <div class="row slider-text align-items-center justify-content-center text-center">
           <div class="col-md-10 col-sm-12 ftco-animate">
             <h1 class="mb-3">Book a table for yourself at a time convenient for you</h1>
-            <p><a href="reservation.php" class="btn btn-primary btn-outline-white px-5 py-3">Book a table</a></p>
+            <p><a href="/reservation" class="btn btn-primary btn-outline-white px-5 py-3">Book a table</a></p>
           </div>
         </div>
       </div>

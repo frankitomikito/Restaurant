@@ -66,6 +66,9 @@ switch ($request) {
     case '/cashier/tables':
         require 'views/cashier/tables.php';
         break;
+    case '/chef/orders':
+        require 'views/chef/orders.php';
+        break;
     case '/forgot':
         require 'views/forgot.php';
         break;

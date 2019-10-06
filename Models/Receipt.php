@@ -40,8 +40,20 @@ class Receipt extends Database implements IActions {
                 } catch (\Throwable $th) {
                     return false;
                 }
-                break;
-            
+            case 'process':
+                try {
+                    $this->rawQuery('update tbl_receipt set status = 2 where order_id = '.$args['value']);
+                    return true;
+                } catch (\Throwable $th) {
+                    return false;
+                }
+            case 'serve':
+               try {
+                    $this->rawQuery('update tbl_receipt set status = 3 where order_id = '.$args['value']);
+                    return true;
+                } catch (\Throwable $th) {
+                    return false;
+                }
             default:
                 break;
         }
@@ -56,6 +68,13 @@ class Receipt extends Database implements IActions {
         INNER JOIN tbl_table AS tb ON tb.table_id = tr.table_id WHERE MONTHNAME(tr.date_ordered) = "'.$args.'" 
         AND tr.status = 0');
         return $this->convertResultToJson($result);
+    }
+
+    public function getReceiptsChef() {
+        $result = $this->rawQuery('SELECT tbl.table_id, tbl.table_name, tr.status FROM tbl_receipt AS tr
+        INNER JOIN tbl_table AS tbl ON tbl.table_id = tr.table_id
+        WHERE tr.status = 1 or tr.status = 2');
+        return $this->convertResultToDatatableArray($result);
     }
 
 }

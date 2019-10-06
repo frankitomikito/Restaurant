@@ -80,7 +80,7 @@ class RequestRoute extends Response implements IRequestMethod, IRequestParams {
 				}
 			}
 		}
-		return  $parsed_val[$param_name];
+		return isset($parsed_val[$param_name]) ? $parsed_val[$param_name] : '';
 	}
 
 	public static function PARAMDELETE($param_name) {

@@ -2,7 +2,7 @@ function changeIntegerToText(json) {
     const array = [];
     for (let i = 0; i < json.length; i++) {
       let order = json[i];
-      order[5] = order[5] == 1 ? "Not Paid" : "Paid";
+      order[5] = order[5] == 1 ? 'Not Paid' : order[5] == 2 ? 'Processed' : order[5] == 3 ? 'Serving' : 'Paid';
       array[i] = order;
     }
     return array;

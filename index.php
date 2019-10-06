@@ -36,6 +36,9 @@ switch ($request) {
     case '/apis/table':
         require 'api/table.php';
         break;
+    case '/apis/resetpassword':
+        require 'api/resetpassword.php';
+        break;
     case '/login':
         require 'views/login.php';
         break;
@@ -73,6 +76,9 @@ switch ($request) {
         require 'views/forgot.php';
         break;
     case '/forgot/submit':
+        require 'views/reset-password.php';
+        break;
+    case '/account/reset':
         require 'views/reset-password.php';
         break;
     case '/email':

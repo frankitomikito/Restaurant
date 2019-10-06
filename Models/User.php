@@ -63,6 +63,16 @@ class User extends Database implements IActions {
 		}
 	}
 
+	public function updatePassword($password, $user_id) {
+		try {
+			$this->rawQuery('update tbl_user set password = "'.$password.'" 
+			where user_id = '.$user_id);
+			return true;
+		} catch (\Throwable $th) {
+			return false;
+		}
+	}
+
 	public function remove($id)
 	{
 		throw new \Exception('Method remove() is not implemented.');
@@ -89,6 +99,15 @@ class User extends Database implements IActions {
 					} else {
 						return false;
 					}
+				} catch (\Throwable $th) {
+					return null;
+				}
+				break;
+			case 'userid_email':
+				try {
+					$result = $this->rawQuery('select * from tbl_user where email = 
+					"'.$args['value'].'"')->fetch_object();
+					return $result;
 				} catch (\Throwable $th) {
 					return null;
 				}

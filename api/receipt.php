@@ -1,9 +1,9 @@
 <?php 
 
-require_once('http/RequestRoute.php');
-require_once('http/Response.php');
-require_once('Models/Receipt.php');
-require_once('Models/Reservation.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/http/RequestRoute.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/http/Response.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Models/Receipt.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Models/Reservation.php');
 
 RequestRoute::GET(function() {
     $receipt = new Receipt;

@@ -5,7 +5,7 @@ initDatatable();
 function initDatatable() {
   $(document).ready(function() {
     table = $("#table_id").DataTable({
-      ajax: "http://localhost:8000/apis/reservation?cashier=true",
+      ajax: "http://localhost:8000/api/reservation.php?cashier=true",
       dataSrc: "data",
       columns: [
         {
@@ -59,7 +59,7 @@ function initDatatable() {
 async function confirmBooking(data, table) {
   const form_data = new FormData();
   form_data.append('booking_id', data[0]);
-  await fetch("http://localhost:8000/apis/reservation", {
+  await fetch("http://localhost:8000/api/reservation.php", {
     method: "PUT",
     body: form_data,
   }).then(async (result) => {

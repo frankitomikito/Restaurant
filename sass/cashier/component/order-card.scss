@@ -1,0 +1,42 @@
+.card-order {
+    font-family: 'Roboto', sans-serif;
+    background-color: $light-color;
+    padding: 1rem;
+    border-radius: .5rem;
+    box-shadow: .2rem .2rem .8rem rgba($dark-color, .2);
+
+    &:not(:last-child) {
+        margin-bottom: 1rem;
+    }
+
+    img {
+        display: inline-block;
+        border-radius: 50%;
+        width: 5rem;
+        height: 5rem;
+        margin-top: -2.5rem;
+    }
+
+    .order-title {
+        display: inline-block;
+        color: $dark-color;
+        font-weight: 700;
+        margin: 0 0 0 .5rem;
+        padding-top: .5rem;
+
+        span {
+            font-weight: normal;
+            color: $dark-color;
+            font-size: 1.6rem;
+        }
+    }
+
+    .order-price {
+        color: $dark-color;
+        font-weight: 400;
+        font-size: 2rem;
+        margin: 0;
+        float: right;
+        margin-top: 1.4rem;
+    }
+}

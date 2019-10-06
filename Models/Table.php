@@ -37,7 +37,7 @@ class Table extends Database implements IActions {
     }
 
     public function getReceiptStatus() {
-        $result = $this->rawQuery('SELECT tbl.table_id, tb.status FROM tbl_booking AS tb
+        $result = $this->rawQuery('SELECT tbl.table_id, tb.booking_id, tb.status FROM tbl_booking AS tb
         INNER JOIN tbl_booked_table AS tbt ON tbt.booking_id = tb.booking_id
         INNER JOIN tbl_table AS tbl ON tbl.table_id = tbt.table_id
         WHERE tb.status = 1');

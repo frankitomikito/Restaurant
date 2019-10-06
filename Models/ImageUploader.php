@@ -9,6 +9,6 @@ class ImageUploader {
 		if (move_uploaded_file($file['tmp_name'], $target_file))
 			return $target_file;
 		else
-			return 'Uploading image failed';
+			return $target_file;
 	}
 }

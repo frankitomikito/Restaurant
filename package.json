@@ -9,7 +9,8 @@
     "sass:confirmation": "node-sass --output-style compressed sass/admin/confirmation.scss build/admin/confirmation.css",
     "sass:dashboard": "node-sass --output-style compressed sass/admin/dashboard.scss build/admin/dashboard/bundle.css",
     "sass:customer": "node-sass --output-style compressed sass/customer/customer.scss build/customer/bundle.css",
-    "sass:reservation": "node-sass --output-style compressed sass/customer/reservation.scss build/customer/reservation-bundle.css"
+    "sass:reservation": "node-sass --output-style compressed sass/customer/reservation.scss build/customer/reservation-bundle.css",
+    "sass:cashier": "node-sass --output-style compressed sass/cashier/cashier.scss build/cashier/cashier-bundle.css"
   },
   "repository": {
     "type": "git",

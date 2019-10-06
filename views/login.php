@@ -110,7 +110,7 @@ if (isset($_POST['login'])) {
         echo '<script>alert("Logged-in Successfully!"); window.location.href="dashboard/index.php"</script>';
         break;
       case 5:
-        echo '<script>alert("Logged-in Successfully!"); window.location.href="/cashier/dashboard"</script>';
+        echo '<script>alert("Logged-in Successfully!"); window.location.href="/cashier/tables"</script>';
         break;
       default:
         echo '<script>alert("Logged-in Successfully!"); window.location="/"</script>';

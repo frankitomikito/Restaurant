@@ -6,6 +6,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 <?php include 'views/admin/header.php' ?>
 
 <body ng-app="cashierApp">
+	<link rel="stylesheet" href="../build/cashier/cashier-bundle.css">
 	<section class="body">
 
 		<?php include 'views/admin/top-bar.php' ?>
@@ -25,12 +26,6 @@ if (!isset($_SESSION['isLoggedIn'])) {
 					<div class="nano-content" tabindex="0" style="right: -15px;">
 						<nav id="menu" class="nav-main" role="navigation">
 							<ul class="nav nav-main">
-								<li>
-									<a href="/cashier/dashboard">
-										<i class="fa fa-home" aria-hidden="true"></i>
-										<span>Dashboard</span>
-									</a>
-								</li>
 								<li class="nav-active">
 									<a href="/cashier/tables">
 										<i class="fa fa-book" aria-hidden="true"></i>
@@ -108,8 +103,45 @@ if (!isset($_SESSION['isLoggedIn'])) {
 			</section>
 		</div>
 	</section>
+
+	<div ng-controller="ModalController" id="myModal" class="mymodal closed" style="display: none;">
+		<div id="myModalContainer" class="mymodal-container">
+			<div class="mymodal-header">
+				<h1>Orders</h1>
+			</div>
+			<hr>
+			<div class="mymodal-body">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="card-order" ng-repeat="order in orders">
+							<img src="../dashboard/item-image/012fdcec1c1935fa3971afc1c54931a5.jpg" alt="menu">
+							<h4 class="order-title">
+								{{order.name}} <br>
+								<span>Quantity: {{order.quantity}}</span>
+							</h4>
+							<h3 class="order-price">₱ {{order.quantity * order.price}}</h3>
+						</div>
+					</div>
+					<hr>
+					<div class="col-lg-12" style="text-align: left; margin-top: -1rem;">
+						<h4 style="font-weight: 700; color: black; display: inline-block;">Cash: </h4>
+						<input type="number" ng-model="cash" class="myInput-control"
+						 style="font-weight: 700; width: 20rem; margin-left: 1rem; color: black; font-size: 1.8rem;" min="0"/>
+						<h4 style="font-weight: 700; color: black; margin-top: -.1rem;">Total Price: ₱ {{totalPrice()}}</h4>
+						<h4 style="font-weight: 700; color: black; margin-top: -.1rem;">Change: ₱ {{cashChange(cash)}}</h4>
+					</div>
+				</div>
+			</div>
+			<div class="mymodal-footer">
+				<button id="buttonCancel" ng-click="closeModal()" class="myBtn">Cancel</button>
+				<button class="myBtn" ng-click="onPaid()">Paid</button>
+			</div>
+		</div>
+	</div>
 	
 	<?php include 'views/admin/script-res.php' ?>
+	<script src="../js/angular.js"></script>
+	<script src="../js/employee/classes/Modal.js"></script>
 	<script src="../js/cashier/tables.js"></script>
 
 </body>

@@ -1,8 +1,85 @@
-let table;
-let table_status;
+const module = angular.module('cashierApp', []);
 
-getTableStatus();
-initDatatable();
+module.service('ReceiptService', function($http) {
+  this.pay = (data) => {
+    const form_data = new FormData();
+    angular.forEach(data, (value, key) => {
+      form_data.append(key, value);
+    });
+    return $http({
+      method: 'PUT',
+      url: 'http://localhost:8000/apis/receipt',
+      data: form_data,
+      transformRequest: angular.identity,
+      headers: { 'Content-Type': undefined }
+    });
+  }
+});
+
+module.controller('ModalController', ['$scope', 'ReceiptService', function(s, receipt_service) {
+
+  let table;
+  let table_status;
+  let booking_id;
+  s.totalprice = 0;
+  s.cash = 0;
+  s.orders = [];
+  
+  getTableStatus(() => {
+    initDatatable();
+  });
+
+  s.closeModal = () => {
+    ModalController.closeModal();
+  }
+
+  s.totalPrice = () => {
+    if(s.orders.length > 0) {
+      let totalprice = 0;
+      angular.forEach(s.orders, (value) => {
+        totalprice += value.quantity * value.price;
+      });
+      s.totalprice = totalprice;
+      return totalprice;
+    }
+    return 0;
+  }
+
+  s.onPaid = () => {
+    if (s.orders.length > 0) {
+      const order_id = {
+        order_id: s.orders[0].order_id,
+        booking_id: table_status.filter(f => table_id = booking_id)[0].booking_id
+      }
+      receipt_service.pay(order_id).then(
+        result => {
+          if (result.data.data == "Success") {
+            alert('Payment Successful!');
+            getTableStatus(() => {
+              table.ajax.reload();
+            });
+            ModalController.closeModal();
+            s.cash = 0;
+          }
+          else
+            alert(result.data.data);
+        }
+      );
+    }
+  }
+
+  s.cashChange = (cash) => {
+    if(cash != 0) {
+      const result = cash - s.totalprice;
+      if(result < 0)
+        return 0;
+      else 
+        return result;
+    }
+    else
+      return 0;
+  }
+
 
 function initDatatable() {
   $(document).ready(function() {
@@ -22,9 +99,10 @@ function initDatatable() {
         {
           data: 3,
           render: function(data, type, row) {
-            data = table_status.filter(f => f.table_id == row[0])[0].status;
-            switch (data) {
-                case '0':
+            const result = table_status.filter(f => f.table_id == row[0])[0];
+            data = result ? result.status : 0;
+            switch (parseInt(data)) {
+                case 0:
                     return 'Available';
                 default:
                     return 'Occupied';
@@ -34,43 +112,29 @@ function initDatatable() {
       ]
     });
 
-    $("#table_id tbody").on("click", "tr", function() {
+    $("#table_id tbody").on("click", "tr", async function() {
       var data = table.row(this).data();
-      if (data[4] == 0 && (new Date(data[1]) > new Date())) {
-        const is_cancel_booking = confirm(
-          "Do you want to confirm this booking? Press Ok if yes."
-        );
-        if (is_cancel_booking) {
-          confirmBooking(data, table);
-        }
-      }
+      booking_id = data[0];
+      s.orders = await getOrdersByTable(data[0]);
+      s.$apply();
+      ModalController.showModal();
     });
   });
 }
 
-async function confirmBooking(data, table) {
-  const form_data = new FormData();
-  form_data.append('booking_id', data[0]);
-  await fetch("http://localhost:8000/apis/reservation", {
-    method: "PUT",
-    body: form_data,
-  }).then(async (result) => {
-    const result_json = await result.json();
-      if (result_json.data == 'Success') {
-        alert('Booking Confirmed Successfully!');
-        table.ajax.reload();
-      } 
-      else 
-        alert(result_json.error);
-  }, async (error) => {
-    const result_json = await error.json();
-    console.log(result_json);
-  });
-}
-
-async function getTableStatus() {
+async function getTableStatus(callback) {
   const response = await fetch('http://localhost:8000/apis/table');
   if(response.ok) {
     table_status = (await response.json()).data;
+    callback();
   }
 }
+
+async function getOrdersByTable($id) {
+  const response = await fetch('http://localhost:8000/apis/order?tableId='+$id);
+  if(response.ok) {
+    return await response.json();
+  }
+}
+
+}]);

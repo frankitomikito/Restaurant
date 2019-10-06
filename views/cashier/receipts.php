@@ -26,12 +26,6 @@ if (!isset($_SESSION['isLoggedIn'])) {
 						<nav id="menu" class="nav-main" role="navigation">
 							<ul class="nav nav-main">
 								<li>
-									<a href="/cashier/dashboard">
-										<i class="fa fa-home" aria-hidden="true"></i>
-										<span>Dashboard</span>
-									</a>
-								</li>
-								<li>
 									<a href="/cashier/tables">
 										<i class="fa fa-book" aria-hidden="true"></i>
 										<span>Tables</span>

@@ -20,6 +20,10 @@ RequestRoute::GET(function() {
         ];
         return new Response($order->search($param), 200);
     }
+    else if(!empty(RequestRoute::PARAMGET('tableId'))) {
+        $table_id = RequestRoute::PARAMGET('tableId');
+        return new Response($order->getOrdersByTableId($table_id), 200);
+    }
     else {
         $response = [
             "orders" => $order->getAll(),

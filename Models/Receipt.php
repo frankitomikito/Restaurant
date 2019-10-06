@@ -32,7 +32,19 @@ class Receipt extends Database implements IActions {
     }
 
 	public function update($args){
-
+        switch ($args['update']) {
+            case 'payment':
+                try {
+                    $this->rawQuery('update tbl_receipt set status = 0 where order_id = '.$args['value']);
+                    return true;
+                } catch (\Throwable $th) {
+                    return false;
+                }
+                break;
+            
+            default:
+                break;
+        }
     }
 
 	public function remove($id){

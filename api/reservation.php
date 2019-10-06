@@ -22,7 +22,8 @@ RequestRoute::GET(function() {
 RequestRoute::PUT(function() {
     $booking_id = RequestRoute::PARAMPUT('booking_id');
     $reservation = new Reservation;
-    $result = $reservation->update($booking_id);
+    $param = ['update' => 'confirmed', 'value' => $booking_id];
+    $result = $reservation->update($param);
     if ($result)
         return new Response(['data' => 'Success'], 200);
     else 

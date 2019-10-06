@@ -26,11 +26,22 @@ class Reservation extends Database implements IActions {
     }
 
 	public function update($args){
-        try {
-            $this->rawQuery('update tbl_booking set status = 1 where booking_id = '.$args);
-            return true;
-        } catch (\Throwable $th) {
-            return false;
+        switch ($args['update']) {
+            case 'used':
+                try {
+                    $this->rawQuery('update tbl_booking set status = 3 where booking_id = '.$args['value']);
+                    return true;
+                } catch (\Throwable $th) {
+                    return false;
+                }
+            
+            case 'confirmed':
+                try {
+                    $this->rawQuery('update tbl_booking set status = 1 where booking_id = '.$args['value']);
+                    return true;
+                } catch (\Throwable $th) {
+                    return false;
+                }
         }
     }
 

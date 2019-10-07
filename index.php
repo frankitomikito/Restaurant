@@ -133,7 +133,7 @@
                 <i class="fas fa-times"></i>
               </a>
             </div>
-              <div class="menu-img" style="background-image: url(dashboard/item-image/{{menu.image_path}}); margin-top: .9rem;"></div>
+              <div class="menu-img" style="background-image: url(admin/item-image/{{menu.image_path}}); margin-top: .9rem;"></div>
               <div class="text d-flex">
                 <div class="one-half">
                   <h3>{{menu.name}}</h3>

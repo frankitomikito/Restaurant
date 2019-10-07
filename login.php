@@ -86,42 +86,65 @@
 
 <?php
 if (isset($_POST['login'])) {
+
   
-  include $_SERVER['DOCUMENT_ROOT'].'\Models\User.php';
+  include_once 'dbCon.php';
 
-  $credentials = [
-    'useremail' => $_POST['useremail'],
-    'password' => $_POST['password']
-  ];
+  $user_details;
 
-  $user = new User();
-  $user_details = $user->login($credentials);
+  function getPositionText($num) {
+		switch ($num) {
+			case 1:
+				return 'Administrator';
+			case 2:
+				return 'Customer';
+			case 3:
+				return 'Chef';
+			case 4:
+				return 'Waiter';
+			case 5:
+				return 'Cashier';
+		}
+	}
 
-  if ($user_details) {
-    $_SESSION['isLoggedIn'] = true;
-    $_SESSION['id'] = $user_details['user_id'];
-    $_SESSION['name'] = $user_details['fullname'];
-    $_SESSION['email'] = $user_details['email'];
-    $_SESSION['image_path'] = $user_details['image_path'];
-    $_SESSION['role'] = $user_details['position'];
-    $_SESSION['position'] = User::getPositionText($user_details['position']);
+  $con = connect();
+  if (!empty(strpos($_POST['useremail'], '@') !== false)){
+    $user_details = $con->query('select * from tbl_user where email = "' . $_POST['useremail'] . '"');
+  }
+  else{
+    $user_details = $con->query('select * from tbl_user where username = "' . $_POST['useremail'] . '"');
+  }
 
-    switch ($user_details['position']) {
-      case 1:
-        echo '<script>alert("Logged-in Successfully!"); window.location.href="admin/index.php"</script>';
-        break;
-      case 3:
-        echo '<script>alert("Logged-in Successfully!"); window.location.href="chef/orders.php"</script>';
-        break;
-      case 5:
-        echo '<script>alert("Logged-in Successfully!"); window.location.href="cashier/tables.php"</script>';
-        break;
-      default:
-        echo '<script>alert("Logged-in Successfully!"); window.location="index.php"</script>';
-        break;
+
+  if ($user_details->num_rows > 0) {
+    $user_details = $user_details->fetch_assoc();
+    if ((bool) password_verify($_POST['password'], $user_details['password'])) {
+      $_SESSION['isLoggedIn'] = true;
+      $_SESSION['id'] = $user_details['user_id'];
+      $_SESSION['name'] = $user_details['fullname'];
+      $_SESSION['email'] = $user_details['email'];
+      $_SESSION['image_path'] = $user_details['image_path'];
+      $_SESSION['role'] = $user_details['position'];
+      $_SESSION['position'] = getPositionText($user_details['position']);
+
+      switch ($user_details['position']) {
+        case 1:
+          echo '<script>alert("Logged-in Successfully!"); window.location.href="admin/index.php"</script>';
+          break;
+        case 3:
+          echo '<script>alert("Logged-in Successfully!"); window.location.href="chef/orders.php"</script>';
+          break;
+        case 5:
+          echo '<script>alert("Logged-in Successfully!"); window.location.href="cashier/tables.php"</script>';
+          break;
+        default:
+          echo '<script>alert("Logged-in Successfully!"); window.location="index.php"</script>';
+          break;
+      }
+    } else {
+      echo '<script>alert("Invalid email or password."); window.location="login.php"</script>';
     }
   } else {
-    echo '<script>alert("Invalid email or password."); window.location="login.php"</script>';
   }
 }
 ?>

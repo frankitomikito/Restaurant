@@ -76,7 +76,7 @@
 		$user = new User;
 		$result = $user->update($data);
 		if ($result)
-			return new Response(['value' => true], 200);
+			return new Response(['value' => RequestRoute::PARAMPUT('fullname')], 200);
 		else
 			return new Response(['error' => 'Something went wrong'], 404);
 	});

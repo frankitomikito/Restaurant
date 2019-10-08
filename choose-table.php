@@ -51,10 +51,25 @@ include 'template/header.php'; ?>
                include 'dbCon.php';
                $num=0;
                $con = connect();
-               $sql = "SELECT * FROM `tbl_table` WHERE status = 1 ;";
+               $sql = 'SELECT tbt.table_id FROM tbl_booking AS tb
+               INNER JOIN tbl_booked_table AS tbt ON tbt.booking_id = tb.booking_id
+               WHERE tb.check_in = "'.$datetime.'" AND tb.status IN (0,1)';
                $result = $con->query($sql);
+               $ids = '';
+               if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                  if (strlen($ids) > 0)
+                    $ids = $ids.','.$row['table_id'];
+                  else
+                    $ids = ''.$row['table_id'];
+                }
+                $result = $con->query('SELECT * FROM tbl_table WHERE table_id NOT IN ('.$ids.')');
+               }
+               else {
+                 $result = $con->query('SELECT * FROM tbl_table WHERE status = 1');
+               }
               ?> 
-                  <form  action="save_book.php" method="POST">
+                  <form action="save_book.php" method="POST">
                       <table class="table table-hover">
                         <th>Table Name</th>
                         <th>Capacity</th>

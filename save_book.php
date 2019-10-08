@@ -45,16 +45,16 @@ if(isset($_POST['reserve'])){
           echo '<script>alert("ERROR")</script>';
         }
 
-        $sql ="UPDATE tbl_table SET status=0 WHERE table_id= '$name' ";
-        $result = $con->query($sql);
+        // $sql ="UPDATE tbl_table SET status=0 WHERE table_id= '$name' ";
+        // $result = $con->query($sql);
 
-        if($result){
-        // echo '<script> alert ("Data Updated"); </script>';
-        // header("Location:category-list.php");
-        }
-        else{
-        echo '<script> alert("Table update failed!"); </script>';
-        }
+        // if($result){
+        // // echo '<script> alert ("Data Updated"); </script>';
+        // // header("Location:category-list.php");
+        // }
+        // else{
+        // echo '<script> alert("Table update failed!"); </script>';
+        // }
     }
     }
 

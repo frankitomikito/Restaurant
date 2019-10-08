@@ -11,6 +11,14 @@ RequestRoute::GET(function() {
         return new Response(['data' => $receipt->getAll()], 200);
     elseif(RequestRoute::PARAMGET('chef'))
         return new Response(['data' => $receipt->getReceiptsChef()], 200);
+    elseif(RequestRoute::PARAMGET('date_from') && RequestRoute::PARAMGET('date_to')){
+        $date_from = RequestRoute::PARAMGET('date_from');
+        $date_to = RequestRoute::PARAMGET('date_to');
+        return new Response(['data' => $receipt->getSalesByFromTo($date_from, $date_to)], 200);
+    }
+    else {
+        return new Response(['data' => 'Invalid Request'], 404);
+    }
 });
 
 RequestRoute::PUT(function() {

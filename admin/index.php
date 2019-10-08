@@ -63,6 +63,24 @@ if (!isset($_SESSION['isLoggedIn'])) {
 							<canvas id="salesChart"></canvas>
 						</div>
 					</div>
+					<div class="myCard card-hide">
+						<h2 class="myCard-title" style="margin-top: 0;">Custom Sales Report</h2>
+						<div class="myCard-content" style="display: none;">
+							<div class="content-center">
+								<label style="font-weight: 700; margin: 0 1rem;">From</label>
+								<input id="datefrom" class="myInput-control" onchange="onDateFromChange(this)"
+								 type="date" style="width: 15rem;">
+								<label style="font-weight: 700; margin: 0 1rem;">To</label>
+								<input id="dateto" class="myInput-control" onclick="onDateToChange(this)"
+								 type="date" style="width: 15rem;">
+								 <br>
+								 <button id="generateReport" type="button" onclick="generateCustomReport(this)" 
+									 class="myBtn" style="margin-left: 1rem;" 
+									 disabled>Generate Report</button>
+							</div>
+							<canvas id="customChart"></canvas>
+						</div>
+					</div>
 				</section>
 
 				<!-- end: page -->
@@ -79,6 +97,8 @@ if (!isset($_SESSION['isLoggedIn'])) {
 
 	<?php include 'template/script-res.php'; ?>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<script src="../libraries/moment.js"></script>
+	<script src="../js/employee/myCard.js"></script>
 	<script src="../js/admin/chart.js"></script>
 </body>
 

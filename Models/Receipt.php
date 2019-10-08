@@ -77,4 +77,12 @@ class Receipt extends Database implements IActions {
         return $this->convertResultToDatatableArray($result);
     }
 
+    public function getSalesByFromTo($date_from, $date_to) {
+        $result = $this->rawQuery('SELECT tr.date_ordered, SUM(tor.quantity * tm.price) AS total  FROM tbl_menu AS tm
+        INNER JOIN tbl_receipt AS tr ON DATE(tr.date_ordered) BETWEEN "'.$date_from.'" AND "'.$date_to.'" AND tr.status = 0
+        INNER JOIN tbl_order AS tor ON tor.menu_id = tm.menu_id AND tor.order_id = tr.order_id 
+        GROUP BY DATE(tr.date_ordered)');
+        return $this->convertResultToJson($result);
+    }
+
 }

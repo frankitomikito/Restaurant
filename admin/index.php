@@ -57,9 +57,9 @@ if (!isset($_SESSION['isLoggedIn'])) {
 							<h2 id="totalSales" style="font-weight: 700;"></h1>
 						</div>
 					</div>
-					<div class="myCard">
+					<div class="myCard card-hide">
 						<h2 id="month_title" class="myCard-title" style="margin-top: 0;"></h2>
-						<div class="myCard-content">
+						<div class="myCard-content" style="display: none;">
 							<canvas id="salesChart"></canvas>
 						</div>
 					</div>

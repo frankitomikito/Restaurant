@@ -24,7 +24,10 @@ function initDatatable() {
           data: 3
         },
         {
-          data: 4,
+          data: 4
+        },
+        {
+          data: 5,
           render: function(data, type, row) {
               data = data != 1 && data != 3 && data != 4 
                   ? new Date(row[1]) > new Date() ? data : 2 : parseInt(data);

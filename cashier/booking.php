@@ -89,6 +89,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 								<tr>
 									<th>Booking Id</th>
 									<th>Date & Time</th>
+									<th>Customer Name</th>
 									<th>Table Name</th>
 									<th>Capacity</th>
 									<th>Status</th>

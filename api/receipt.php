@@ -42,7 +42,7 @@ RequestRoute::PUT(function() {
             return new Response(['data' => 'Something Went Wrong.'], 200);
     }
     elseif(!empty(RequestRoute::PARAMPUT('is_serve'))) {
-        $param = ['update' => 'serve', 'value' => $order_id];
+        $param = ['update' => 'ready', 'value' => $order_id];
         if ($receipt->update($param)) {
            return new Response(['data' => 'Success'], 200);
         }

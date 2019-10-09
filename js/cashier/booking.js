@@ -12,7 +12,10 @@ function initDatatable() {
           data: 0
         },
         {
-          data: 1
+          data: 1,
+          render: function(data) {
+            return moment(data).format('MMMM DD, YYYY - h:mm A');
+          }
         },
         {
           data: 2

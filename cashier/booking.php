@@ -104,6 +104,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 	</section>
 	
 	<?php include 'script-res.php' ?>
+    <script src="../libraries/moment.js"></script>
 	<script src="../js/cashier/booking.js"></script>
 
 </body>

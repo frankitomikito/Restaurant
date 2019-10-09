@@ -86,6 +86,7 @@ include 'header.php'; ?>
     <?php include 'script.php'; ?>
     <!-- <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script> -->
     <script src="../libraries/datatables/js/jquery.dataTables.js"></script>
+    <script src="../libraries/moment.js"></script>
     <script src="../js/customer/reservation.js"></script>
 
 </body>

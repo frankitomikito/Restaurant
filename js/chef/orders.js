@@ -107,7 +107,7 @@ function initDatatable() {
 
     $("#table_id tbody").on("click", "tr", async function() {
       var data = table.row(this).data();
-      s.button_label = data[2] == '2' ? 'Serve' : 'Processing';
+      s.button_label = data[2] == '2' ? 'Ready' : 'Processing';
       is_serve = data[2] == '2' ? true : false;
       s.orders = await getOrdersByTable(data[0]);
       s.$apply();

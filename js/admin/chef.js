@@ -42,6 +42,8 @@ module.controller('ModalController', ['$scope', 'OrderService', function(s, orde
                         switch (parseInt(data)) {
                             case 2:
                                 return 'Processed';
+                            case 3:
+                                return 'Ready';
                             default:
                                 return 'Served';
                         }

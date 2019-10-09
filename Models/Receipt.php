@@ -48,7 +48,7 @@ class Receipt extends Database implements IActions {
                 } catch (\Throwable $th) {
                     return false;
                 }
-            case 'serve':
+            case 'ready':
                try {
                     $this->rawQuery('update tbl_receipt set status = 3 where order_id = '.$args['value']);
                     return true;

@@ -100,6 +100,7 @@ if (isset($_SESSION['id'])) {
 
   <script src="../libraries/datatables/js/jquery.dataTables.js"></script>
   <!-- <script src="../../build/customer/orders/bundle.min.js"></script> -->
+  <script src="../libraries/moment.js"></script>
   <script src="../js/angular.js"></script>
   <script src="../js/employee/classes/Modal.js"></script>
 	<script src="../js/customer/ordersctrl.js"></script>

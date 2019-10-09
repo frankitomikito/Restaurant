@@ -6,7 +6,10 @@ $(document).ready(function() {
                             data: 0
                         },
                         {
-                            data: 1
+                            data: 1,
+                            render: function(data) {
+                                return moment(data).format('MMMM DD, YYYY - h:mm A');
+                            }
                         },
                         {
                             data: 2
@@ -18,8 +21,7 @@ $(document).ready(function() {
                             data: 4,
                             render: function(data, type, row) {
                                 data = data != 1 && data != 3 && data != 4 
-                                    ? new Date(row[1]) > new Date() ? data : 2 : parseInt(data);
-                                console.log(data);
+                                    ? moment(row[1]) > moment().add(30, 'm') ? data : 2 : parseInt(data);
                                 switch (data) {
                                     case 1:
                                         return 'Confirmed';

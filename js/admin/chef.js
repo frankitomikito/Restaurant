@@ -26,7 +26,7 @@ module.controller('ModalController', ['$scope', 'OrderService', function(s, orde
                 {
                     data: 1,
                     render: function(data, type, row) {
-                        const date = moment(data).format('MMMM DD, YYYY');
+                        const date = moment(data).format('MMMM DD, YYYY - h:mm A');
                         return date;
                     }
                 },

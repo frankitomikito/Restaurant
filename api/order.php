@@ -24,6 +24,10 @@ RequestRoute::GET(function() {
         $table_id = RequestRoute::PARAMGET('tableId');
         return new Response($order->getOrdersByTableId($table_id), 200);
     }
+    else if(!empty(RequestRoute::PARAMGET('receipt_id'))) {
+        $receipt_id = RequestRoute::PARAMGET('receipt_id');
+        return new Response($order->get($receipt_id), 200);
+    }
     else {
         $response = [
             "orders" => $order->getAll(),

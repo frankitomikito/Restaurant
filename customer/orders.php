@@ -69,7 +69,7 @@ if (isset($_SESSION['id'])) {
         <div class="row">
           <div class="col-lg-12" ng-repeat="order in curr_orders">
             <div class="menus d-flex main-dish" style="margin-bottom: 10px; background: white !important;">
-              <div class="menu-img" style="background-image: url(../dashboard/item-image/{{order.image_path}});"></div>
+              <div class="menu-img" style="background-image: url(../admin/item-image/{{order.image_path}});"></div>
               <div class="text d-flex">
                 <div class="one-half">
                   <h3>{{order.name}}</h3>

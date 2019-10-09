@@ -50,9 +50,9 @@ if (!isset($_SESSION['isLoggedIn'])) {
 				<!-- start: page -->
 
 				<section class="panel">
-					<div class="myCard">
+					<div class="myCard card-hide">
 						<h2 class="myCard-title" style="margin-top: 0;">Today Sales Chart</h2>
-						<div class="myCard-content" style="text-align:center;">
+						<div class="myCard-content" style="text-align:center; display: none;">
 							<canvas id="todaySalesChart"></canvas>
 							<h2 id="totalSales" style="font-weight: 700;"></h1>
 						</div>

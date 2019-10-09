@@ -42,7 +42,8 @@ class Receipt extends Database implements IActions {
                 }
             case 'process':
                 try {
-                    $this->rawQuery('update tbl_receipt set status = 2 where order_id = '.$args['value']);
+                    $this->rawQuery('update tbl_receipt set status = 2, chef_id = 
+                    '.$_SESSION['id'].' where order_id = '.$args['value']);
                     return true;
                 } catch (\Throwable $th) {
                     return false;
@@ -83,6 +84,14 @@ class Receipt extends Database implements IActions {
         INNER JOIN tbl_order AS tor ON tor.menu_id = tm.menu_id AND tor.order_id = tr.order_id 
         GROUP BY DATE(tr.date_ordered)');
         return $this->convertResultToJson($result);
+    }
+
+    public function getChefsOrdersCooked() {
+        $result = $this->rawQuery('SELECT tr.order_id, tr.date_ordered, tu.fullname, 
+        tbl.table_name, tr.status, tu.image_path FROM tbl_receipt AS tr 
+        INNER JOIN tbl_user AS tu ON tu.user_id = tr.chef_id
+        INNER JOIN tbl_table AS tbl ON tbl.table_id = tr.table_id');
+        return $this->convertResultToDatatableArray($result);
     }
 
 }

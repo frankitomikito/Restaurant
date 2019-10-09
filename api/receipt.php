@@ -1,4 +1,5 @@
 <?php 
+session_start();
 
 require_once('../http/RequestRoute.php');
 require_once('../http/Response.php');
@@ -16,6 +17,8 @@ RequestRoute::GET(function() {
         $date_to = RequestRoute::PARAMGET('date_to');
         return new Response(['data' => $receipt->getSalesByFromTo($date_from, $date_to)], 200);
     }
+    elseif(RequestRoute::PARAMGET('chef_cooked')) 
+        return new Response(['data' => $receipt->getChefsOrdersCooked()], 200);
     else {
         return new Response(['data' => 'Invalid Request'], 404);
     }

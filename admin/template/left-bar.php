@@ -26,6 +26,12 @@
 								<span>Employee</span>
 							</a>
 						</li>
+						<li>
+							<a href="chef.php">
+								<i class="fa fa-user" aria-hidden="true"></i>
+								<span>Chef</span>
+							</a>
+						</li>
 						<li class="nav-parent">
 							<a>
 								<i class="fas fa-tablets" aria-hidden="true"></i>

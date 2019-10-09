@@ -31,20 +31,28 @@ class Database implements IDatabaseAction {
 	}
 
 	public function convertResultToJson($result) {
-		$array = Array();
-		while($row = $result->fetch_object()) {
-			$array[] = $row;
+		if ($result->num_rows > 0) {
+			$array = Array();
+			while($row = $result->fetch_object()) {
+				$array[] = $row;
+			}
+			return $array;
 		}
-		return $array;
+		else
+			return [];
 	}
 
 	public function convertResultToDatatableArray($result) {
-		$array = Array();
-		while($row = $result->fetch_all()) {
-			for ($i=0; $i < sizeof($row); $i++) { 
-				$array[] = $row[$i];
+		if ($result->num_rows > 0) {
+			$array = Array();
+			while($row = $result->fetch_all()) {
+				for ($i=0; $i < sizeof($row); $i++) { 
+					$array[] = $row[$i];
+				}
 			}
+			return $array;
 		}
-		return $array;
+		else 
+			return [];
 	}
 }

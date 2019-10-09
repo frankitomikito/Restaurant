@@ -13,12 +13,7 @@ class Reservation extends Database implements IActions {
         $result = $this->rawQuery('SELECT tbt.booking_id, tbt.check_in, tt.table_name, tt.capacity, tbt.status 
         FROM tbl_booking AS tbt INNER JOIN tbl_booked_table AS tb ON tb.booking_id = tbt.booking_id
         INNER JOIN tbl_table AS tt ON tt.table_id = tb.table_id WHERE tbt.status = 0 OR tbt.status = 1');
-        while($row = $result->fetch_all()) {
-			for ($i=0; $i < sizeof($row); $i++) {
-				$array[] = $row[$i];
-			}
-        }
-        return $array;
+        return $this->convertResultToDatatableArray($result);
     }
 
 	public function create($args){

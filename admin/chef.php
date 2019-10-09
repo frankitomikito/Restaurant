@@ -71,7 +71,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
                         <div class="mymodal-avatar">
                             <img id="profileImg" src="../images/person_3.jpg" style="width: 12rem; height: 12rem;">
                         </div>
-                        <h3 style="color: black;">Emmanuel Paul G. Moralde</h3>
+                        <h3 style="color: black;">{{chef_fullname}}</h3>
                     <hr>
                     </div>
                     <div class="col-md-12">

@@ -2,7 +2,7 @@ const module  = angular.module('chefApp', []);
 
 module.service('OrderService', function($http) {
     this.getOrders = (receipt_id) => {
-        return $http.get('http://localhost:8000/api/order.php?receipt_id=13');
+        return $http.get('http://localhost:8000/api/order.php?receipt_id='+receipt_id);
     }
 });
 
@@ -55,6 +55,7 @@ module.controller('ModalController', ['$scope', 'OrderService', function(s, orde
         $('#chef-datatable tbody').on('click', 'tr', function () {
             const data = table.row(this).data();
             document.getElementById('profileImg').setAttribute('src', '../'+data[5]);
+            s.chef_fullname = data[2];
             order_service.getOrders(data[0]).then(
                 result => {
                     s.orders = result.data;

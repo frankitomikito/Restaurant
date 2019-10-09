@@ -45,9 +45,9 @@ $con = connect();
 			        		VALUES ('$fullname','$username','$email','$password','$gender','$address','$role','$file_name','$status');";
 			        	if ($con->query($iquery) === TRUE) {
 
-							require_once($_SERVER["DOCUMENT_ROOT"].'/http/Mail/Mail.php');
-							require_once($_SERVER["DOCUMENT_ROOT"].'/Models/UserCode.php');
-							require_once($_SERVER["DOCUMENT_ROOT"].'/Models/User.php');
+							require_once('http/Mail/Mail.php');
+							require_once('Models/UserCode.php');
+							require_once('Models/User.php');
 
 							$user = new User;
 							$user = $user->search([

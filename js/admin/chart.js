@@ -205,8 +205,12 @@ function generateCustomReport(elem) {
                 const labels = [];
                 const data = [];
                 result.data.forEach(value => {
-                   labels.push(moment(value.date_ordered).format('MMMM DD'));
-                   data.push(value.total);
+                    if (result.data.length == 1) {
+                        labels.push(moment(value.date_ordered).format('MMMM DD'));
+                        data.push(0);
+                    }
+                    labels.push(moment(value.date_ordered).format('MMMM DD'));
+                    data.push(value.total);
                 });
                 setCustomChartData(labels, data);
             }

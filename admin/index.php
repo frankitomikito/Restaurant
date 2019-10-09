@@ -68,7 +68,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 						<div class="myCard-content" style="display: none;">
 							<div class="content-center">
 								<label style="font-weight: 700; margin: 0 1rem;">From</label>
-								<input id="datefrom" class="myInput-control" onchange="onDateFromChange(this)"
+								<input id="datefrom" class="myInput-control" onclick="onDateFromChange(this)"
 								 type="date" style="width: 15rem;">
 								<label style="font-weight: 700; margin: 0 1rem;">To</label>
 								<input id="dateto" class="myInput-control" onclick="onDateToChange(this)"

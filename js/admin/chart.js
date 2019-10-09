@@ -8,8 +8,8 @@ const date_time = new Date();
 const current_month = date_time.toLocaleString('default', { month: 'long' });
 let receipts;
 let custom_chart;
-let date_from;
-let date_to;
+const date_from = document.getElementById('datefrom');
+const date_to = document.getElementById('dateto');
 
 document.getElementById('month_title').innerText = current_month.charAt(0).toUpperCase() + current_month.substring(1) + ' Sales Chart';
 
@@ -118,10 +118,7 @@ function monthSalesReport(callback) {
 
 function customSalesChart(callback) {
 
-    date_from = document.getElementById('datefrom').value;
-    date_to = document.getElementById('dateto').value;
-
-    getSalesOrderFromTo(date_from, date_to).then(
+    getSalesOrderFromTo(date_from.value, date_to.value).then(
         result => {
             const labels = [];
             const data = [];
@@ -185,13 +182,13 @@ async function getSalesOrderFromTo(date_from, date_to) {
 }
 
 function onDateFromChange(elem) {
-    date_from = elem.value;
+    date_from.setAttribute('max', date_to.value);
     if (custom_report_btn.hasAttribute('disabled'))
         custom_report_btn.removeAttribute('disabled');
 }
 
 function onDateToChange(elem) {
-    date_to = elem.value;
+    date_to.setAttribute('min', date_from.value);
     if (custom_report_btn.hasAttribute('disabled'))
         custom_report_btn.removeAttribute('disabled');
 }
@@ -199,7 +196,7 @@ function onDateToChange(elem) {
 function generateCustomReport(elem) {
     elem.setAttribute('disabled', 'disabled');
     setButtonStatus('Please wait', 'wait');
-    getSalesOrderFromTo(date_from, date_to).then(
+    getSalesOrderFromTo(date_from.value, date_to.value).then(
         result => {
             if (result.data.length > 0) {
                 const labels = [];

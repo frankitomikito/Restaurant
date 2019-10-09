@@ -33,7 +33,13 @@ class Order extends Database implements IActions {
     }
 
 	public function update($args){
-
+        try {
+            $this->rawQuery('update tbl_order set quantity = '.$args['quantity'].' 
+            where order_item_id = '. $args['order_item_id']);
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
     }
 
 	public function remove($id){

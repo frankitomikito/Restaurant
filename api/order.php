@@ -11,7 +11,11 @@ RequestRoute::GET(function() {
     $order = new Order;
 
     if (!empty(RequestRoute::PARAMGET('month'))) {
-        return new Response($receipt->search(RequestRoute::PARAMGET('month')), 200);
+        $param = [
+            "search" => 'receipt_month',
+            "value" => RequestRoute::PARAMGET('month')
+        ];
+        return new Response($receipt->search($param), 200);
     }
     else if(!empty(RequestRoute::PARAMGET('date'))) {
         $param = [
@@ -41,18 +45,62 @@ RequestRoute::POST(function() {
     $datetime = date_format(date_create(), 'Y-m-d H:s:i');
     $receipt_data = json_decode(RequestRoute::PARAMPOST('receipt'));
     $receipt_value = [
-        "total" => $receipt_data->total,
-        "discount" => 0,
-        "table_id" => $receipt_data->table_id,
-        "user_id" => $_SESSION['id'],
-        "date_ordered" => $datetime
+        'total' => $receipt_data->total,
+        'discount' => 0,
+        'table_id' => $receipt_data->table_id,
+        'user_id' => $_SESSION['id'],
+        'date_ordered' => $datetime
     ];
+    $orders = json_decode(RequestRoute::PARAMPOST('orders'));
     $receipt = new Receipt;
-    $result = $receipt->create($receipt_value);
-    if ($result) {
-        $orders = json_decode(RequestRoute::PARAMPOST('orders'));
+    $param = [
+        'search' => 'receipt_status'
+    ];
+    $search_result = $receipt->search($param);
+    if ($search_result->num_rows > 0) {
+        return saveOrders($orders, $search_result, true);
+    }
+    else {
+        $result = $receipt->create($receipt_value);
+        if ($result) {
+            return saveOrders($orders, $result, false);
+        } else {
+            return new Response("Something went wrong.", 400);
+        }
+    }
+});
+
+function saveOrders($orders, $result, $has_orders) {
+    try {
         $order = new Order;
-        try {
+        if ($has_orders) {
+            $results = $result->fetch_all();
+            $order_id = $results[0][0];
+            foreach ($orders as $key => $value) {
+                $is_exist = false;
+                foreach ($results as $key2 => $value2) {
+                    if ($value->menu_id == $value2[2]) {
+                        $data = [
+                            "quantity" => $value->quantity + $value2[3],
+                            "order_item_id" => $value2[1]
+                        ];
+                        $order->update($data);
+                        $is_exist = true;
+                        unset($results[$key2]);
+                    }
+                }
+
+                if (!$is_exist) {
+                    $data = [
+                        "quantity" => $value->quantity,
+                        "menu_id" => $value->menu_id,
+                        "order_id" => $order_id
+                    ];
+                    $order->create($data);
+                }
+            }
+        }
+        else {
             foreach ($orders as $key => $value) {
                 $data = [
                     "quantity" => $value->quantity,
@@ -61,11 +109,9 @@ RequestRoute::POST(function() {
                 ];
                 $order->create($data);
             }
-            return new Response("Success", 201);
-        } catch (\Throwable $th) {
-            return new Response("Something went wrong.", 400);
         }
-    } else {
+        return new Response("Success", 201);
+    } catch (\Throwable $th) {
         return new Response("Something went wrong.", 400);
     }
-});
+}

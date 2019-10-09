@@ -65,10 +65,19 @@ class Receipt extends Database implements IActions {
     }
 
 	public function search($args){
-        $result = $this->rawQuery('SELECT tr.date_ordered, tr.total, tr.discount FROM tbl_receipt AS tr 
-        INNER JOIN tbl_table AS tb ON tb.table_id = tr.table_id WHERE MONTHNAME(tr.date_ordered) = "'.$args.'" 
-        AND tr.status = 0');
-        return $this->convertResultToJson($result);
+        switch ($args['search']) {
+            case 'receipt_status':
+                $result = $this->rawQuery('SELECT tr.order_id, tor.order_item_id, tor.menu_id, tor.quantity FROM tbl_receipt AS tr
+                INNER JOIN tbl_order AS tor ON tor.order_id = tr.order_id
+                WHERE tr.status = 1 AND tr.user_id = '.$_SESSION['id']);
+                return $result;
+            
+            case 'receipt_month':
+                $result = $this->rawQuery('SELECT tr.date_ordered, tr.total, tr.discount FROM tbl_receipt AS tr 
+                INNER JOIN tbl_table AS tb ON tb.table_id = tr.table_id WHERE MONTHNAME(tr.date_ordered) = "'.$args['value'].'" 
+                AND tr.status = 0');
+                return $this->convertResultToJson($result);
+        }
     }
 
     public function getReceiptsChef() {

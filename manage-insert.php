@@ -48,6 +48,10 @@ $con = connect();
 							require_once('http/Mail/Mail.php');
 							require_once('Models/UserCode.php');
 							require_once('Models/User.php');
+							require_once('http/RequestRoute.php');
+							require_once 'vendor/phpmailer/phpmailer/src/Exception.php';
+							require_once 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
+							require_once 'vendor/phpmailer/phpmailer/src/SMTP.php';
 
 							$user = new User;
 							$user = $user->search([

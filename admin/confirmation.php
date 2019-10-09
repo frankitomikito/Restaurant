@@ -1,5 +1,6 @@
 <?php
     require '../Models/UserCode.php';
+    require '../http/RequestRoute.php';
 
     $user_code = new UserCode;
     $param = [

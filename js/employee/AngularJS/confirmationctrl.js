@@ -20,7 +20,7 @@ module.controller('confirmationCtrl', ['$scope', 'confirmationService', function
             result => {
                if (result['status']){
                 alert('Saving Credentials Completed.');
-                window.location.href = 'login.php';
+                window.location.href = '../login.php';
                }
                 else 
                    alert(result['error']);

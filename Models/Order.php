@@ -51,7 +51,7 @@ class Order extends Database implements IActions {
     }
 
     public function getOrdersByTableId($table_id) {
-        $result = $this->rawQuery('SELECT tr.order_id, tm.name, tor.quantity, tm.price FROM tbl_booking AS tb
+        $result = $this->rawQuery('SELECT tr.order_id, tm.name, tor.quantity, tm.image_path, tm.price FROM tbl_booking AS tb
         INNER JOIN tbl_booked_table AS tbt ON tbt.booking_id = tb.booking_id
         INNER JOIN tbl_receipt AS tr ON tr.user_id = tb.user_id AND tr.status != 0  AND tr.table_id = '.$table_id.'
         INNER JOIN tbl_order AS tor ON tor.order_id = tr.order_id

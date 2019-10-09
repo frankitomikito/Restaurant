@@ -30,7 +30,7 @@ function initDatatable() {
           data: 5,
           render: function(data, type, row) {
               data = data != 1 && data != 3 && data != 4 
-                  ? new Date(row[1]) > new Date() ? data : 2 : parseInt(data);
+                  ? moment(row[1]).add(30, 'm') > moment() && moment(row[1]) < moment().add(30, 'm')  ? data : 2 : parseInt(data);
               switch (data) {
                   case 1:
                       return 'Confirmed';
@@ -50,7 +50,7 @@ function initDatatable() {
 
     $("#table_id tbody").on("click", "tr", function() {
       var data = table.row(this).data();
-      if (data[4] == 0 && (new Date(data[1]) > new Date())) {
+      if (data[5] == 0 && moment(data[1]).add(30, 'm') > moment() && moment(data[1]) < moment().add(30, 'm')) {
         const is_cancel_booking = confirm(
           "Do you want to confirm this booking? Press Ok if yes."
         );

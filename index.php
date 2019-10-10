@@ -1,4 +1,3 @@
-<!-- signin.php -->
 <?php include 'template/header.php'; ?>
 <link rel="stylesheet" href="build/customer/bundle.css">
 <style>

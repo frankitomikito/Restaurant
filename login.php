@@ -1,4 +1,3 @@
-<!-- signin.php -->
 <?php include 'template/header.php'; ?>
 
 <body>

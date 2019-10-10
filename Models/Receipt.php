@@ -55,8 +55,16 @@ class Receipt extends Database implements IActions {
                 } catch (\Throwable $th) {
                     return false;
                 }
+            case 'price':
+                $result = $this->rawQuery('SELECT SUM(tor.quantity * tm.price) AS total FROM tbl_receipt AS tr
+                INNER JOIN tbl_order AS tor ON tor.order_id = tr.order_id
+                INNER JOIN tbl_menu AS tm ON tm.menu_id = tor.menu_id
+                WHERE tr.order_id = '.$args['value'])->fetch_assoc();
+                $this->rawQuery('UPDATE tbl_receipt SET total = '.$result['total'].'
+                 WHERE order_id = '.$args['value']);
+                return true;
             default:
-                break;
+                return false;
         }
     }
 

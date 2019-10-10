@@ -99,6 +99,12 @@ function saveOrders($orders, $result, $has_orders) {
                     $order->create($data);
                 }
             }
+            $receipt = new Receipt;
+            $param = [
+                'update' => 'price',
+                'value' => $order_id
+            ];
+            $receipt->update($param);
         }
         else {
             foreach ($orders as $key => $value) {

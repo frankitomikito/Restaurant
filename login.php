@@ -145,7 +145,7 @@ if (isset($_POST['login'])) {
       echo '<script>alert("Invalid email or password."); window.location="login.php"</script>';
     }
   } else {
-    echo '<script>alert("Invalid email or password."); window.location="login.php"</script>';
+    echo '<script>alert("Invalid email/username or password."); window.location="login.php"</script>';
   }
 }
 ?>

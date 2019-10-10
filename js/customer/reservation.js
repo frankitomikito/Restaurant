@@ -21,7 +21,8 @@ $(document).ready(function() {
                             data: 4,
                             render: function(data, type, row) {
                                 data = data != 1 && data != 3 && data != 4 
-                                    ? moment(row[1]).add(30, 'm') > moment() && moment(row[1]) < moment().add(30, 'm') ? data : 2 : parseInt(data);
+                                    ? moment(row[1]) > moment() || moment(row[1]).add(30, 'm') > moment() 
+                                    && moment(row[1]) < moment().add(30, 'm') ? data : 2 : parseInt(data);
                                 switch (data) {
                                     case 1:
                                         return 'Confirmed';

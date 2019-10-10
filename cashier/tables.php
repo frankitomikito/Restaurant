@@ -113,7 +113,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="card-order" ng-repeat="order in orders">
-							<img src="../admin/item-image/012fdcec1c1935fa3971afc1c54931a5.jpg" alt="menu">
+							<img src="../admin/item-image/{{order.image_path}}" alt="menu">
 							<h4 class="order-title">
 								{{order.name}} <br>
 								<span>Quantity: {{order.quantity}}</span>

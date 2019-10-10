@@ -13,8 +13,7 @@ if(isset($_POST['updatedata']))
  $query_run = mysqli_query($connection, $query);
 
  if($query_run){
-echo '<script> alert ("Data Updated"); </script>';
-header("Location:table-list.php");
+echo '<script> alert ("Data Updated"); window.location.href="table-list.php" </script>';
  }
 else{
  echo '<script> alert("Data Not Update"); </script>';
@@ -38,7 +37,7 @@ else{
 
  if($query_run){
 echo '<script> alert ("Data Updated"); </script>';
-header("Location:menu-list.php");
+echo '<script> alert ("Data Updated"); window.location.href="menu-list.php" </script>';
  }
 else{
  echo '<script> alert("Data Not Update"); </script>';
@@ -56,8 +55,7 @@ else{
  $query_run = mysqli_query($connection, $query);
 
  if($query_run){
-echo '<script> alert ("Data Updated"); </script>';
-header("Location:category-list.php");
+    echo '<script> alert ("Data Updated"); window.location.href="category-list.php" </script>';
  }
 else{
  echo '<script> alert("Data Not Update"); </script>';
@@ -83,8 +81,7 @@ else{
   $query_run = mysqli_query($connection, $query);
  
   if($query_run){
- echo '<script> alert ("Data Updated"); </script>';
- header("Location:profile.php");
+    echo '<script> alert ("Data Updated"); window.location.href="profile.php" </script>';
   }
  else{
   echo '<script> alert("Data Not Update"); </script>';
@@ -110,8 +107,7 @@ else{
   $query_run = mysqli_query($connection, $query);
  
   if($query_run){
- echo '<script> alert ("Data Updated"); </script>';
- header("Location:../dashboard/user-list.php");
+ echo '<script> alert ("Data Updated"); window.location.href="user-list.php" </script>';
   }
  else{
   echo '<script> alert("Data Not Update"); </script>';

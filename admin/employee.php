@@ -1,9 +1,7 @@
-<?php include 'header.php'; 
-session_start();
+<?php include 'header.php';
 if (!isset($_SESSION['isLoggedIn'])) {
 	echo '<script>window.location="/login"</script>';
 } ?>
-<?php include 'header.php' ?>
 
 <body ng-app="employeeApp">
 	<section class="body">

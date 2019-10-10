@@ -61,7 +61,6 @@ if (!isset($_SESSION['isLoggedIn'])) {
 											
 											<th class="hidden-phone">Approve</th>
 											<th class="hidden-phone">Reject</th>
-											<th class="hidden-phone">View</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -89,10 +88,6 @@ if (!isset($_SESSION['isLoggedIn'])) {
 					
 												<td><a href="approve-reject.php?bapprove_id=<?php echo $r['booking_id']; ?>" class="btn btn-success" >Confirm</a>	</td>
 												<td><a href="approve-reject.php?breject_id=<?php echo $r['booking_id']; ?>" class="btn btn-danger" >Reject</a>		</td>
-											
-											<td class="center hidden-phone">
-												<a href="invoice.php?booking-number=<?php echo $r['booking_id']; ?>" class="btn btn-primary">View</a>
-											</td>
 										</tr>
 										<?php $count++; } ?>
 									</tbody>

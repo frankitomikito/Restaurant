@@ -54,8 +54,8 @@ $(document).ready(function() {
 async function cancelBooking(data, table) {
   const form_data = new FormData();
   form_data.append('booking_id', data[0]);
-  await fetch("https://tak-angrestaurant.000webhostapp.com/api/reservation.php", {
-    method: "DELETE",
+  await fetch("https://tak-angrestaurant.000webhostapp.com/api/reservation.php?cancel=true", {
+    method: "POST",
     body: form_data,
   }).then(async (result) => {
     const result_json = await result.json();

@@ -25,10 +25,10 @@ RequestRoute::GET(function() {
 });
 
 RequestRoute::POST(function() {
-    if (RequestRoute::PARAMGET('update')) {
-        $order_id = RequestRoute::PARAMPOST('order_id');
+    $receipt = new Receipt;
+    $order_id = RequestRoute::PARAMPOST('order_id');
+    if (RequestRoute::PARAMGET('payment')) {
         $booking_id = RequestRoute::PARAMPOST('booking_id');
-        $receipt = new Receipt;
         $reservation = new Reservation;
         $param = ['update' => 'payment', 'value' => $order_id];
         if ($receipt->update($param)) {

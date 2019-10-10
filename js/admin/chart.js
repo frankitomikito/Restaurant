@@ -136,7 +136,7 @@ function customSalesChart(callback) {
                     labels: labels,
                     datasets: [
                         {
-                            label: `Sales report as of ${formatDate(date_from)} to ${formatDate(date_to)}`,
+                            label: `Sales report as of ${formatDate(date_from.value)} to ${formatDate(date_to.value)}`,
                             backgroundColor: '#34495E',
                             borderColor: "#0088CC",
                             data: data

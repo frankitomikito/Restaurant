@@ -1,30 +1,15 @@
 const module = angular.module('cashierApp', []);
 
 module.service('ReceiptService', function($http) {
-  this.pay = (data) => {
-    const form_data = new FormData();
-    angular.forEach(data, (value, key) => {
-      form_data.append(key, value);
-    });
-    return $http({
-      method: 'PUT',
-      url: 'https://tak-angrestaurant.000webhostapp.com/apis/receipt',
-      data: form_data,
-      transformRequest: angular.identity,
-      headers: { 'Content-Type': undefined }
-    });
-  }
-});
-
-module.service('ReceiptService', function($http) {
     this.pay = (data) => {
       const form_data = new FormData();
       angular.forEach(data, (value, key) => {
         form_data.append(key, value);
       });
+      const url_ext = data.is_serve ? '?is_serve=true' : '';
       return $http({
-        method: 'PUT',
-        url: 'https://tak-angrestaurant.000webhostapp.com/api/receipt.php',
+        method: 'POST',
+        url: 'https://tak-angrestaurant.000webhostapp.com/api/receipt.php' + url_ext,
         data: form_data,
         transformRequest: angular.identity,
         headers: { 'Content-Type': undefined }

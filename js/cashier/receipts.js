@@ -45,7 +45,8 @@ function initDatatable() {
 
     $("#table_id tbody").on("click", "tr", function() {
       var data = table.row(this).data();
-      if (data[4] == 0 && (new Date(data[1]) > new Date())) {
+      if (data[4] == 0 && moment(data[1]).add(30, 'm') > moment()
+        && moment(data[1]) < moment().add(30, 'm') || moment(data[1]) > moment()) {
         const is_cancel_booking = confirm(
           "Do you want to confirm this booking? Press Ok if yes."
         );

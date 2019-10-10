@@ -1,4 +1,3 @@
-<!-- menu-manage.php -->
 <?php
 	if (isset($_GET['menu_id'])) {
 		$id =$_GET['menu_id'];

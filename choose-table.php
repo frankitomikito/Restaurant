@@ -1,4 +1,3 @@
-<!-- choose-table.php -->
 <?php 
  $datetime="";
  $uid;

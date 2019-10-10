@@ -1,4 +1,3 @@
-<!-- reservation.php -->
 <?php include 'template/header.php';
 
 if (!isset($_SESSION['isLoggedIn'])) {

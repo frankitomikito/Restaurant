@@ -1,4 +1,3 @@
-<!-- menu-add.php -->
 <?php include 'template/header.php'; 
 if (!isset($_SESSION['isLoggedIn'])) {
 	echo '<script>window.location="login.php"</script>';
@@ -90,13 +89,6 @@ if (!isset($_SESSION['isLoggedIn'])) {
 												</div>
 											</div>
 										</div>
-
-										<?php
-										$mysqli = NEW mysqli('localhost','root','','restaurant_v2');
-
-										$resultSet = $mysqli->query("SELECT category_id from tbl_category");
-										?>
-
 										<div class="row">
 											<div class="col-sm-6">
 												<div class="form-group">

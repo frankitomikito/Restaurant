@@ -20,15 +20,17 @@ RequestRoute::GET(function() {
         return new Response($reservation->customerReservations(), 200);
 });
 
-RequestRoute::PUT(function() {
-    $booking_id = RequestRoute::PARAMPUT('booking_id');
+RequestRoute::POST(function() {
     $reservation = new Reservation;
-    $param = ['update' => 'confirmed', 'value' => $booking_id];
-    $result = $reservation->update($param);
-    if ($result)
-        return new Response(['data' => 'Success'], 200);
-    else 
-        return new Response(['error' => 'Something went wrong. Try again'], 200);
+    if (RequestRoute::PARAMGET('update')) {
+        $booking_id = RequestRoute::PARAMPOST('booking_id');
+        $param = ['update' => 'confirmed', 'value' => $booking_id];
+        $result = $reservation->update($param);
+        if ($result)
+            return new Response(['data' => 'Success'], 200);
+        else 
+            return new Response(['error' => 'Something went wrong. Try again'], 200);
+    } 
 });
 
 RequestRoute::DELETE(function() {

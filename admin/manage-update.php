@@ -1,6 +1,6 @@
 <?php
-$connection = mysqli_connect("localhost","root","");
-$db = mysqli_select_db($connection, 'restaurant_v2');
+$connection = mysqli_connect("localhost","id11174334_emmasama","emmasama");
+$db = mysqli_select_db($connection, 'id11174334_restaurant');
 
 if(isset($_POST['updatedata']))
 {

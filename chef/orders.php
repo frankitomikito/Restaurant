@@ -1,5 +1,5 @@
 <?php include '../cashier/header.php'; 
-session_start();
+
 if (!isset($_SESSION['isLoggedIn'])) {
 	echo '<script>window.location="/login"</script>';
 } ?>

@@ -7,8 +7,8 @@ module.service('ReceiptService', function($http) {
       form_data.append(key, value);
     });
     return $http({
-      method: 'PUT',
-      url: 'https://tak-angrestaurant.000webhostapp.com/api/receipt.php',
+      method: 'POST',
+      url: 'https://tak-angrestaurant.000webhostapp.com/api/receipt.php?payment=true',
       data: form_data,
       transformRequest: angular.identity,
       headers: { 'Content-Type': undefined }

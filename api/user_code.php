@@ -5,15 +5,15 @@ require_once('../http/Response.php');
 require_once('../Models/User.php');
 require_once('../Models/UserCode.php');
 
-RequestRoute::PUT(function() {
+RequestRoute::POST(function() {
     $user = new User;
-    $get_user = $user->get(RequestRoute::PARAMPUT('user_id'));
-    $get_user['username'] = RequestRoute::PARAMPUT('username');
-    $get_user['password'] = password_hash(RequestRoute::PARAMPUT('password'), PASSWORD_DEFAULT);
+    $get_user = $user->get(RequestRoute::PARAMPOST('user_id'));
+    $get_user['username'] = RequestRoute::PARAMPOST('username');
+    $get_user['password'] = password_hash(RequestRoute::PARAMPOST('password'), PASSWORD_DEFAULT);
     $is_success = $user->update_credentials($get_user);
     if ($is_success) {
         $user_code = new UserCode;
-        $is_success = $user_code->update(RequestRoute::PARAMPUT('code_id'));
+        $is_success = $user_code->update(RequestRoute::PARAMPOST('code_id'));
         if ($is_success)
             return new Response(['status' => true], 200);
         else

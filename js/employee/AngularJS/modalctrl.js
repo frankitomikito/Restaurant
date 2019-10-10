@@ -56,8 +56,8 @@ module.service('userService', ['$http', function(h) {
             formdata.append(key, value);
         });
         return h({
-            method: 'PUT',
-            url: 'https://tak-angrestaurant.000webhostapp.com/api/user.php',
+            method: 'POST',
+            url: 'https://tak-angrestaurant.000webhostapp.com/api/user.php?update=true',
             data: formdata,
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }

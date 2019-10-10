@@ -5,7 +5,13 @@ module.service('confirmationService', function($http) {
         angular.forEach(data, (value, key) => {
             form_data.append(key, value);
         });
-        return $http.put('https://tak-angrestaurant.000webhostapp.com/api/user_code.php', form_data);
+        return $http({
+            method: 'POST',
+            url: 'https://tak-angrestaurant.000webhostapp.com/api/user_code.php',
+            data: form_data,
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined }
+        });
     }
 });
 module.controller('confirmationCtrl', ['$scope', 'confirmationService', function(s, service) {

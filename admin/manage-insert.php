@@ -1,5 +1,3 @@
-<!-- manage-insert.php -->
-
 <?php 
 session_start();
 include_once 'dbCon.php';
@@ -26,7 +24,7 @@ $con = connect();
 
 	        	if (isset($_FILES['image'])) {
 				 // files handle
-				    $targetDirectory = "../dashboard/user-image/";
+				    $targetDirectory = "../admin/user-image/";
 				    // get the file name
 				    $file_name = $_FILES['image']['name'];
 				    // get the mime type

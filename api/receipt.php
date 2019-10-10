@@ -24,11 +24,11 @@ RequestRoute::GET(function() {
     }
 });
 
-RequestRoute::PUT(function() {
-    $order_id = RequestRoute::PARAMPUT('order_id');
-    $receipt = new Receipt;
-    if(!empty(RequestRoute::PARAMPUT('booking_id'))) {
-        $booking_id = RequestRoute::PARAMPUT('booking_id');
+RequestRoute::POST(function() {
+    if (RequestRoute::PARAMGET('update')) {
+        $order_id = RequestRoute::PARAMPOST('order_id');
+        $booking_id = RequestRoute::PARAMPOST('booking_id');
+        $receipt = new Receipt;
         $reservation = new Reservation;
         $param = ['update' => 'payment', 'value' => $order_id];
         if ($receipt->update($param)) {
@@ -41,10 +41,10 @@ RequestRoute::PUT(function() {
         else
             return new Response(['data' => 'Something Went Wrong.'], 200);
     }
-    elseif(!empty(RequestRoute::PARAMPUT('is_serve'))) {
+    elseif(RequestRoute::PARAMGET('is_serve')) {
         $param = ['update' => 'ready', 'value' => $order_id];
         if ($receipt->update($param)) {
-           return new Response(['data' => 'Success'], 200);
+        return new Response(['data' => 'Success'], 200);
         }
         else
             return new Response(['data' => 'Something Went Wrong.'], 200);
@@ -52,7 +52,7 @@ RequestRoute::PUT(function() {
     else {
         $param = ['update' => 'process', 'value' => $order_id];
         if ($receipt->update($param)) {
-           return new Response(['data' => 'Success'], 200);
+        return new Response(['data' => 'Success'], 200);
         }
         else
             return new Response(['data' => 'Something Went Wrong.'], 200);

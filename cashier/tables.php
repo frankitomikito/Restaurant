@@ -1,5 +1,4 @@
 <?php include 'header.php'; 
-session_start();
 if (!isset($_SESSION['isLoggedIn'])) {
 	echo '<script>window.location="/login"</script>';
 } ?>
@@ -120,8 +119,8 @@ if (!isset($_SESSION['isLoggedIn'])) {
 							</h4>
 							<h3 class="order-price">₱ {{order.quantity * order.price}}</h3>
 						</div>
+						<hr>
 					</div>
-					<hr>
 					<div class="col-lg-12" style="text-align: left; margin-top: -1rem;">
 						<h4 style="font-weight: 700; color: black; display: inline-block;">Cash: </h4>
 						<input type="number" ng-model="cash" class="myInput-control"

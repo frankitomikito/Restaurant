@@ -1,7 +1,6 @@
 <?php include 'header.php';
-session_start();
 if (!isset($_SESSION['isLoggedIn'])) {
-    echo '<script>window.location="/login"</script>';
+    echo '<script>window.location="login.php"</script>';
 } ?>
 
 <body ng-app="chefApp">

@@ -8,7 +8,7 @@ module.service('ReceiptService', function($http) {
     });
     return $http({
       method: 'PUT',
-      url: 'http://localhost:8000/apis/receipt',
+      url: 'https://tak-angrestaurant.000webhostapp.com/apis/receipt',
       data: form_data,
       transformRequest: angular.identity,
       headers: { 'Content-Type': undefined }
@@ -24,7 +24,7 @@ module.service('ReceiptService', function($http) {
       });
       return $http({
         method: 'PUT',
-        url: 'http://localhost:8000/api/receipt.php',
+        url: 'https://tak-angrestaurant.000webhostapp.com/api/receipt.php',
         data: form_data,
         transformRequest: angular.identity,
         headers: { 'Content-Type': undefined }
@@ -80,7 +80,7 @@ module.controller('ModalController', ['$scope', 'ReceiptService', function(s, re
 function initDatatable() {
   $(document).ready(function() {
     table = $("#table_id").DataTable({
-      ajax: "http://localhost:8000/api/receipt.php?chef=true",
+      ajax: "https://tak-angrestaurant.000webhostapp.com/api/receipt.php?chef=true",
       dataSrc: "data",
       columns: [
         {
@@ -117,7 +117,7 @@ function initDatatable() {
 }
 
 async function getOrdersByTable($id) {
-  const response = await fetch('http://localhost:8000/api/order.php?tableId='+$id);
+  const response = await fetch('https://tak-angrestaurant.000webhostapp.com/api/order.php?tableId='+$id);
   if(response.ok) {
     return await response.json();
   }

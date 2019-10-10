@@ -45,7 +45,7 @@
 				$mail = new Mail;
 				$mail->setRecipients('Account Confirmation', 
 					'Hello '.$user->fullname.', please click this
-					 <a href="http://localhost:8000/admin/confirmation.php?code='.$code_generated.'">link</a> to confirm.',
+					 <a href="https://tak-angrestaurant.000webhostapp.com/admin/confirmation.php?code='.$code_generated.'">link</a> to confirm.',
 					 $user->email);
 				if ($mail->send()) 
 					return new Response(['status' => true], 200);

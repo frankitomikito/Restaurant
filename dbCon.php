@@ -2,9 +2,9 @@
 <?php 
 function connect($flag=TRUE){
 	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$dbName = "restaurant_v2";
+	$username = "id11174334_emmasama";
+	$password = "emmasama";
+	$dbName = "id11174334_restaurant";
 
 	// Create connection
 	if($flag){

@@ -5,7 +5,7 @@ module.service('confirmationService', function($http) {
         angular.forEach(data, (value, key) => {
             form_data.append(key, value);
         });
-        return $http.put('http://localhost:8000/api/user_code.php', form_data);
+        return $http.put('https://tak-angrestaurant.000webhostapp.com/api/user_code.php', form_data);
     }
 });
 module.controller('confirmationCtrl', ['$scope', 'confirmationService', function(s, service) {

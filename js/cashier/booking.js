@@ -5,7 +5,7 @@ initDatatable();
 function initDatatable() {
   $(document).ready(function() {
     table = $("#table_id").DataTable({
-      ajax: "http://localhost:8000/api/reservation.php?cashier=true",
+      ajax: "https://tak-angrestaurant.000webhostapp.com/api/reservation.php?cashier=true",
       dataSrc: "data",
       columns: [
         {
@@ -67,7 +67,7 @@ function initDatatable() {
 async function confirmBooking(data, table) {
   const form_data = new FormData();
   form_data.append('booking_id', data[0]);
-  await fetch("http://localhost:8000/api/reservation.php", {
+  await fetch("https://tak-angrestaurant.000webhostapp.com/api/reservation.php", {
     method: "PUT",
     body: form_data,
   }).then(async (result) => {

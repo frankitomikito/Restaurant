@@ -5,9 +5,9 @@ require_once('Interfaces/IDatabaseAction.php');
 class Database implements IDatabaseAction {
 
 	private $servername = "localhost";
-	private $username = "root";
-	private $password = "";
-	private $dbName = "restaurant_v2";
+	private $username = "id11174334_emmasama";
+	private $password = "emmasama";
+	private $dbName = "id11174334_restaurant";
 	private $conn;
 
 	public function rawQuery($query)

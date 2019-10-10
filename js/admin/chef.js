@@ -2,7 +2,7 @@ const module  = angular.module('chefApp', []);
 
 module.service('OrderService', function($http) {
     this.getOrders = (receipt_id) => {
-        return $http.get('http://localhost:8000/api/order.php?receipt_id='+receipt_id);
+        return $http.get('https://tak-angrestaurant.000webhostapp.com/api/order.php?receipt_id='+receipt_id);
     }
 });
 
@@ -18,7 +18,7 @@ module.controller('ModalController', ['$scope', 'OrderService', function(s, orde
 
     function setDataTableValue() {
         const table = $('#chef-datatable').DataTable({
-            ajax: 'http://localhost:8000/api/receipt.php?chef_cooked=true',
+            ajax: 'https://tak-angrestaurant.000webhostapp.com/api/receipt.php?chef_cooked=true',
             dataSrc: 'data',
             columns: [{
                     data: 0

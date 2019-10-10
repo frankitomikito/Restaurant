@@ -20,7 +20,7 @@ RequestRoute::POST(function() {
 
     $mail->setRecipients('Reset Password', 
 		'Hello '.$user->fullname.', please click this
-		<a href="http://localhost:8000/reset-password.php?code='.$code_generated.'">link</a> to reset your password.',
+		<a href="https://tak-angrestaurant.000webhostapp.com/reset-password.php?code='.$code_generated.'">link</a> to reset your password.',
         $user->email);
     if($mail->send())
         return new Response(['data' => 'Success'], 201);

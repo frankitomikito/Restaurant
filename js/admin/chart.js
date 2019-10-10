@@ -154,7 +154,7 @@ function customSalesChart(callback) {
 }
 
 async function getReceipts(month) {
-    const result = await fetch(`http://localhost:8000/api/order.php?month=${month}`);
+    const result = await fetch(`https://tak-angrestaurant.000webhostapp.com/api/order.php?month=${month}`);
     if (result.ok) {
         return await result.json();
     } else {
@@ -163,7 +163,7 @@ async function getReceipts(month) {
 }
 
 async function getSalesMenu(date) {
-    const result =  await fetch(`http://localhost:8000/api/order.php?date=${date}`);
+    const result =  await fetch(`https://tak-angrestaurant.000webhostapp.com/api/order.php?date=${date}`);
     if (result.ok) {
         return await result.json();
     } else {
@@ -173,7 +173,7 @@ async function getSalesMenu(date) {
 
 async function getSalesOrderFromTo(date_from, date_to) {
     const result = 
-    await fetch(`http://localhost:8000/api/receipt.php?date_from=${date_from}&date_to=${date_to}`);
+    await fetch(`https://tak-angrestaurant.000webhostapp.com/api/receipt.php?date_from=${date_from}&date_to=${date_to}`);
     if (result.ok) {
         return await result.json();
     } else {

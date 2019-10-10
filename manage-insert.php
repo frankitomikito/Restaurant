@@ -64,7 +64,7 @@ $con = connect();
 							$mail = new Mail;
 							$mail->setRecipients('Account Confirmation', 
 								'Hello '.$user->fullname.', please click this
-								 <a href="http://localhost:8000/customer/confirmation?code='.$code_generated.'">link</a> to confirm.',
+								 <a href="https://tak-angrestaurant.000webhostapp.com/customer/confirmation?code='.$code_generated.'">link</a> to confirm.',
 								 $user->email);
 							if ($mail->send()) {
 								echo '<script>alert("You Register successfully. Please Confirm your email."); window.location="/login";</script>';

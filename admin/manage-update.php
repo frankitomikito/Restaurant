@@ -35,15 +35,19 @@ else{
 
  if (isset($_FILES['image_path'])) {
     $target_dir = "item-image/";
-    $target_file = $target_dir . $_FILES['image_path']["name"];
-    if (move_uploaded_file($_FILES['image_path']['tmp_name'], $target_file))
-      $image_path = "image_path='".$_FILES['image_path']["name"]."',";
+    $image_name = $_FILES['image_path']["name"];
+    $target_file = $target_dir . $image_name;
+    if(!empty($image_name)) {
+      if (move_uploaded_file($_FILES['image_path']['tmp_name'], $target_file))
+        $image_path = "image_path='".$image_name."',";
+      else
+        $image_path = "image_path='".$image_name."',";
+    }
     else
-      $image_path = "image_path='".$_FILES['image_path']["name"]."',";
+      $image_path = '';
  }
- else {
+ else
    $image_path = '';
- }
 
 
  $query ="UPDATE tbl_menu SET name='$name', description='$description', servings='$servings', price='$price', $image_path category_id='$category_id', status='$status' WHERE menu_id= '$menu_id' ";

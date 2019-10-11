@@ -44,13 +44,14 @@ $con = connect();
 			        		VALUES ('$fullname','$username','$email','$password','$gender','$address','$role','$file_name','$status');";
 			        	if ($con->query($iquery) === TRUE) {
 
-							require_once('http/Mail/Mail.php');
+							require_once('dbconfig.php');
 							require_once('Models/UserCode.php');
 							require_once('Models/User.php');
 							require_once('http/RequestRoute.php');
 							require_once 'vendor/phpmailer/phpmailer/src/Exception.php';
 							require_once 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
 							require_once 'vendor/phpmailer/phpmailer/src/SMTP.php';
+							require_once('http/Mail/Mail.php');
 
 							$user = new User;
 							$user = $user->search([

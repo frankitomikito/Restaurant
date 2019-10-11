@@ -67,8 +67,8 @@ function initDatatable() {
 async function confirmBooking(data, table) {
   const form_data = new FormData();
   form_data.append('booking_id', data[0]);
-  await fetch(`${RequestPath.getPath()}/api/reservation.php`, {
-    method: "PUT",
+  await fetch(`${RequestPath.getPath()}/api/reservation.php?update=true`, {
+    method: "POST",
     body: form_data,
   }).then(async (result) => {
     const result_json = await result.json();

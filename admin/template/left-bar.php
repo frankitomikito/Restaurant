@@ -55,7 +55,7 @@
 							</ul>
 						</li>
 					<?php } ?>
-					<?php if ((isset($_SESSION['isLoggedIn']) && $_SESSION['role'] == 1)) { ?>
+					<!-- <?php if ((isset($_SESSION['isLoggedIn']) && $_SESSION['role'] == 1)) { ?>
 						<li class="nav-parent">
 							<a>
 								<i class="fas fa-utensils-alt" aria-hidden="true"></i>
@@ -78,7 +78,7 @@
 								</li>
 							</ul>
 						</li>
-					<?php } ?>
+					<?php } ?> -->
 					<?php if ((isset($_SESSION['isLoggedIn']) && $_SESSION['role'] == 1)) { ?>
 						<li class="nav-parent">
 							<a>

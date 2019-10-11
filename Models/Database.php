@@ -1,7 +1,7 @@
 <?php 
 
 require_once('Interfaces/IDatabaseAction.php');
-require_once('../dbconfig.php');
+include_once('../dbconfig.php');
 
 class Database implements IDatabaseAction {
 

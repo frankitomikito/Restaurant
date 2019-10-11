@@ -1,6 +1,6 @@
 $(document).ready(function() {
     const table = $('#table_id').DataTable({
-                    ajax: 'https://tak-angrestaurant.000webhostapp.com/api/reservation.php?datatable=true',
+                    ajax: `${RequestPath.getPath()}/api/reservation.php?datatable=true`,
                     dataSrc: 'data',
                     columns: [{
                             data: 0
@@ -54,7 +54,7 @@ $(document).ready(function() {
 async function cancelBooking(data, table) {
   const form_data = new FormData();
   form_data.append('booking_id', data[0]);
-  await fetch("https://tak-angrestaurant.000webhostapp.com/api/reservation.php?cancel=true", {
+  await fetch(`${RequestPath.getPath()}/api/reservation.php?cancel=true`, {
     method: "POST",
     body: form_data,
   }).then(async (result) => {

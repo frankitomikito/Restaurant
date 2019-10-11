@@ -65,7 +65,8 @@
         </div>
     </div>
     
-	<script src="../js/angular.js"></script>
+    <script src="../js/angular.js"></script>
+    <script src="../js/requestpath.js"></script>
     <script src="../js/employee/AngularJS/confirmationctrl.js"></script>
 </body>
 </html>

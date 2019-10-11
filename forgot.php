@@ -37,7 +37,8 @@
         </div>
     </div>
     
-	<script src="../js/angular.js"></script>
+    <script src="../js/angular.js"></script>
+    <script src="../js/requestpath.js"></script>
     <script src="../js/account/forgot-password.js"></script>
 </body>
 </html>

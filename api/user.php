@@ -8,6 +8,7 @@
 	require_once('../http/Mail/Mail.php');
 	require_once('../Models/UserCode.php');
 	require_once('../Models/ImageUploader.php');
+	require_once('../dbconfig.php');
 
 	RequestRoute::GET(function() {
 		$user = new User;
@@ -68,7 +69,7 @@
 					$mail = new Mail;
 					$mail->setRecipients('Account Confirmation', 
 						'Hello '.$user->fullname.', please click this
-						<a href="https://tak-angrestaurant.000webhostapp.com/admin/confirmation.php?code='.$code_generated.'">link</a> to confirm.',
+						<a href="'.RequestPath::PATH.'/admin/confirmation.php?code='.$code_generated.'">link</a> to confirm.',
 						$user->email);
 					if ($mail->send()) 
 						return new Response(['status' => true], 200);

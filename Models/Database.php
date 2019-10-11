@@ -1,13 +1,14 @@
 <?php 
 
 require_once('Interfaces/IDatabaseAction.php');
+require_once('../dbconfig.php');
 
 class Database implements IDatabaseAction {
 
-	private $servername = "localhost";
-	private $username = "id11174334_emmasama";
-	private $password = "emmasama";
-	private $dbName = "id11174334_restaurant";
+	private $servername = DbConfig::SERVER;
+	private $username = DbConfig::USERNAME;
+	private $password = DbConfig::PASSWORD;
+	private $dbName = DbConfig::DBNAME;
 	private $conn;
 
 	public function rawQuery($query)

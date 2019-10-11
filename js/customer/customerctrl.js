@@ -8,13 +8,13 @@ module.factory('OrderFactory', function() {
 
 module.service('MenuService', ['$http', function(h) {
     this.getMenus = () => {
-        return h.get('https://tak-angrestaurant.000webhostapp.com/api/menu.php');
+        return h.get(`${RequestPath.getPath()}/api/menu.php`);
     }
 }]);
 
 module.service('ReservationService', function($http) {
     this.getReservation = () => {
-        return $http.get('https://tak-angrestaurant.000webhostapp.com/api/reservation.php')
+        return $http.get(`${RequestPath.getPath()}/api/reservation.php`)
     }
 });
 
@@ -30,7 +30,7 @@ module.service('OrderService', function($http) {
         });
         return $http({
             method: 'POST',
-            url: 'https://tak-angrestaurant.000webhostapp.com/api/order.php',
+            url: `${RequestPath.getPath()}/api/order.php`,
             data: form_data,
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }

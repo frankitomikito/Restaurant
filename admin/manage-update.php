@@ -1,6 +1,7 @@
 <?php
-$connection = mysqli_connect("localhost","id11174334_emmasama","emmasama");
-$db = mysqli_select_db($connection, 'id11174334_restaurant');
+require_once('../dbconfig.php');
+$connection = mysqli_connect(DbConfig::SERVER, DbConfig::USERNAME,DbConfig::PASSWORD);
+$db = mysqli_select_db($connection, DbConfig::DBNAME);
 
 if(isset($_POST['updatedata']))
 {

@@ -7,7 +7,7 @@ module.service('confirmationService', function($http) {
         });
         return $http({
             method: 'PUT',
-            url: 'https://tak-angrestaurant.000webhostapp.com/api/resetpassword.php',
+            url: `${RequestPath.getPath()}/api/resetpassword.php`,
             data: form_data,
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }

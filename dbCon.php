@@ -1,10 +1,12 @@
 <!-- dbCon.php -->
 <?php 
+require_once('dbconfig.php');
+
 function connect($flag=TRUE){
-	$servername = "localhost";
-	$username = "id11174334_emmasama";
-	$password = "emmasama";
-	$dbName = "id11174334_restaurant";
+	$servername = DbConfig::SERVER;
+	$username = DbConfig::USERNAME;
+	$password = DbConfig::PASSWORD;
+	$dbName = DbConfig::DBNAME;
 
 	// Create connection
 	if($flag){

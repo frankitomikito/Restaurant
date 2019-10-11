@@ -99,6 +99,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<script src="../libraries/moment.js"></script>
 	<script src="../js/employee/myCard.js"></script>
+	<script src="../js/requestpath.js"></script>
 	<script src="../js/admin/chart.js"></script>
 </body>
 

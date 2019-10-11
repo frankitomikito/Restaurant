@@ -1,5 +1,5 @@
 async function reloadTable() {
-    let response = await fetch('https://tak-angrestaurant.000webhostapp.com/api/user.php?returnType=datatable');
+    let response = await fetch(`${RequestPath.getPath()}/api/user.php?returnType=datatable`);
     if (response.ok) {
         let json = await response.json();
         table.rows().invalidate(json)
@@ -43,7 +43,7 @@ module.service('userService', ['$http', function(h) {
         });
         return h({
             method: 'POST',
-            url: 'https://tak-angrestaurant.000webhostapp.com/api/user.php',
+            url: `${RequestPath.getPath()}/api/user.php`,
             data: formdata,
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }
@@ -57,7 +57,7 @@ module.service('userService', ['$http', function(h) {
         });
         return h({
             method: 'POST',
-            url: 'https://tak-angrestaurant.000webhostapp.com/api/user.php?update=true',
+            url: `${RequestPath.getPath()}/api/user.php?update=true`,
             data: formdata,
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }
@@ -152,7 +152,7 @@ module.controller('modalCtrl', ['$scope', 'userService', function(s, user_servic
     }
 
     async function setDataTableValue() {
-        let response = await fetch('https://tak-angrestaurant.000webhostapp.com/api/user.php?returnType=datatable');
+        let response = await fetch(`${RequestPath.getPath()}/api/user.php?returnType=datatable`);
         if (response.ok) {
             let json = await response.json();
             changeIntegerToText(json);

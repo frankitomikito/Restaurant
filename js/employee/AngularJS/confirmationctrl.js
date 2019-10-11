@@ -7,7 +7,7 @@ module.service('confirmationService', function($http) {
         });
         return $http({
             method: 'POST',
-            url: 'https://tak-angrestaurant.000webhostapp.com/api/user_code.php',
+            url: `${RequestPath.getPath()}/api/user_code.php`,
             data: form_data,
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }

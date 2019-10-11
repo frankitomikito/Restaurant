@@ -140,6 +140,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 	<?php include 'script-res.php' ?>
 	<script src="../js/angular.js"></script>
 	<script src="../js/employee/classes/Modal.js"></script>
+	<script src="../js/requestpath.js"></script>
 	<script src="../js/cashier/tables.js"></script>
 
 </body>

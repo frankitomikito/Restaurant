@@ -95,6 +95,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
     <!-- <script src="../build/admin/bundle.min.js"></script> -->
     <script src="../js/employee/classes/Users.js"></script>
     <script src="../js/employee/classes/Modal.js"></script>
+	<script src="../js/requestpath.js"></script>
     <script src="../js/angular.js"></script>
     <script src="../libraries/moment.js"></script>
     <script src="../js/admin/chef.js"></script>

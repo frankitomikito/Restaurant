@@ -102,6 +102,7 @@ if (isset($_SESSION['id'])) {
   <script src="../libraries/moment.js"></script>
   <script src="../js/angular.js"></script>
   <script src="../js/employee/classes/Modal.js"></script>
+  <script src="../js/requestpath.js"></script>
 	<script src="../js/customer/ordersctrl.js"></script>
 
 </body>

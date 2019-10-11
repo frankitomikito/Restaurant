@@ -8,7 +8,7 @@ module.service('ReceiptService', function($http) {
     });
     return $http({
       method: 'POST',
-      url: 'https://tak-angrestaurant.000webhostapp.com/api/receipt.php?payment=true',
+      url: `${RequestPath.getPath()}/api/receipt.php?payment=true`,
       data: form_data,
       transformRequest: angular.identity,
       headers: { 'Content-Type': undefined }
@@ -84,7 +84,7 @@ module.controller('ModalController', ['$scope', 'ReceiptService', function(s, re
 function initDatatable() {
   $(document).ready(function() {
     table = $("#table_id").DataTable({
-      ajax: "https://tak-angrestaurant.000webhostapp.com/api/table.php?datatable=true",
+      ajax: `${RequestPath.getPath()}/api/table.php?datatable=true`,
       dataSrc: "data",
       columns: [
         {
@@ -123,7 +123,7 @@ function initDatatable() {
 }
 
 async function getTableStatus(callback) {
-  const response = await fetch('https://tak-angrestaurant.000webhostapp.com/api/table.php');
+  const response = await fetch(`${RequestPath.getPath()}/api/table.php`);
   if(response.ok) {
     table_status = (await response.json()).data;
     callback();
@@ -131,7 +131,7 @@ async function getTableStatus(callback) {
 }
 
 async function getOrdersByTable($id) {
-  const response = await fetch('https://tak-angrestaurant.000webhostapp.com/api/order.php?tableId='+$id);
+  const response = await fetch(`${RequestPath.getPath()}/api/order.php?tableId=`+$id);
   if(response.ok) {
     return await response.json();
   }

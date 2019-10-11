@@ -180,24 +180,11 @@ if (!isset($_SESSION['isLoggedIn'])) {
 																	?>
 
 																<div class="form-group">
-																	<label class="control-label">Category</label>
-																	<select data-plugin-selectTwo class="form-control populate" name="category_id" id="category_id" value="<?php echo $r['category_id']; ?>" required="">
-																		<?php
-																			while ($rows = $resultSet->fetch_assoc()) {
-																				$category_id = $rows['category_id'];
-																				echo "<option value='$category_id'>$category_id</option>";
-																			}
-																			?>
-																	</select>
-
 																	<label for="status">Status</label>
 																	<select name="status" id="status" value="<?php echo $r['status']; ?>">
 																		<option value="1">Available</option>
 																		<option value="0">Unavailable</option>
 																	</select>
-
-
-
 																	<!-- <input type="text" class="form-control" id="status" placeholder="Status"> -->
 																</div>
 

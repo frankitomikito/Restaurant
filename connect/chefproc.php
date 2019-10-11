@@ -10,9 +10,8 @@ $conn = mysqli_connect($server_name,$mysql_user,$mysql_pass,$db_name);
 		die();
 	}
 
-    $status = 1 ;
 
-	$stmt = $conn->prepare("SELECT order_id,date_ordered,table_id,status FROM tbl_receipt WHERE status = '1' OR status = '2';");
+	$stmt = $conn->prepare("SELECT order_id,date_ordered,table_id,status FROM tbl_receipt WHERE status = '1' OR status = '2' OR status = '3';");
 	
 	$stmt->execute();
 

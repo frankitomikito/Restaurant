@@ -2,21 +2,23 @@
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-$check_in = $_POST['check_in'];	
-$user_id = $_POST['user_id'];
-$status = 3 ;
+$chef_id = $_POST['chef_id'];
+$order_id = $_POST['order_id'];
 
 require_once 'conn.php';
 
-$sql = " INSERT INTO tbl_booking(check_in,user_id,status)
-	VALUES('$check_in','$user_id','$status')";
-	
+$sql = "UPDATE tbl_receipt SET chef_id='$chef_id' WHERE order_id = '$order_id'";
+
 if(mysqli_query($conn,$sql)){
+	
+	
 	$result["success"] = "1";
 	$result["message"] = "success";
 	echo json_encode($result);
-	mysqli_close($conn);	
-}	
+	mysqli_close($conn);
+	
+}
+		
 }
 else{
 	$result["success"] = "0";

@@ -2,15 +2,15 @@
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
 	
-	$User_ID = $_POST['user_id'] ;
+	$status = $_POST['status'] ;
 	$table_id = $_POST['table_id'];
 	require_once 'conn.php';
-	$sql = "SELECT * FROM tbl_receipt WHERE table_id ='$table_id' AND status = '1' ";
+    	$sql = "SELECT * FROM tbl_receipt WHERE table_id ='$table_id' AND status = '$status' ";
 
 	$response = mysqli_query($conn,$sql);
 	$result = array();
 	
-	$result['Data'] = array();
+	$result['read'] = array();
 
 	if(mysqli_num_rows($response)=== 1){
 	    
@@ -24,13 +24,18 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 			$in['table_id'] = $row['table_id'];
 			$in['status'] = $row['status'];
 		
-			array_push($result["Data"],  $in);
+			array_push($result["read"],  $in);
 			$result["success"] = "1";
-			echo json_encode($result);	
-		    
+			echo json_encode($result);
+			
+			
 		}
-	}	
+	}
+	
+	
 }else{
+	
+	
 	$result["success"] = "0";
 	$result["message"] = "Error";
 	echo json_encode($result);

@@ -9,11 +9,12 @@ $discount = 0 ;
 $user_id = $_POST['user_id'];
 $table_id = $_POST['table_id'];
 $status = 1 ;
+$chef_id = $_POST['chef_id'];
 
 require_once 'conn.php';
 	
-$sql= " insert into tbl_receipt (date_ordered,total,discount,user_id,table_id,status) 
-values('$date_ordered','$total','$discount','$user_id','$table_id','$status')";	
+$sql= " insert into tbl_receipt (date_ordered,total,discount,user_id,table_id,chef_id,status) 
+values('$date_ordered','$total','$discount','$user_id','$table_id','$chef_id','$status')";	
 
 if(mysqli_query($conn,$sql)){
     

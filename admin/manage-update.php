@@ -29,15 +29,27 @@ else{
  $description = $_POST['description'];
  $servings = $_POST['servings'];
  $price = $_POST['price'];
- $image_path = $_POST['image_path'];
+ $image_path = $_FILES['image_path'];
  $category_id = $_POST['category_id'];
  $status = $_POST['status'];
 
- $query ="UPDATE tbl_menu SET name='$name', description='$description', servings='$servings', price='$price', image_path='$image_path', category_id='$category_id', status='$status' WHERE menu_id= '$menu_id' ";
+ if (isset($_FILES['image_path'])) {
+    $target_dir = "item-image/";
+    $target_file = $target_dir . $_FILES['image_path']["name"];
+    if (move_uploaded_file($_FILES['image_path']['tmp_name'], $target_file))
+      $image_path = "image_path='".$_FILES['image_path']["name"]."',";
+    else
+      $image_path = "image_path='".$_FILES['image_path']["name"]."',";
+ }
+ else {
+   $image_path = '';
+ }
+
+
+ $query ="UPDATE tbl_menu SET name='$name', description='$description', servings='$servings', price='$price', $image_path category_id='$category_id', status='$status' WHERE menu_id= '$menu_id' ";
  $query_run = mysqli_query($connection, $query);
 
  if($query_run){
-echo '<script> alert ("Data Updated"); </script>';
 echo '<script> alert ("Data Updated"); window.location.href="menu-list.php" </script>';
  }
 else{

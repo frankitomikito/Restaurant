@@ -1,8 +1,10 @@
 
 <?php
-$db_name = "id11028263_restaurantfinal";
-$mysql_username = "id11028263_anvic1998";
-$mysql_password = "anvic123";
-$server_name = "localhost";
+require_once('../dbconfig.php');
+
+$db_name = DbConfig::DBNAME;
+$mysql_username = DbConfig::USERNAME;
+$mysql_password = DbConfig::PASSWORD;
+$server_name = DbConfig::SERVER;
 $conn = mysqli_connect($server_name, $mysql_username, $mysql_password, $db_name);
 ?>

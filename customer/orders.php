@@ -25,7 +25,7 @@ if (isset($_SESSION['id'])) {
       <div class="container">
         <div class="row slider-text align-items-center justify-content-center">
           <div class="col-md-10 col-sm-12 ftco-animate text-center" style="padding-bottom: 25%;">
-            <p class="breadcrumbs"><span class="mr-2"><a href="/">Home</a></span> <span>Orders</span></p>
+            <p class="breadcrumbs"><span class="mr-2"><a href="../index.php">Home</a></span> <span>Orders</span></p>
             <h1 class="mb-3">My Orders</h1>
           </div>
         </div>

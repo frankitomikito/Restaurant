@@ -41,7 +41,7 @@ include 'header.php'; ?>
             <div class="container">
                 <div class="row slider-text align-items-center justify-content-center">
                     <div class="col-md-10 col-sm-12 ftco-animate text-center" style="padding-bottom: 25%;">
-                        <p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span>Tables</span></p>
+                        <p class="breadcrumbs"><span class="mr-2"><a href="../index.php">Home</a></span> <span>Tables</span></p>
                         <h1 class="mb-3">Reservation</h1>
                     </div>
                 </div>

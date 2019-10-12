@@ -1,4 +1,6 @@
 <?php
+    error_reporting(E_ERROR | E_PARSE);
+    require_once('dbconfig.php');
     require_once('Models/UserCode.php');
     require_once('http/RequestRoute.php');
 

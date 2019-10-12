@@ -103,7 +103,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 										<td><?php echo $r['name']; ?></td>
 										<td><?php echo $r['description']; ?></td>
 										<td><?php echo $r['servings']; ?></td>
-										<td>₱<?php echo $r['price']; ?></td>
+										<td><?php echo $r['price']; ?></td>
 										<td class="center hidden-phone">
 											<figure class="image rounded">
 												<img style="height: 50px;width: 50px;border-radius: 10px;    border: 1px solid darkgray;" src="item-image/<?php echo $r['image_path']; ?>" alt="No Image">
@@ -135,7 +135,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 
 
 														<!-- ajhbsjhvukehjnkjqbdkhubqnckmzxbchubefkqnejqlnnjnhsvv -->
-														<form action="manage-update.php" method="POST"  enctype="multipart/form-data">
+														<form action="manage-update.php" method="POST" enctype="multipart/form-data">
 															<!-- ajhbsjhvukehjnkjqbdkhubqnckmzxbchubefkqnejqlnnjnhsvv -->
 
 
@@ -176,15 +176,15 @@ if (!isset($_SESSION['isLoggedIn'])) {
 																<div class="form-group">
 																	<label class="control-label">Category</label>
 																	<select name="category_id" id="category_id" required="">
-																		<option value="1" <?php if($r['category_id'] == 1) echo 'selected' ?>>Main Dish</option>
-																		<option value="2" <?php if($r['category_id'] == 2) echo 'selected' ?>>Dessert</option>
-																		<option value="3" <?php if($r['category_id'] == 3) echo 'selected' ?>>Drinks</option>
-																		<option value="4" <?php if($r['category_id'] == 1) echo 'selected' ?>>Special</option>
+																		<option value="1" <?php if ($r['category_id'] == 1) echo 'selected' ?>>Main Dish</option>
+																		<option value="2" <?php if ($r['category_id'] == 2) echo 'selected' ?>>Dessert</option>
+																		<option value="3" <?php if ($r['category_id'] == 3) echo 'selected' ?>>Drinks</option>
+																		<option value="4" <?php if ($r['category_id'] == 1) echo 'selected' ?>>Special</option>
 																	</select>
 																	<label for="status">Status</label>
 																	<select name="status" id="status" required="">
-																		<option value="1" <?php if($r['status'] == 1) echo 'selected' ?>>Available</option>
-																		<option value="0" <?php if($r['status'] == 0) echo 'selected' ?>>Unavailable</option>
+																		<option value="1" <?php if ($r['status'] == 1) echo 'selected' ?>>Available</option>
+																		<option value="0" <?php if ($r['status'] == 0) echo 'selected' ?>>Unavailable</option>
 																	</select>
 																</div>
 

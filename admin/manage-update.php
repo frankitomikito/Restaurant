@@ -87,17 +87,40 @@ else{
   $username = $_POST['username'];
   $email = $_POST['email'];
   $password = $_POST['password'];
+  $old_password = $_POST['old_password'];
   $gender = $_POST['gender'];
   $address = $_POST['address'];
-  $position = $_POST['position'];
-  $image_path = $_POST['image_path'];
+  $image_path = $_FILES['image_path'];
   $status = $_POST['status'];
 
+  if ($old_password !== $password) {
+    $password = password_hash($password, PASSWORD_DEFAULT);
+  }
+
+  $image_new = '';
+  if (isset($_FILES['image_path'])) {
+    $target_dir = "../images/profile/";
+    $image_name = $_FILES['image_path']["name"];
+    $target_file = $target_dir . $image_name;
+    if(!empty($image_name)) {
+      move_uploaded_file($_FILES['image_path']['tmp_name'], $target_file);
+      $image_path = "image_path='images/profile/".$image_name."',";
+      $image_new = 'images/profile/'.$image_name;
+    }
+    else
+      $image_path = '';
+ }
+ else
+   $image_path = '';
  
-  $query ="UPDATE tbl_user SET fullname='$fullname', username='$username', email='$email', password='$password', gender='$gender', address='$address', position='$position', image_path='$image_path', status='$status' WHERE user_id= '$user_id' ";
+  $query ="UPDATE tbl_user SET fullname='$fullname', username='$username', email='$email', password='$password', gender='$gender', address='$address', $image_path status='$status' WHERE user_id= '$user_id' ";
   $query_run = mysqli_query($connection, $query);
  
   if($query_run){
+    session_start();
+    $_SESSION['name'] = $fullname;
+    if (!empty($image_path)) $_SESSION['image_path'] = $image_new;
+
     echo '<script> alert ("Data Updated"); window.location.href="profile.php" </script>';
   }
  else{

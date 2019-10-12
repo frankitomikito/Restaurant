@@ -18,7 +18,7 @@
 					<div id="userbox" class="userbox">
 						<a href="#" data-toggle="dropdown">
 							<figure class="profile-picture">
-								<img src="../<?php echo $_SESSION['image_path'] ?>" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
+								<img src="../<?php echo $_SESSION['image_path'] ?>" alt="Joseph Doe" class="img-circle" style="height: 4rem; width: 4rem;" data-lock-picture="assets/images/!logged-user.jpg" />
 							</figure>
 							<div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@JSOFT.com">
 								<span class="name"><?php echo $_SESSION['name']; ?></span>

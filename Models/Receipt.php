@@ -110,4 +110,16 @@ class Receipt extends Database implements IActions {
         return $this->convertResultToDatatableArray($result);
     }
 
+    public function getCustomerDetailsByTableId($table_id) {
+        $result = $this->rawQuery('SELECT tu.fullname, tu.address, tr.date_ordered FROM tbl_booking AS tb
+        INNER JOIN tbl_booked_table AS tbt ON tbt.booking_id = tb.booking_id
+        INNER JOIN tbl_receipt AS tr ON tr.user_id = tb.user_id AND tr.status != 0  AND tr.table_id = '.$table_id.'
+        INNER JOIN tbl_user AS tu ON tu.user_id = tr.user_id
+        WHERE tb.status = 1');
+        if ($result->num_rows > 0)
+            return $result->fetch_object();
+        else
+            return null;
+    }
+
 }

@@ -24,6 +24,7 @@ module.controller('ModalController', ['$scope', 'ReceiptService', function(s, re
   s.totalprice = 0;
   s.cash = 0;
   s.orders = [];
+  s.customer_info = {};
   
   getTableStatus(() => {
     initDatatable();
@@ -115,7 +116,10 @@ function initDatatable() {
     $("#table_id tbody").on("click", "tr", async function() {
       var data = table.row(this).data();
       booking_id = data[0];
-      s.orders = await getOrdersByTable(data[0]);
+      const result =  await getOrdersAndCustomerByTable(data[0]);
+      s.orders = result.orders;
+      s.customer_info = result.customer_info ? result.customer_info : {};
+      s.customer_info.date_ordered = moment(s.customer_info.date_ordered).format('MMMM DD, YYYY');
       s.$apply();
       ModalController.showModal();
     });
@@ -130,7 +134,7 @@ async function getTableStatus(callback) {
   }
 }
 
-async function getOrdersByTable($id) {
+async function getOrdersAndCustomerByTable($id) {
   const response = await fetch(`${RequestPath.getPath()}/api/order.php?tableId=`+$id);
   if(response.ok) {
     return await response.json();

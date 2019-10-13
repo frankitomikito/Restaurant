@@ -1,0 +1,88 @@
+.receipt {
+    border: 1px solid black;
+    padding: 10px;
+    margin-top: 1px;
+    width: 100%;
+
+    &-header {
+        .company-name {
+            color: black;
+            text-align: center;
+            font-weight: bold;
+            display: block;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .customer-name, .customer-address, .order-date {
+            color: black;
+            margin-top: 10px;
+            label {
+                font-size: 17px;
+                font-weight: 700;
+                margin: 0;
+                padding: 0;
+            }
+            
+            p {
+                font-size: 17px;
+                margin: 0;
+                padding: 0 0 0 5px;
+            }
+        }
+    }
+
+    &-body {
+        .order {
+            position: relative;
+            color: black;
+            width: 100%;
+
+            &:not(:last-child) {
+                margin-bottom: 10px;
+            }
+            
+            .order-name {
+                font-weight: 700;
+                margin: 0;
+                padding: 0;
+            }
+            .order-quantity {
+                position: absolute;
+                width: 120px;
+                top: -10px;
+                right: 120px;
+                text-align: center;
+            }
+            .order-price {
+                position: absolute;
+                top: -10px;
+                width: 120px;
+                right: 0;
+                text-align: center;
+            }
+        }
+    }
+
+    &-footer {
+        width: 100%;
+        color: black;
+        .price {
+            text-align: right;
+            margin: 0 20px 0 0;
+            padding: 0;
+            font-weight: bold;
+
+            &:not(:last-child) {
+                margin-bottom: 5px;
+            }
+        }
+    }
+
+    hr {
+        background-color: black;
+        height: 2px;
+        width: 100%;
+        margin: 10px 0;
+    }
+}

@@ -94,7 +94,8 @@ function initDatatable() {
       var data = table.row(this).data();
       s.button_label = data[2] == '2' ? 'Ready' : 'Processing';
       is_serve = data[2] == '2' ? true : false;
-      s.orders = await getOrdersByTable(data[0]);
+      const result = await getOrdersByTable(data[0]);
+      s.orders = result.orders;
       s.$apply();
       ModalController.showModal();
     });

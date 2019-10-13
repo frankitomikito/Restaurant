@@ -1,30 +1,15 @@
 const module = angular.module('cashierApp', []);
 
 module.service('ReceiptService', function($http) {
-  this.pay = (data) => {
-    const form_data = new FormData();
-    angular.forEach(data, (value, key) => {
-      form_data.append(key, value);
-    });
-    return $http({
-      method: 'PUT',
-      url: 'http://localhost:8000/apis/receipt',
-      data: form_data,
-      transformRequest: angular.identity,
-      headers: { 'Content-Type': undefined }
-    });
-  }
-});
-
-module.service('ReceiptService', function($http) {
     this.pay = (data) => {
       const form_data = new FormData();
       angular.forEach(data, (value, key) => {
         form_data.append(key, value);
       });
+      const url_ext = data.is_serve ? '?is_serve=true' : '';
       return $http({
-        method: 'PUT',
-        url: 'http://localhost:8000/apis/receipt',
+        method: 'POST',
+        url: `${RequestPath.getPath()}/api/receipt.php${url_ext}`,
         data: form_data,
         transformRequest: angular.identity,
         headers: { 'Content-Type': undefined }
@@ -80,7 +65,7 @@ module.controller('ModalController', ['$scope', 'ReceiptService', function(s, re
 function initDatatable() {
   $(document).ready(function() {
     table = $("#table_id").DataTable({
-      ajax: "http://localhost:8000/apis/receipt?chef=true",
+      ajax: `${RequestPath.getPath()}/api/receipt.php?chef=true`,
       dataSrc: "data",
       columns: [
         {
@@ -107,7 +92,7 @@ function initDatatable() {
 
     $("#table_id tbody").on("click", "tr", async function() {
       var data = table.row(this).data();
-      s.button_label = data[2] == '2' ? 'Serve' : 'Processing';
+      s.button_label = data[2] == '2' ? 'Ready' : 'Processing';
       is_serve = data[2] == '2' ? true : false;
       s.orders = await getOrdersByTable(data[0]);
       s.$apply();
@@ -117,7 +102,7 @@ function initDatatable() {
 }
 
 async function getOrdersByTable($id) {
-  const response = await fetch('http://localhost:8000/apis/order?tableId='+$id);
+  const response = await fetch(`${RequestPath.getPath()}/api/order.php?tableId=${$id}`);
   if(response.ok) {
     return await response.json();
   }

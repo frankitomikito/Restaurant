@@ -1,13 +1,14 @@
 <?php 
 
 require_once('Interfaces/IDatabaseAction.php');
+include_once('../dbconfig.php');
 
 class Database implements IDatabaseAction {
 
-	private $servername = "localhost";
-	private $username = "root";
-	private $password = "";
-	private $dbName = "restaurant_v2";
+	private $servername = DbConfig::SERVER;
+	private $username = DbConfig::USERNAME;
+	private $password = DbConfig::PASSWORD;
+	private $dbName = DbConfig::DBNAME;
 	private $conn;
 
 	public function rawQuery($query)
@@ -31,20 +32,28 @@ class Database implements IDatabaseAction {
 	}
 
 	public function convertResultToJson($result) {
-		$array = Array();
-		while($row = $result->fetch_object()) {
-			$array[] = $row;
+		if ($result->num_rows > 0) {
+			$array = Array();
+			while($row = $result->fetch_object()) {
+				$array[] = $row;
+			}
+			return $array;
 		}
-		return $array;
+		else
+			return [];
 	}
 
 	public function convertResultToDatatableArray($result) {
-		$array = Array();
-		while($row = $result->fetch_all()) {
-			for ($i=0; $i < sizeof($row); $i++) { 
-				$array[] = $row[$i];
+		if ($result->num_rows > 0) {
+			$array = Array();
+			while($row = $result->fetch_all()) {
+				for ($i=0; $i < sizeof($row); $i++) { 
+					$array[] = $row[$i];
+				}
 			}
+			return $array;
 		}
-		return $array;
+		else 
+			return [];
 	}
 }

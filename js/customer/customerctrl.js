@@ -8,13 +8,13 @@ module.factory('OrderFactory', function() {
 
 module.service('MenuService', ['$http', function(h) {
     this.getMenus = () => {
-        return h.get('http://localhost:8000/apis/menu');
+        return h.get(`${RequestPath.getPath()}/api/menu.php`);
     }
 }]);
 
 module.service('ReservationService', function($http) {
     this.getReservation = () => {
-        return $http.get('http://localhost:8000/apis/reservation')
+        return $http.get(`${RequestPath.getPath()}/api/reservation.php`)
     }
 });
 
@@ -30,7 +30,7 @@ module.service('OrderService', function($http) {
         });
         return $http({
             method: 'POST',
-            url: 'http://localhost:8000/apis/order',
+            url: `${RequestPath.getPath()}/api/order.php`,
             data: form_data,
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }
@@ -72,7 +72,7 @@ module.controller('ModalController', ['$scope', 'OrderFactory', 'OrderService', 
             result => {
                 if (result.status == 201) {
                     alert('Order Submitted Successfully!');
-                    window.location.href = "/customer/orders";
+                    window.location.href = "customer/orders.php";
                 } else {
                     alert('Something went wrong, Try Again.');
                 }

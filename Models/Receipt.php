@@ -2,7 +2,6 @@
 
 require_once('Database.php');
 require_once('Interfaces/IActions.php');
-require_once('http/RequestRoute.php');
 
 class Receipt extends Database implements IActions {
     public function get($id){
@@ -42,20 +41,29 @@ class Receipt extends Database implements IActions {
                 }
             case 'process':
                 try {
-                    $this->rawQuery('update tbl_receipt set status = 2 where order_id = '.$args['value']);
+                    $this->rawQuery('update tbl_receipt set status = 2, chef_id = 
+                    '.$_SESSION['id'].' where order_id = '.$args['value']);
                     return true;
                 } catch (\Throwable $th) {
                     return false;
                 }
-            case 'serve':
+            case 'ready':
                try {
                     $this->rawQuery('update tbl_receipt set status = 3 where order_id = '.$args['value']);
                     return true;
                 } catch (\Throwable $th) {
                     return false;
                 }
+            case 'price':
+                $result = $this->rawQuery('SELECT SUM(tor.quantity * tm.price) AS total FROM tbl_receipt AS tr
+                INNER JOIN tbl_order AS tor ON tor.order_id = tr.order_id
+                INNER JOIN tbl_menu AS tm ON tm.menu_id = tor.menu_id
+                WHERE tr.order_id = '.$args['value'])->fetch_assoc();
+                $this->rawQuery('UPDATE tbl_receipt SET total = '.$result['total'].'
+                 WHERE order_id = '.$args['value']);
+                return true;
             default:
-                break;
+                return false;
         }
     }
 
@@ -64,16 +72,41 @@ class Receipt extends Database implements IActions {
     }
 
 	public function search($args){
-        $result = $this->rawQuery('SELECT tr.date_ordered, tr.total, tr.discount FROM tbl_receipt AS tr 
-        INNER JOIN tbl_table AS tb ON tb.table_id = tr.table_id WHERE MONTHNAME(tr.date_ordered) = "'.$args.'" 
-        AND tr.status = 0');
-        return $this->convertResultToJson($result);
+        switch ($args['search']) {
+            case 'receipt_status':
+                $result = $this->rawQuery('SELECT tr.order_id, tor.order_item_id, tor.menu_id, tor.quantity FROM tbl_receipt AS tr
+                INNER JOIN tbl_order AS tor ON tor.order_id = tr.order_id
+                WHERE tr.status = 1 AND tr.user_id = '.$_SESSION['id']);
+                return $result;
+            
+            case 'receipt_month':
+                $result = $this->rawQuery('SELECT tr.date_ordered, tr.total, tr.discount FROM tbl_receipt AS tr 
+                INNER JOIN tbl_table AS tb ON tb.table_id = tr.table_id WHERE MONTHNAME(tr.date_ordered) = "'.$args['value'].'" 
+                AND tr.status = 0');
+                return $this->convertResultToJson($result);
+        }
     }
 
     public function getReceiptsChef() {
         $result = $this->rawQuery('SELECT tbl.table_id, tbl.table_name, tr.status FROM tbl_receipt AS tr
         INNER JOIN tbl_table AS tbl ON tbl.table_id = tr.table_id
         WHERE tr.status = 1 or tr.status = 2');
+        return $this->convertResultToDatatableArray($result);
+    }
+
+    public function getSalesByFromTo($date_from, $date_to) {
+        $result = $this->rawQuery('SELECT tr.date_ordered, SUM(tor.quantity * tm.price) AS total  FROM tbl_menu AS tm
+        INNER JOIN tbl_receipt AS tr ON DATE(tr.date_ordered) BETWEEN "'.$date_from.'" AND "'.$date_to.'" AND tr.status = 0
+        INNER JOIN tbl_order AS tor ON tor.menu_id = tm.menu_id AND tor.order_id = tr.order_id 
+        GROUP BY DATE(tr.date_ordered)');
+        return $this->convertResultToJson($result);
+    }
+
+    public function getChefsOrdersCooked() {
+        $result = $this->rawQuery('SELECT tr.order_id, tr.date_ordered, tu.fullname, 
+        tbl.table_name, tr.status, tu.image_path FROM tbl_receipt AS tr 
+        INNER JOIN tbl_user AS tu ON tu.user_id = tr.chef_id
+        INNER JOIN tbl_table AS tbl ON tbl.table_id = tr.table_id');
         return $this->convertResultToDatatableArray($result);
     }
 

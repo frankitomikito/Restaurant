@@ -5,7 +5,13 @@ module.service('confirmationService', function($http) {
         angular.forEach(data, (value, key) => {
             form_data.append(key, value);
         });
-        return $http.put('http://localhost:8000/apis/user_code', form_data);
+        return $http({
+            method: 'POST',
+            url: `${RequestPath.getPath()}/api/user_code.php`,
+            data: form_data,
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined }
+        });
     }
 });
 module.controller('confirmationCtrl', ['$scope', 'confirmationService', function(s, service) {
@@ -20,7 +26,7 @@ module.controller('confirmationCtrl', ['$scope', 'confirmationService', function
             result => {
                if (result['status']){
                 alert('Saving Credentials Completed.');
-                window.location.href = '/login';
+                window.location.href = '../login.php';
                }
                 else 
                    alert(result['error']);

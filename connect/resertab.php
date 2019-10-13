@@ -4,7 +4,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 $check_in = $_POST['check_in'];	
 $user_id = $_POST['user_id'];
-$status = 0 ;
+$status = 3 ;
 
 require_once 'conn.php';
 

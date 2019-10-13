@@ -1,9 +1,8 @@
-<!-- reservation.php -->
 <?php include 'template/header.php';
 
 if (!isset($_SESSION['isLoggedIn'])) {
     echo '<script>alert("You need to login first.")</script>';
-    echo '<script>window.location="/login"</script>';
+    echo '<script>window.location="login.php"</script>';
     }
 
 if(isset($_SESSION['id'])){
@@ -44,7 +43,7 @@ if(isset($_SESSION['id'])){
           <div class="col-md-4 ftco-animate img" style="background-image: url(images/bg_1.jpg);"></div>
           <div class="col-md-8 ftco-animate makereservation p-5 bg-light">
             
-            <form action="/choosetable?id=<?php echo $_SESSION['id'];?>" method="POST">
+            <form action="choose-table.php?id=<?php echo $_SESSION['id'];?>" method="POST">
               <div class="row">
                 <!-- <div class="col-md-6">
                   <div class="form-group">
@@ -68,20 +67,20 @@ if(isset($_SESSION['id'])){
                   <div class="form-group">
                     <label for="">Time</label>
                     <select name="reservation_time" class="form-control" placeholder="Time" required="">
-                      <option value="10:00am">10:00am</option>
-                      <option value="10:45am">10:45am</option>
-                      <option value="11:30am">11:30am</option>
-                      <option value="12:15pm">12:15pm</option>
-                      <option value="1:15pm">1:15pm</option>
-                      <option value="2:15pm">2:15pm</option>
-                      <option value="3:15pm">3:15pm</option>
-                      <option value="4:15pm">4:15pm</option>
-                      <option value="5:15pm">5:15pm</option>
-                      <option value="6:15pm">6:15pm</option>
-                      <option value="7:15pm">7:15pm</option>
-                      <option value="8:00pm">8:00pm</option>
-                      <option value="8:45pm">8:45pm</option>
-                      <option value="9:30pm">9:30pm</option>
+                      <option value="10:00:00">10:00am</option>
+                      <option value="10:45:00">10:45am</option>
+                      <option value="11:30:00">11:30am</option>
+                      <option value="12:15:00">12:15pm</option>
+                      <option value="13:15:00">1:15pm</option>
+                      <option value="14:15:00">2:15pm</option>
+                      <option value="15:15:00">3:15pm</option>
+                      <option value="16:15:00">4:15pm</option>
+                      <option value="17:15:00">5:15pm</option>
+                      <option value="18:15:00">6:15pm</option>
+                      <option value="19:15:00">7:15pm</option>
+                      <option value="20:00:00">8:00pm</option>
+                      <option value="21:45:00">8:45pm</option>
+                      <option value="22:30:00">9:30pm</option>
                     </select>
                   </div>
                 </div>
@@ -107,7 +106,6 @@ if(isset($_SESSION['id'])){
     
 
     <?php include 'template/footer.php'; ?>
-    
     <?php include 'template/script.php'; ?>
 
 

@@ -4,9 +4,38 @@
     border-radius: .5rem;
     box-shadow: .5rem .5rem .5rem rgba(#000000, .1);
     margin: 1rem 0;
+    max-height: 100%;
 
     &.full-width {
         width: 100%;
+    }
+
+    &.card-hide {
+        max-height: 7rem;
+    }
+
+    .myCard-btns {
+        float: right;
+        padding-top: .5rem;
+        
+        a {
+            cursor: pointer;
+            text-decoration: none;
+            color: $dark-color;
+            font-size: 1.5rem;
+
+            &:visited {
+                color: $light-color;
+            }
+
+            &:not(:last-child) {
+                margin-right: 1rem
+            }
+
+            &:focus {
+                color: $light-color;
+            }
+        }
     }
 
     .myCard-title {

@@ -1,10 +1,14 @@
 <?php 
 
-require_once('http/RequestRoute.php');
-require_once('http/Response.php');
-require_once('Models/User.php');
-require_once('Models/UserCode.php');
-require_once('http/Mail/Mail.php');
+require_once('../http/RequestRoute.php');
+require_once('../http/Response.php');
+require_once('../Models/User.php');
+require_once('../Models/UserCode.php');
+require_once('../vendor/phpmailer/phpmailer/src/Exception.php');
+require_once('../vendor/phpmailer/phpmailer/src/PHPMailer.php');
+require_once('../vendor/phpmailer/phpmailer/src/SMTP.php');
+require_once('../http/Mail/Mail.php');
+require_once('../dbconfig.php');
 
 RequestRoute::POST(function() {
     $email = RequestRoute::PARAMPOST('email');
@@ -17,7 +21,7 @@ RequestRoute::POST(function() {
 
     $mail->setRecipients('Reset Password', 
 		'Hello '.$user->fullname.', please click this
-		<a href="http://localhost:8000/account/reset?code='.$code_generated.'">link</a> to reset your password.',
+		<a href="'.RequestPath::PATH.'/reset-password.php?code='.$code_generated.'">link</a> to reset your password.',
         $user->email);
     if($mail->send())
         return new Response(['data' => 'Success'], 201);

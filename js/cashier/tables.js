@@ -7,8 +7,8 @@ module.service('ReceiptService', function($http) {
       form_data.append(key, value);
     });
     return $http({
-      method: 'PUT',
-      url: 'http://localhost:8000/apis/receipt',
+      method: 'POST',
+      url: `${RequestPath.getPath()}/api/receipt.php?payment=true`,
       data: form_data,
       transformRequest: angular.identity,
       headers: { 'Content-Type': undefined }
@@ -84,7 +84,7 @@ module.controller('ModalController', ['$scope', 'ReceiptService', function(s, re
 function initDatatable() {
   $(document).ready(function() {
     table = $("#table_id").DataTable({
-      ajax: "http://localhost:8000/apis/table?datatable=true",
+      ajax: `${RequestPath.getPath()}/api/table.php?datatable=true`,
       dataSrc: "data",
       columns: [
         {
@@ -123,7 +123,7 @@ function initDatatable() {
 }
 
 async function getTableStatus(callback) {
-  const response = await fetch('http://localhost:8000/apis/table');
+  const response = await fetch(`${RequestPath.getPath()}/api/table.php`);
   if(response.ok) {
     table_status = (await response.json()).data;
     callback();
@@ -131,7 +131,7 @@ async function getTableStatus(callback) {
 }
 
 async function getOrdersByTable($id) {
-  const response = await fetch('http://localhost:8000/apis/order?tableId='+$id);
+  const response = await fetch(`${RequestPath.getPath()}/api/order.php?tableId=`+$id);
   if(response.ok) {
     return await response.json();
   }

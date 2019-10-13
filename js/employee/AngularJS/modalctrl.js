@@ -1,5 +1,5 @@
 async function reloadTable() {
-    let response = await fetch('http://localhost:8000/apis/user?returnType=datatable');
+    let response = await fetch(`${RequestPath.getPath()}/api/user.php?returnType=datatable`);
     if (response.ok) {
         let json = await response.json();
         table.rows().invalidate(json)
@@ -43,7 +43,7 @@ module.service('userService', ['$http', function(h) {
         });
         return h({
             method: 'POST',
-            url: 'http://localhost:8000/apis/user',
+            url: `${RequestPath.getPath()}/api/user.php`,
             data: formdata,
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }
@@ -57,7 +57,7 @@ module.service('userService', ['$http', function(h) {
         });
         return h({
             method: 'POST',
-            url: 'http://localhost:8000/apis/user_update',
+            url: `${RequestPath.getPath()}/api/user.php?update=true`,
             data: formdata,
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }
@@ -83,7 +83,7 @@ module.controller('modalCtrl', ['$scope', 'userService', function(s, user_servic
             s.save_btn_text = 'Please wait';
             user_service.addUser(s.user).then(
               result => {
-                if (result.data.status) {
+                if (result['status']) {
                   alert("Saved Successfully!");
                   reInitializeTable();
                   s.onCancel();
@@ -152,7 +152,7 @@ module.controller('modalCtrl', ['$scope', 'userService', function(s, user_servic
     }
 
     async function setDataTableValue() {
-        let response = await fetch('http://localhost:8000/apis/user?returnType=datatable');
+        let response = await fetch(`${RequestPath.getPath()}/api/user.php?returnType=datatable`);
         if (response.ok) {
             let json = await response.json();
             changeIntegerToText(json);

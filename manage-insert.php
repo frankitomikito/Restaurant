@@ -1,4 +1,3 @@
-<!-- manage-insert.php -->
 <?php 
 session_start();
 include_once 'dbCon.php';
@@ -45,9 +44,14 @@ $con = connect();
 			        		VALUES ('$fullname','$username','$email','$password','$gender','$address','$role','$file_name','$status');";
 			        	if ($con->query($iquery) === TRUE) {
 
-							require_once($_SERVER["DOCUMENT_ROOT"].'/http/Mail/Mail.php');
-							require_once($_SERVER["DOCUMENT_ROOT"].'/Models/UserCode.php');
-							require_once($_SERVER["DOCUMENT_ROOT"].'/Models/User.php');
+							require_once('dbconfig.php');
+							require_once('Models/UserCode.php');
+							require_once('Models/User.php');
+							require_once('http/RequestRoute.php');
+							require_once 'vendor/phpmailer/phpmailer/src/Exception.php';
+							require_once 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
+							require_once 'vendor/phpmailer/phpmailer/src/SMTP.php';
+							require_once('http/Mail/Mail.php');
 
 							$user = new User;
 							$user = $user->search([
@@ -60,10 +64,10 @@ $con = connect();
 							$mail = new Mail;
 							$mail->setRecipients('Account Confirmation', 
 								'Hello '.$user->fullname.', please click this
-								 <a href="http://localhost:8000/customer/confirmation?code='.$code_generated.'">link</a> to confirm.',
+								 <a href="'.RequestPath::PATH.'/customer/confirmation.php?code='.$code_generated.'">link</a> to confirm.',
 								 $user->email);
 							if ($mail->send()) {
-								echo '<script>alert("You Register successfully. Please Confirm your email."); window.location="/login";</script>';
+								echo '<script>alert("You Register successfully. Please Confirm your email."); window.location="login.php";</script>';
 							} else {
 								echo '<script>alert("Something went wrong, please try again.")</script>';
 							}

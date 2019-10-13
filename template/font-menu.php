@@ -21,7 +21,7 @@
                 <div class="row">
                   <div class="col-lg-6" ng-repeat="menu in menus | filter: {category_id:1}" style="cursor: pointer;">
                     <div id="menu-{{menu.menu_id}}" <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 2) echo 'ng-click="onClickMenu(menu, $event.currentTarget)"' ?> class="menus d-flex main-dish">
-                      <div class="menu-img" style="background-image: url(dashboard/item-image/{{menu.image_path}});"></div>
+                      <div class="menu-img" style="background-image: url(admin/item-image/{{menu.image_path}});"></div>
                       <div class="text d-flex">
                         <div class="one-half">
                           <h3>{{menu.name}}</h3>
@@ -103,7 +103,7 @@
                 <div class="row">
                   <div class="col-lg-6" ng-repeat="menu in menus | filter: {category_id:2}" style="cursor: pointer;">
                       <div id="menu-{{menu.menu_id}}" <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 2) echo 'ng-click="onClickMenu(menu, $event.currentTarget)"' ?> class="menus d-flex main-dish">
-                        <div class="menu-img" style="background-image: url(dashboard/item-image/{{menu.image_path}});"></div>
+                        <div class="menu-img" style="background-image: url(admin/item-image/{{menu.image_path}});"></div>
                         <div class="text d-flex">
                           <div class="one-half">
                             <h3>{{menu.name}}</h3>
@@ -122,7 +122,7 @@
                 <div class="row">
                   <div class="col-lg-6" ng-repeat="menu in menus | filter: {category_id:3}" style="cursor: pointer;">
                       <div id="menu-{{menu.menu_id}}" <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 2) echo 'ng-click="onClickMenu(menu, $event.currentTarget)"' ?> class="menus d-flex main-dish">
-                        <div class="menu-img" style="background-image: url(dashboard/item-image/{{menu.image_path}});"></div>
+                        <div class="menu-img" style="background-image: url(admin/item-image/{{menu.image_path}});"></div>
                         <div class="text d-flex">
                           <div class="one-half">
                             <h3>{{menu.name}}</h3>
@@ -141,7 +141,7 @@
                 <div class="row">
                   <div class="col-lg-6" ng-repeat="menu in menus | filter: {category_id:4}" style="cursor: pointer;">
                       <div id="menu-{{menu.menu_id}}" <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 2) echo 'ng-click="onClickMenu(menu, $event.currentTarget)"' ?> class="menus d-flex main-dish">
-                        <div class="menu-img" style="background-image: url(dashboard/item-image/{{menu.image_path}});"></div>
+                        <div class="menu-img" style="background-image: url(admin/item-image/{{menu.image_path}});"></div>
                         <div class="text d-flex">
                           <div class="one-half">
                             <h3>{{menu.name}}</h3>

@@ -5,7 +5,7 @@ initDatatable();
 function initDatatable() {
   $(document).ready(function() {
     table = $("#table_id").DataTable({
-      ajax: "http://localhost:8000/apis/receipt?datatable=true",
+      ajax: `${RequestPath.getPath()}/api/receipt.php?datatable=true`,
       dataSrc: "data",
       columns: [
         {
@@ -15,7 +15,10 @@ function initDatatable() {
           data: 1
         },
         {
-          data: 2
+          data: 2,
+          render: function(data) {
+            return moment(data).format('MMMM DD, YYYY - h:mm A');
+          }
         },
         {
           data: 3
@@ -42,7 +45,8 @@ function initDatatable() {
 
     $("#table_id tbody").on("click", "tr", function() {
       var data = table.row(this).data();
-      if (data[4] == 0 && (new Date(data[1]) > new Date())) {
+      if (data[4] == 0 && moment(data[1]).add(30, 'm') > moment()
+        && moment(data[1]) < moment().add(30, 'm') || moment(data[1]) > moment()) {
         const is_cancel_booking = confirm(
           "Do you want to confirm this booking? Press Ok if yes."
         );
@@ -57,7 +61,7 @@ function initDatatable() {
 async function confirmBooking(data, table) {
   const form_data = new FormData();
   form_data.append('booking_id', data[0]);
-  await fetch("http://localhost:8000/apis/reservation", {
+  await fetch(`${RequestPath.getPath()}/api/reservation.php`, {
     method: "PUT",
     body: form_data,
   }).then(async (result) => {

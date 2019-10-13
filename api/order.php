@@ -26,7 +26,11 @@ RequestRoute::GET(function() {
     }
     else if(!empty(RequestRoute::PARAMGET('tableId'))) {
         $table_id = RequestRoute::PARAMGET('tableId');
-        return new Response($order->getOrdersByTableId($table_id), 200);
+        $response = [
+            'orders' => $order->getOrdersByTableId($table_id),
+            'customer_info' => $receipt->getCustomerDetailsByTableId($table_id)
+        ];
+        return new Response($response, 200);
     }
     else if(!empty(RequestRoute::PARAMGET('receipt_id'))) {
         $receipt_id = RequestRoute::PARAMGET('receipt_id');

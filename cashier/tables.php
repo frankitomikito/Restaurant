@@ -1,7 +1,36 @@
-<?php include 'header.php'; 
+<?php include 'header.php';
 if (!isset($_SESSION['isLoggedIn'])) {
 	echo '<script>window.location="/login"</script>';
 } ?>
+<style>
+	.print-left {
+		display: none !important;
+	}
+
+	@media print {
+		header,
+		#sidebar-left,
+		.panel {
+			display: none !important;
+		}
+		
+		#myModal {
+			display: block !important;
+		}
+
+		#myModalContainer {
+			display: none !important;
+		}
+
+		.print-left {
+			display: block !important;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 50vw;
+		}
+	}
+</style>
 
 <body ng-app="cashierApp">
 	<link rel="stylesheet" href="../build/cashier/cashier-bundle.css">
@@ -43,7 +72,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 									</a>
 								</li>
 							</ul>
-						</li>
+							</li>
 							</ul>
 						</nav>
 
@@ -103,6 +132,54 @@ if (!isset($_SESSION['isLoggedIn'])) {
 	</section>
 
 	<div ng-controller="ModalController" id="myModal" class="mymodal closed" style="display: none;">
+		<section class="print-left">
+			<div class="receipt">
+				<div class="receipt-header">
+					<h1 class="company-name">Tak-Ang Restaurant</h1>
+					<hr>
+					<div class="customer-name">
+						<label>Customer Name: </label>
+						<p>{{customer_info.fullname}}</p>
+					</div>
+					<div class="customer-address">
+						<label>Address: </label>
+						<p>{{customer_info.address}}</p>
+					</div>
+					<div class="order-date">
+						<label>Date: </label>
+						<p>{{customer_info.date_ordered}}</p>
+					</div>
+					<hr>
+				</div>
+				<div class="receipt-body">
+					<div class="order">
+						<h4 class="order-name">Orders</h4>
+						<div class="order-quantity">
+							<h4>Qty</h4>
+						</div>
+						<div class="order-price">
+							<h4>Price</h4>
+						</div>
+					</div>
+					<hr>
+					<div class="order" ng-repeat="order in orders">
+						<h4 class="order-name">{{order.name}}</h4>
+						<div class="order-quantity">
+							<h4>{{order.quantity}}</h4>
+						</div>
+						<div class="order-price">
+							<h4>₱ {{order.price}}</h4>
+						</div>
+					</div>
+				</div>
+				<hr>
+				<div class="receipt-footer">
+					<h4 class="price">Cash: ₱ {{cash}}</h4>
+					<h4 class="price">Price: ₱ {{totalPrice()}}</h4>
+					<h4 class="price">Change: ₱ {{cashChange(cash)}}</h4>
+				</div>
+			</div>
+		</section>
 		<div id="myModalContainer" class="mymodal-container">
 			<div class="mymodal-header">
 				<h1>Orders</h1>
@@ -123,8 +200,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 					</div>
 					<div class="col-lg-12" style="text-align: left; margin-top: -1rem;">
 						<h4 style="font-weight: 700; color: black; display: inline-block;">Cash: </h4>
-						<input type="number" ng-model="cash" class="myInput-control"
-						 style="font-weight: 700; width: 20rem; margin-left: 1rem; color: black; font-size: 1.8rem;" min="0"/>
+						<input type="number" ng-model="cash" class="myInput-control" style="font-weight: 700; width: 20rem; margin-left: 1rem; color: black; font-size: 1.8rem;" min="0" />
 						<h4 style="font-weight: 700; color: black; margin-top: -.1rem;">Total Price: ₱ {{totalPrice()}}</h4>
 						<h4 style="font-weight: 700; color: black; margin-top: -.1rem;">Change: ₱ {{cashChange(cash)}}</h4>
 					</div>
@@ -136,10 +212,11 @@ if (!isset($_SESSION['isLoggedIn'])) {
 			</div>
 		</div>
 	</div>
-	
+
 	<?php include 'script-res.php' ?>
 	<script src="../js/angular.js"></script>
 	<script src="../js/employee/classes/Modal.js"></script>
+	<script src="../libraries/moment.js"></script>
 	<script src="../js/requestpath.js"></script>
 	<script src="../js/cashier/tables.js"></script>
 

@@ -17,7 +17,7 @@
 	});
 
 	RequestRoute::POST(function() {
-		if (!empty(RequestRoute::PARAMPOST('update'))) {
+		if (!empty(RequestRoute::PARAMGET('update'))) {
 			$image_path = RequestRoute::PARAMFILE('user_image') ? 
 			ImageUploader::uploadImage(RequestRoute::PARAMFILE('user_image')) :
 			RequestRoute::PARAMPOST('image_path');

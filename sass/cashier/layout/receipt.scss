@@ -1,88 +1,156 @@
-.receipt {
-    border: 1px solid black;
-    padding: 10px;
-    margin-top: 1px;
-    width: 100%;
+.receipt-order {
+    padding: 15px;
 
-    &-header {
-        .company-name {
-            color: black;
-            text-align: center;
+    &--header {
+        position: relative;
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 10px;
+        font-weight: bold;
+        font-size: 25px;
+        color: black;
+        margin-bottom: 10px;
+
+        &--date {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            border-left: 1px solid black;
             font-weight: bold;
-            display: block;
-            width: 100%;
-            margin: 0;
+            font-size: 15px;
+            padding: 10px;
+            text-align: center;
+
+            span {
+                position: absolute;
+                font-size: 10px;
+                top: -5px;
+                left: 0;
+            }
+        }
+    }
+
+    &--information {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border: 1px solid black;
+
+        ul {
+            list-style-type: none;
             padding: 0;
-        }
-        .customer-name, .customer-address, .order-date {
-            color: black;
-            margin-top: 10px;
-            label {
-                font-size: 17px;
-                font-weight: 700;
-                margin: 0;
-                padding: 0;
-            }
-            
-            p {
-                font-size: 17px;
-                margin: 0;
-                padding: 0 0 0 5px;
-            }
-        }
-    }
 
-    &-body {
-        .order {
-            position: relative;
-            color: black;
-            width: 100%;
+            li {
+                width: 100%;
+                padding: 10px;
+                font-size: 15px;
+                font-weight: 500;
+                color: black;
 
-            &:not(:last-child) {
-                margin-bottom: 10px;
-            }
-            
-            .order-name {
-                font-weight: 700;
-                margin: 0;
-                padding: 0;
-            }
-            .order-quantity {
-                position: absolute;
-                width: 120px;
-                top: -10px;
-                right: 120px;
-                text-align: center;
-            }
-            .order-price {
-                position: absolute;
-                top: -10px;
-                width: 120px;
-                right: 0;
-                text-align: center;
+                span {
+                    display: inline-block;
+                    width: 50%;
+                }
+
+                &:not(:last-child) {
+                    border-bottom: 1px solid black;
+                }
             }
         }
     }
 
-    &-footer {
+    &--orders {
         width: 100%;
         color: black;
-        .price {
-            text-align: right;
-            margin: 0 20px 0 0;
-            padding: 0;
-            font-weight: bold;
 
-            &:not(:last-child) {
-                margin-bottom: 5px;
+        thead {
+            border-left: 1px solid black;
+            border-bottom: 1px solid black;
+            border-right: 1px solid black;
+            
+            th {
+                text-align: center;
+                padding: 1px;
+
+                &:not(:last-child) {
+                    border-right: 1px solid black;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                td {
+                    text-align: center;
+                    border-right: 1px solid black;
+                    
+                    &:first-child {
+                        border-left: 1px solid black;
+                    }
+                }
             }
         }
     }
 
-    hr {
-        background-color: black;
-        height: 2px;
-        width: 100%;
-        margin: 10px 0;
+    &--footer {
+        border: 1px solid black;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        color: black;
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+
+            li {
+                position: relative;
+                padding: 5px;
+                font-size: 10px;
+                line-height: 15px;
+
+                .greetings {
+                    display: inline-block;
+                    width: 50%;
+                }
+
+                &:first-child {
+                    border-bottom: 1px solid black;
+                }
+
+                span {
+                    display: inline-block;
+                    width: 50%;
+                    word-wrap: break-word;
+                    text-align: justify;
+                    padding-right: 5px;
+
+                    &:first-child {
+                        border-right: 1px solid black;
+                    }
+                }
+
+                .customer-signature {
+                    position: absolute;
+                    display: inline-block;
+                    width: 50%;
+                    height: 100%;
+                    word-wrap: break-word;
+                    text-align: justify;
+                    padding: 5px;
+                    top: 0;
+
+                    span {
+                        margin: 0 10px 0 5px;
+                        position: absolute;
+                        bottom: 5px;
+                        left: 0;
+                        width: 95%;
+                        text-align: center;
+                        border: none;
+                        border-top: 1px solid black;
+                    }
+                }
+            }
+        }
     }
 }

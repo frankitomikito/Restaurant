@@ -101,9 +101,9 @@ if (!isset($_SESSION['isLoggedIn'])) {
 						<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
 					</div>
 				</header>
-
+ 
 				<!-- start: page -->
-				<section class="panel">
+				<section class="panel" style="display: block;">
 					<header class="panel-heading">
 						<div class="panel-actions">
 							<!-- <a id="buttonAdd" class="fa fa-plus datatable-addbtn"></a> -->
@@ -133,7 +133,66 @@ if (!isset($_SESSION['isLoggedIn'])) {
 
 	<div ng-controller="ModalController" id="myModal" class="mymodal closed" style="display: none;">
 		<section class="print-left">
-			<div class="receipt">
+			<div class="receipt-order">
+					<div class="receipt-order--header">
+						Order Slip
+						<div class="receipt-order--header--date">
+							<span>Date:</span>
+							October 14, 2019
+						</div>
+					</div>
+					<div class="receipt-order--information">
+						<ul>
+							<li>
+								Ordered By: Emmanuel Paul G. Moralde
+							</li>
+							<li>
+								Address: Asuncion Davao del Norte
+							</li>
+							<li>
+								<span>Via: Test</span> Salesman: Eriri Sawamura Spencer
+							</li>
+						</ul>
+					</div>
+					<table class="receipt-order--orders">
+						<thead>
+							<th>Qty</th>
+							<th>Unit</th>
+							<th>Description of articles</th>
+							<th>Unit Price</th>
+							<th>Amount</th>
+						</thead>
+						<tbody>
+							<tr>
+								<td>2</td>
+								<td>Set</td>
+								<td>Adobo</td>
+								<td>₱150</td>
+								<td>₱300</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="receipt-order--footer">
+						<ul>
+							<li>
+								<span class="greetings">Thank You, Come Again!</span>
+								Total ☞	₱ 2000
+							</li>
+							<li>
+								<span>
+									<strong>NOTE:</strong> This Order Slip at the same time
+									serves as a temporary invoice. Our official invoice will be issued
+									upon the return of this receipt and fully signed by the customers.
+								</span>
+								<span class="customer-signature">
+									 Received in good order and condition the above described merchandise.
+									 <span>Customer's Signature</span>
+								</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			<!-- <div class="receipt">
 				<div class="receipt-header">
 					<h1 class="company-name">Tak-Ang Restaurant</h1>
 					<hr>
@@ -178,7 +237,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 					<h4 class="price">Price: ₱ {{totalPrice()}}</h4>
 					<h4 class="price">Change: ₱ {{cashChange(cash)}}</h4>
 				</div>
-			</div>
+			</div> -->
 		</section>
 		<div id="myModalContainer" class="mymodal-container">
 			<div class="mymodal-header">

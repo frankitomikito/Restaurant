@@ -1,6 +1,30 @@
-let table;
+const module = angular.module('cashierApp', []);
 
-initDatatable();
+module.controller('ModalController', ['$scope', function(s) {
+
+  let table;
+  s.totalprice = 0;
+  s.cash = 0;
+  s.orders = [];
+  
+  initDatatable();
+
+  s.closeModal = () => {
+    ModalController.closeModal();
+  }
+
+  s.totalPrice = () => {
+    if(s.orders.length > 0) {
+      let totalprice = 0;
+      angular.forEach(s.orders, (value) => {
+        totalprice += value.quantity * value.price;
+      });
+      s.totalprice = totalprice;
+      return totalprice;
+    }
+    return 0;
+  }
+
 
 function initDatatable() {
   $(document).ready(function() {
@@ -43,37 +67,22 @@ function initDatatable() {
       ]
     });
 
-    $("#table_id tbody").on("click", "tr", function() {
+    $("#table_id tbody").on("click", "tr", async function() {
       var data = table.row(this).data();
-      if (data[4] == 0 && moment(data[1]).add(30, 'm') > moment()
-        && moment(data[1]) < moment().add(30, 'm') || moment(data[1]) > moment()) {
-        const is_cancel_booking = confirm(
-          "Do you want to confirm this booking? Press Ok if yes."
-        );
-        if (is_cancel_booking) {
-          confirmBooking(data, table);
-        }
-      }
+      booking_id = data[0];
+      const result =  await getOrdersAndCustomerByTable(data[0]);
+      s.orders = result.orders;
+      s.$apply();
+      ModalController.showModal();
     });
   });
 }
 
-async function confirmBooking(data, table) {
-  const form_data = new FormData();
-  form_data.append('booking_id', data[0]);
-  await fetch(`${RequestPath.getPath()}/api/reservation.php`, {
-    method: "PUT",
-    body: form_data,
-  }).then(async (result) => {
-    const result_json = await result.json();
-      if (result_json.data == 'Success') {
-        alert('Booking Confirmed Successfully!');
-        table.ajax.reload();
-      } 
-      else 
-        alert(result_json.error);
-  }, async (error) => {
-    const result_json = await error.json();
-    console.log(result_json);
-  });
+async function getOrdersAndCustomerByTable($id) {
+  const response = await fetch(`${RequestPath.getPath()}/api/order.php?tableId=`+$id);
+  if(response.ok) {
+    return await response.json();
+  }
 }
+
+}]);

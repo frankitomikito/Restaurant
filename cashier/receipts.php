@@ -1,9 +1,10 @@
 <?php include 'header.php'; 
 if (!isset($_SESSION['isLoggedIn'])) {
-	echo '<script>window.location="/login"</script>';
+	echo '<script>window.location="../login.php"</script>';
 } ?>
 
 <body ng-app="cashierApp">
+	<link rel="stylesheet" href="../build/cashier/cashier-bundle.css">
 	<section class="body">
 
 		<?php include 'top-bar.php' ?>
@@ -87,7 +88,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 							<thead>
 								<tr>
 									<th>Receipt Id</th>
-									<th>Full Name</th>
+									<th>Customer</th>
 									<th>DateTime</th>
 									<th>Total</th>
 									<th>Discount</th>
@@ -103,9 +104,40 @@ if (!isset($_SESSION['isLoggedIn'])) {
 			</section>
 		</div>
 	</section>
+	<div ng-controller="ModalController" id="myModal" class="mymodal closed" style="display: none;">
+		<div id="myModalContainer" class="mymodal-container">
+			<div class="mymodal-header">
+				<h1>Orders</h1>
+			</div>
+			<hr>
+			<div class="mymodal-body">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="card-order" ng-repeat="order in orders">
+							<img src="../admin/item-image/{{order.image_path}}" alt="menu">
+							<h4 class="order-title">
+								{{order.name}} <br>
+								<span>Quantity: {{order.quantity}}</span>
+							</h4>
+							<h3 class="order-price">₱ {{order.quantity * order.price}}</h3>
+						</div>
+						<hr>
+					</div>
+					<div class="col-lg-12" style="text-align: left; margin-top: -1rem;">
+						<h4 style="font-weight: 700; color: black; margin-top: -.1rem;">Total Price: ₱ {{totalPrice()}}</h4>
+					</div>
+				</div>
+			</div>
+			<div class="mymodal-footer">
+				<button id="buttonCancel" ng-click="closeModal()" class="myBtn">Close</button>
+			</div>
+		</div>
+	</div>
 	
 	<?php include 'script-res.php' ?>
 	<script src="../libraries/moment.js"></script>
+	<script src="../js/employee/classes/Modal.js"></script>
+	<script src="../js/angular.js"></script>
 	<script src="../js/requestpath.js"></script>
 	<script src="../js/cashier/receipts.js"></script>
 

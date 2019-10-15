@@ -10,6 +10,9 @@ function createMyCardBtns(element) {
     node.className = 'myCard-btns';
     const a_node = document.createElement('a');
     const arrow_pos = element.className == 'myCard' ? '▲' : '▼';
+    if (element.className == 'myCard') {
+        element.children[1].style.display = 'block';
+    }
     const text_node = document.createTextNode(arrow_pos);
     a_node.appendChild(text_node);
     node.appendChild(a_node);

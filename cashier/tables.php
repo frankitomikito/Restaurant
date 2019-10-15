@@ -193,52 +193,6 @@ if (!isset($_SESSION['isLoggedIn'])) {
 						</ul>
 					</div>
 				</div>
-			<!-- <div class="receipt">
-				<div class="receipt-header">
-					<h1 class="company-name">Tak-Ang Restaurant</h1>
-					<hr>
-					<div class="customer-name">
-						<label>Customer Name: </label>
-						<p>{{customer_info.fullname}}</p>
-					</div>
-					<div class="customer-address">
-						<label>Address: </label>
-						<p>{{customer_info.address}}</p>
-					</div>
-					<div class="order-date">
-						<label>Date: </label>
-						<p>{{customer_info.date_ordered}}</p>
-					</div>
-					<hr>
-				</div>
-				<div class="receipt-body">
-					<div class="order">
-						<h4 class="order-name">Orders</h4>
-						<div class="order-quantity">
-							<h4>Qty</h4>
-						</div>
-						<div class="order-price">
-							<h4>Price</h4>
-						</div>
-					</div>
-					<hr>
-					<div class="order" ng-repeat="order in orders">
-						<h4 class="order-name">{{order.name}}</h4>
-						<div class="order-quantity">
-							<h4>{{order.quantity}}</h4>
-						</div>
-						<div class="order-price">
-							<h4>₱ {{order.price}}</h4>
-						</div>
-					</div>
-				</div>
-				<hr>
-				<div class="receipt-footer">
-					<h4 class="price">Cash: ₱ {{cash}}</h4>
-					<h4 class="price">Price: ₱ {{totalPrice()}}</h4>
-					<h4 class="price">Change: ₱ {{cashChange(cash)}}</h4>
-				</div>
-			</div> -->
 		</section>
 		<div id="myModalContainer" class="mymodal-container">
 			<div class="mymodal-header">

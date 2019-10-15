@@ -85,7 +85,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 						</div>
 					</div>
 					<section class="panel">
-					<div class="myCard card-hide">
+					<div class="myCard<?php echo isset($_GET['date_from']) ? '' : ' card-hide' ?>">
 						<h2 class="myCard-title" style="margin-top: 0;">Tabular Report</h2>
 						<div class="myCard-content" style="display: none;">
 							<div class="content-center">

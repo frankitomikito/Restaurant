@@ -71,7 +71,7 @@ function initDatatable() {
       var data = table.row(this).data();
       booking_id = data[0];
       const result =  await getOrdersAndCustomerByTable(data[0]);
-      s.orders = result.orders;
+      s.orders = result;
       s.$apply();
       ModalController.showModal();
     });
@@ -79,7 +79,7 @@ function initDatatable() {
 }
 
 async function getOrdersAndCustomerByTable($id) {
-  const response = await fetch(`${RequestPath.getPath()}/api/order.php?tableId=`+$id);
+  const response = await fetch(`${RequestPath.getPath()}/api/order.php?receipt_id=`+$id);
   if(response.ok) {
     return await response.json();
   }

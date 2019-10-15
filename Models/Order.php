@@ -5,7 +5,7 @@ require_once('Interfaces/IActions.php');
 
 class Order extends Database implements IActions {
     public function get($id){
-        $result = $this->rawQuery('SELECT tm.name, tbo.quantity, tm.image_path FROM tbl_receipt AS tr 
+        $result = $this->rawQuery('SELECT tm.name, tbo.quantity, tm.image_path, tm.price FROM tbl_receipt AS tr 
         INNER JOIN tbl_order AS tbo ON tbo.order_id = tr.order_id
         INNER JOIN tbl_menu AS tm ON tm.menu_id = tbo.menu_id
         WHERE tr.order_id = '.$id.' GROUP BY tm.name');

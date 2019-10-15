@@ -8,8 +8,11 @@ if (!isset($_SESSION['isLoggedIn'])) {
 
 <style>
 @media print {
-  header, #sidebar-left {
+  header, #sidebar-left, .card-hide, .myCard-btns {
     display: none !important;
+  }
+  canvas {
+	  width: 100% !important;
   }
   .panel {
 	  margin-top: -100px;
@@ -79,6 +82,43 @@ if (!isset($_SESSION['isLoggedIn'])) {
 									 disabled>Generate Report</button>
 							</div>
 							<canvas id="customChart"></canvas>
+						</div>
+					</div>
+					<section class="panel">
+					<div class="myCard card-hide">
+						<h2 class="myCard-title" style="margin-top: 0;">Tabular Report</h2>
+						<div class="myCard-content" style="display: none;">
+							<table class="table table-bordered table-striped mb-none" id="datatable-tabletools" data-swf-path="assets/vendor/jquery-datatables/extras/TableTools/swf/copy_csv_xls_pdf.swf">
+									<thead>
+										<th>No</th>
+										<th>Customer</th>
+										<th>Waiter</th>
+										<th>DateTime</th>
+										<th>Menu</th>
+										<th>Quantity</th>
+										<th>Total</th>
+										<th>Table Name</th>
+									</thead>
+									<tbody>
+										<?php
+											require_once('../Models/Receipt.php');
+											$receipt = new Receipt;
+											$result = $receipt->getTabularReportData();
+											foreach ($result as $r) {
+												echo '<tr>';
+												echo '<td>'.$r['order_id'].'</td>';
+												echo '<td>'.$r['fullname'].'</td>';
+												echo '<td>'.$r['waiter'].'</td>';
+												echo '<td>'.date_format(date_create($r['date_ordered']), 'M d, Y H:s A').'</td>';
+												echo '<td>'.$r['name'].'</td>';
+												echo '<td>'.$r['quantity'].'</td>';
+												echo '<td>'.$r['total'].'</td>';
+												echo '<td>'.$r['table_name'].'</td>';
+												echo '</tr>';
+											}
+										?>
+									</tbody>
+							</table>
 						</div>
 					</div>
 				</section>

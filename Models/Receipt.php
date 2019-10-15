@@ -128,7 +128,7 @@ class Receipt extends Database implements IActions {
         INNER JOIN tbl_order AS tor ON tor.order_id = tr.order_id
         INNER JOIN tbl_menu AS tm ON tm.menu_id = tor.menu_id');
         if ($result->num_rows > 0)
-            return $this->convertResultToDatatableArray($result);
+            return $result;
         else
             return [];
     }

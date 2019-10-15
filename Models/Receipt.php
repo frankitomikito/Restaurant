@@ -118,15 +118,24 @@ class Receipt extends Database implements IActions {
         return $this->getUserInfoByColumn($table_id, 'waiter_id');
     }
     
-    public function getTabularReportData() {
-        $result = $this->rawQuery('SELECT tr.order_id, tu.fullname, tu2.fullname AS waiter, 
+    public function getTabularReportData($date_from, $date_to) {
+        $result = null;
+        $query = 'SELECT tr.order_id, tu.fullname, tu2.fullname AS waiter, 
         tr.date_ordered, tm.name, tor.quantity, (tor.quantity * tm.price) 
         AS total, tb.table_name, tr.status FROM tbl_receipt AS tr
         INNER JOIN tbl_user AS tu ON tu.user_id = tr.user_id
         INNER JOIN tbl_user AS tu2 ON tu2.user_id = tr.waiter_id
         INNER JOIN tbl_table AS tb ON tb.table_id = tr.table_id
         INNER JOIN tbl_order AS tor ON tor.order_id = tr.order_id
-        INNER JOIN tbl_menu AS tm ON tm.menu_id = tor.menu_id');
+        INNER JOIN tbl_menu AS tm ON tm.menu_id = tor.menu_id ';
+        if($date_from && $date_to) {
+            $result = $this->rawQuery($query.
+            'WHERE tr.date_ordered BETWEEN DATE("'.$date_from.'") AND DATE("'.$date_to.'")');
+        }
+        else {
+            $result = $this->rawQuery($query);
+        }
+        
         if ($result->num_rows > 0)
             return $result;
         else

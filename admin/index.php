@@ -88,6 +88,18 @@ if (!isset($_SESSION['isLoggedIn'])) {
 					<div class="myCard card-hide">
 						<h2 class="myCard-title" style="margin-top: 0;">Tabular Report</h2>
 						<div class="myCard-content" style="display: none;">
+							<div class="content-center">
+								<form action="index.php" method="GET">
+									<label style="font-weight: 700; margin: 0 1rem;">From</label>
+									<input id="date_from_tab" name="date_from" class="myInput-control" onclick="onDateFromChangeTabular()" type="date" style="width: 15rem;"
+									 value="<?php echo isset($_GET['date_from']) ? $_GET['date_from'] : '' ?>">
+									<label style="font-weight: 700; margin: 0 1rem;">To</label>
+									<input id="date_to_tab" name="date_to" class="myInput-control" onclick="onDateToChangeTabular()" type="date" style="width: 15rem;"
+									 value="<?php echo isset($_GET['date_to']) ? $_GET['date_to'] : '' ?>">
+									<button type="submit" class="myBtn" style="margin-left: 1rem;">Generate Report</button>
+								</form>
+							</div>
+							<hr>
 							<table class="table table-bordered table-striped mb-none" id="datatable-tabletools" data-swf-path="assets/vendor/jquery-datatables/extras/TableTools/swf/copy_csv_xls_pdf.swf">
 									<thead>
 										<th>No</th>
@@ -103,7 +115,9 @@ if (!isset($_SESSION['isLoggedIn'])) {
 										<?php
 											require_once('../Models/Receipt.php');
 											$receipt = new Receipt;
-											$result = $receipt->getTabularReportData();
+											$date_from = isset($_GET['date_from']) ? $_GET['date_from'] : false;
+											$date_to = isset($_GET['date_to']) ? $_GET['date_to'] : false;
+											$result = $receipt->getTabularReportData($date_from, $date_to);
 											foreach ($result as $r) {
 												echo '<tr>';
 												echo '<td>'.$r['order_id'].'</td>';

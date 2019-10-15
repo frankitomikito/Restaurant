@@ -192,6 +192,14 @@ function onDateToChange(elem) {
     if (custom_report_btn.hasAttribute('disabled'))
         custom_report_btn.removeAttribute('disabled');
 }
+const date_from_tab = document.getElementById('date_from_tab');
+const date_to_tab = document.getElementById('date_to_tab');
+function onDateFromChangeTabular() {
+    date_from_tab.setAttribute('max', date_to_tab.value);
+}
+function onDateToChangeTabular() {
+    date_to_tab.setAttribute('min', date_from_tab.value);
+}
 
 function generateCustomReport(elem) {
     elem.setAttribute('disabled', 'disabled');

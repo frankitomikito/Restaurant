@@ -109,7 +109,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 												echo '<td>'.$r['order_id'].'</td>';
 												echo '<td>'.$r['fullname'].'</td>';
 												echo '<td>'.$r['waiter'].'</td>';
-												echo '<td>'.date_format(date_create($r['date_ordered']), 'M d, Y H:s A').'</td>';
+												echo '<td>'.date_format(date_create($r['date_ordered']), 'M d, Y h:s A').'</td>';
 												echo '<td>'.$r['name'].'</td>';
 												echo '<td>'.$r['quantity'].'</td>';
 												echo '<td>'.$r['total'].'</td>';

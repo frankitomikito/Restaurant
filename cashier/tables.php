@@ -138,19 +138,19 @@ if (!isset($_SESSION['isLoggedIn'])) {
 						Order Slip
 						<div class="receipt-order--header--date">
 							<span>Date:</span>
-							October 14, 2019
+							{{todays_date}}
 						</div>
 					</div>
 					<div class="receipt-order--information">
 						<ul>
 							<li>
-								Ordered By: Emmanuel Paul G. Moralde
+								Ordered By: {{customer_info.fullname}}
 							</li>
 							<li>
-								Address: Asuncion Davao del Norte
+								Address: {{customer_info.address}}
 							</li>
 							<li>
-								<span>Via: Test</span> Salesman: Eriri Sawamura Spencer
+								<span>Via: </span> Salesman: <span class="salesman">{{waiter_info.fullname}}</span>
 							</li>
 						</ul>
 					</div>
@@ -163,12 +163,12 @@ if (!isset($_SESSION['isLoggedIn'])) {
 							<th>Amount</th>
 						</thead>
 						<tbody>
-							<tr>
-								<td>2</td>
+							<tr ng-repeat="order in orders">
+								<td>{{order.quantity}}</td>
 								<td>Set</td>
-								<td>Adobo</td>
-								<td>₱150</td>
-								<td>₱300</td>
+								<td>{{order.name}}</td>
+								<td>₱{{order.price}}</td>
+								<td>₱{{order.quantity * order.price}}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -176,7 +176,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 						<ul>
 							<li>
 								<span class="greetings">Thank You, Come Again!</span>
-								Total ☞	₱ 2000
+								<span class="orders-total">Total ☞	₱ {{totalPrice()}}</span>
 							</li>
 							<li>
 								<span>
@@ -188,6 +188,7 @@ if (!isset($_SESSION['isLoggedIn'])) {
 									 Received in good order and condition the above described merchandise.
 									 <span>Customer's Signature</span>
 								</span>
+								<span class="receipt-no">No.{{orders[0].order_id}}</span>
 							</li>
 						</ul>
 					</div>

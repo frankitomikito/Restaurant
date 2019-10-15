@@ -28,7 +28,8 @@ RequestRoute::GET(function() {
         $table_id = RequestRoute::PARAMGET('tableId');
         $response = [
             'orders' => $order->getOrdersByTableId($table_id),
-            'customer_info' => $receipt->getCustomerDetailsByTableId($table_id)
+            'customer_info' => $receipt->getCustomerDetailsByTableId($table_id),
+            'waiter_info' => $receipt->getWaiterNameByTableId($table_id)
         ];
         return new Response($response, 200);
     }

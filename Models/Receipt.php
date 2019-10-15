@@ -111,15 +111,37 @@ class Receipt extends Database implements IActions {
     }
 
     public function getCustomerDetailsByTableId($table_id) {
+        return $this->getUserInfoByColumn($table_id, 'user_id');   
+    }
+    
+    public function getWaiterNameByTableId($table_id) {
+        return $this->getUserInfoByColumn($table_id, 'waiter_id');
+    }
+    
+    public function getTabularReportData() {
+        $result = $this->rawQuery('SELECT tr.order_id, tu.fullname, tu2.fullname AS waiter, 
+        tr.date_ordered, tm.name, tor.quantity, (tor.quantity * tm.price) 
+        AS total, tb.table_name, tr.status FROM tbl_receipt AS tr
+        INNER JOIN tbl_user AS tu ON tu.user_id = tr.user_id
+        INNER JOIN tbl_user AS tu2 ON tu2.user_id = tr.waiter_id
+        INNER JOIN tbl_table AS tb ON tb.table_id = tr.table_id
+        INNER JOIN tbl_order AS tor ON tor.order_id = tr.order_id
+        INNER JOIN tbl_menu AS tm ON tm.menu_id = tor.menu_id');
+        if ($result->num_rows > 0)
+            return $this->convertResultToDatatableArray($result);
+        else
+            return [];
+    }
+
+    private function getUserInfoByColumn($table_id, $column) {
         $result = $this->rawQuery('SELECT tu.fullname, tu.address, tr.date_ordered FROM tbl_booking AS tb
         INNER JOIN tbl_booked_table AS tbt ON tbt.booking_id = tb.booking_id
         INNER JOIN tbl_receipt AS tr ON tr.user_id = tb.user_id AND tr.status != 0  AND tr.table_id = '.$table_id.'
-        INNER JOIN tbl_user AS tu ON tu.user_id = tr.user_id
+        INNER JOIN tbl_user AS tu ON tu.user_id = tr.'.$column.'
         WHERE tb.status = 1');
         if ($result->num_rows > 0)
             return $result->fetch_object();
         else
             return null;
     }
-
 }

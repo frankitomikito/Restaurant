@@ -25,6 +25,8 @@ module.controller('ModalController', ['$scope', 'ReceiptService', function(s, re
   s.cash = 0;
   s.orders = [];
   s.customer_info = {};
+  s.waiter_info = {};
+  s.todays_date = moment().format('MMMM DD, YYYY');
   
   getTableStatus(() => {
     initDatatable();
@@ -119,6 +121,7 @@ function initDatatable() {
       const result =  await getOrdersAndCustomerByTable(data[0]);
       s.orders = result.orders;
       s.customer_info = result.customer_info ? result.customer_info : {};
+      s.waiter_info = result.waiter_info ? result.waiter_info : {};
       s.customer_info.date_ordered = moment(s.customer_info.date_ordered).format('MMMM DD, YYYY');
       s.$apply();
       ModalController.showModal();

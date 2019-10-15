@@ -19,6 +19,8 @@ RequestRoute::GET(function() {
     }
     elseif(RequestRoute::PARAMGET('chef_cooked')) 
         return new Response(['data' => $receipt->getChefsOrdersCooked()], 200);
+    elseif(RequestRoute::PARAMGET('tabular'))
+        return new Response(['data' => $receipt->getTabularReportData()], 200);
     else {
         return new Response(['data' => 'Invalid Request'], 404);
     }

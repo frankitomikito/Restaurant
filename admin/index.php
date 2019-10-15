@@ -1,6 +1,6 @@
 <?php include 'template/header.php';
 if (!isset($_SESSION['isLoggedIn'])) {
-	echo '<script>window.location="/login"</script>';
+	echo '<script>window.location="../login.php"</script>';
 }
 
 ?>
